@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "-------------"
+echo "bme280.py"
+python bme280.py
+
+echo "-------------"
+echo "bme280.c"
+make
+./main
