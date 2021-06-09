@@ -6,5 +6,4 @@ python bme280.py
 
 echo "-------------"
 echo "bme280.c"
-make
-./main
+./main /dev/i2c-1
