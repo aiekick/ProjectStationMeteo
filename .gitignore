@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+
+#Visual Studio files
+.qmake.stash
+.vs/
+Station_meteo.vcxproj
+Station_meteo.vcxproj.filters
+Station_meteo.vcxproj.user
+debug/
+release/
+ui_mainwindow.h
