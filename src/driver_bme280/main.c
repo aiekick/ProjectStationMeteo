@@ -1,36 +1,11 @@
-/**\
- * Copyright (c) 2020 Bosch Sensortec GmbH. All rights reserved.
- *
- * SPDX-License-Identifier: BSD-3-Clause
- **/
-
-/**
- * \ingroup bme280
- * \defgroup bme280Examples Examples
- * @brief Reference Examples
- */
-
-/*!
- * @ingroup bme280Examples
- * @defgroup bme280GroupExampleLU linux_userspace
- * @brief Linux userspace test code, simple and mose code directly from the doco.
- * compile like this: gcc linux_userspace.c ../bme280.c -I ../ -o bme280
- * tested: Raspberry Pi.
- * Use like: ./bme280 /dev/i2c-0
- * \include linux_userspace.c
- */
-
-#include <linux/i2c-dev.h>
-#include <sys/ioctl.h>
-
-/******************************************************************************/
-/*!                         System header files                               */
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <fcntl.h>
+#include <linux/i2c-dev.h>
+#include <sys/ioctl.h>
 #include "bme280.h"
 
 struct identifier
@@ -38,7 +13,6 @@ struct identifier
     uint8_t dev_addr;
 	int8_t fd;
 };
-
 
 int8_t user_i2c_read(uint8_t reg_addr, uint8_t *data, uint32_t len, void *intf_ptr)
 {
@@ -90,7 +64,7 @@ void print_sensor_data(struct bme280_data *comp_data)
 		hum = 1.0f / 1024.0f * comp_data->humidity;
 	#endif
 #endif
-    
+
 	//printf("Chip ID     :", chip_id
 	//printf("Version     :", chip_version
 	printf("Temperature : %.1f C\n", temp);
@@ -101,7 +75,7 @@ void print_sensor_data(struct bme280_data *comp_data)
 #define OVERSAMPLE_TEMP 2
 #define OVERSAMPLE_PRES 2
 #define OVERSAMPLE_HUM 2
-  
+
 int8_t getSensorDataNormalMode(struct bme280_dev *dev)
 {
 	int8_t rslt;
@@ -123,16 +97,13 @@ int8_t getSensorDataNormalMode(struct bme280_dev *dev)
 	rslt = bme280_set_sensor_settings(settings_sel, dev);
 	rslt = bme280_set_sensor_mode(BME280_NORMAL_MODE, dev);
 
-	int i=0;
-	for (;i<20;i++)
-	{
-		/* Delay while the sensor completes a measurement */
-		dev->delay_us(70, dev->intf_ptr);
-		rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
-	}
-	
+	/* Delay while the sensor completes a measurement */
+	double wait_time = 1.25 + (2.3 * OVERSAMPLE_TEMP) + ((2.3 * OVERSAMPLE_PRES) + 0.575) + ((2.3 * OVERSAMPLE_HUM) + 0.575);
+	dev->delay_us(wait_time * 1000, dev->intf_ptr);
+	rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
+
 	print_sensor_data(&comp_data);
-	
+
 	return rslt;
 }
 
