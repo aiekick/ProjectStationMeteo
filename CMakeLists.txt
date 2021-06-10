@@ -23,6 +23,13 @@ else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic -Wdeprecated-declarations -Wunused-parameter")
 endif ()
 
+if(UNIX)
+    add_definitions(-DUNIX)
+elseif(WIN32)
+    add_definitions(-DWIN32)
+endif()
+
+include(cmake/3rdparty.cmake)
 
 file(GLOB_RECURSE PROJECT_SRC_RECURSE 
 	${CMAKE_CURRENT_SOURCE_DIR}/src/*.c 
@@ -35,13 +42,18 @@ add_executable(${PROJECT} ${PROJECT_SRC_RECURSE})
 
 set_target_properties(${PROJECT} PROPERTIES OUTPUT_NAME "${PROJECT}")
 
-include(cmake/3rdparty.cmake)
 
 include_directories(
 	src
 	${LIBUV_INCLUDE_DIR}
+	${UV_CPP_INCLUDE_DIR}
+	${BME280_INCLUDE_DIR}
+	${SQLITE_INCLUDE_DIR}
 )
 
 target_link_libraries(${PROJECT} PRIVATE
 	${LIBUV_LIBRARIES}
+	${UV_CPP_LIBRARIES}
+	${BME280_LIBRARIES}
+	${SQLITE_LIBRARIES}
 )

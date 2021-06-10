@@ -1,15 +1,15 @@
-set(IMGUI_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/3rdparty/imgui)
-file(GLOB IMGUI_SOURCES ${IMGUI_INCLUDE_DIR}/*.cpp)
-file(GLOB IMGUI_HEADERS ${IMGUI_INCLUDE_DIR}/*.h)
-                 
-add_library(imgui STATIC ${IMGUI_SOURCES} ${IMGUI_HEADERS})
+set(BME280_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/3rdparty/BME280_driver)
 
-include_directories(
-    ${IMGUI_INCLUDE_DIR}
-    ${OPENGL_INCLUDE_DIR})
-    
-set_target_properties(imgui PROPERTIES LINKER_LANGUAGE CXX)
-set_target_properties(imgui PROPERTIES FOLDER 3rdparty)
+file(GLOB BME280_SRC 
+	${BME280_INCLUDE_DIR}/*.c 
+	${BME280_INCLUDE_DIR}/*.h
+)
+source_group(TREE ${BME280_INCLUDE_DIR} PREFIX src FILES ${BME280_SRC})
 
-set(IMGUI_LIBRARIES imgui)
+add_library(bme280 STATIC ${BME280_SRC})
+
+set_target_properties(bme280 PROPERTIES LINKER_LANGUAGE C)
+set_target_properties(bme280 PROPERTIES FOLDER 3rdparty)
+
+set(BME280_LIBRARIES bme280 wiringPi)
 

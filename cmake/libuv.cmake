@@ -5,6 +5,7 @@ add_subdirectory(3rdparty/libuv)
     
 set_target_properties(uv PROPERTIES LINKER_LANGUAGE CXX)
 set_target_properties(uv PROPERTIES FOLDER 3rdparty)
+set_target_properties(uv_a PROPERTIES FOLDER 3rdparty)
 
 set(LIBUV_LIBRARIES uv)
 
