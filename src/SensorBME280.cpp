@@ -125,8 +125,8 @@ int8_t SensorBME280::GetSensorBME280DataNormalMode(
         rslt = bme280_set_sensor_mode(BME280_NORMAL_MODE, dev);
 
         /* Delay while the sensor completes a measurement */
-        double wait_time = 1.25 + (2.3 * OVERSAMPLE_TEMP) + ((2.3 * OVERSAMPLE_PRES) + 0.575) + ((2.3 * OVERSAMPLE_HUM) + 0.575);
-        dev->delay_us(wait_time * 1000, dev->intf_ptr);
+        static double wait_time = (1.25 + (2.3 * OVERSAMPLE_TEMP) + ((2.3 * OVERSAMPLE_PRES) + 0.575) + ((2.3 * OVERSAMPLE_HUM) + 0.575)) * 1000.0;
+        dev->delay_us((int)wait_time, dev->intf_ptr);
         
 		struct bme280_data comp_data;
 		rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
@@ -204,7 +204,11 @@ bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct* vSensorBME280Da
 std::string SensorBME280::ConvertSensorBME280DatasStructToJSON(const SensorBME280DatasStruct& vDatas)
 {
 	int n = snprintf(buffer, BUFFER_LENGTH,
+#ifdef UNIX // gcc seems not understand %zu and msvc not understand %llu ...
+		"{\"epoc\":%llu,\"temp\":%.5f,\"pres\":%.5f,\"humi\":%.5f}",
+#else
 		"{\"epoc\":%zu,\"temp\":%.5f,\"pres\":%.5f,\"humi\":%.5f}",
+#endif
 		vDatas.epoc, vDatas.temp, vDatas.pres, vDatas.humi);
 	return std::string(buffer, n);
 }
