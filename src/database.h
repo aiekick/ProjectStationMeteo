@@ -9,7 +9,7 @@ private:
 	sqlite3* m_SqliteDB = nullptr;
 
 public:
-	void AddBME280SensorDatas(const int& vDateTime, const float& vTemperature, const float& vPressure, const float& vHumidity);
+	void AddBME280SensorDatas(const uint64_t& vDateTime, const float& vTemperature, const float& vPressure, const float& vHumidity);
 	std::string GetJSonDatas(const int& vCountLastHours);
 
 private:

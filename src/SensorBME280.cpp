@@ -8,17 +8,27 @@
 #include <sys/types.h>
 #include <fcntl.h>
 #include <cstdint>
+#include <chrono>
+#include <ctime>
 
 #define BUFFER_LENGTH 1024
 static char buffer[BUFFER_LENGTH + 1] = "";
 
-SensorBME280::SensorBME280(const std::string& vI2CBus) : m_I2cBus(vI2CBus) {}
+SensorBME280::SensorBME280(const std::string& vI2CBus) : m_I2cBus(vI2CBus) 
+{
+
+}
 
 #ifdef UNIX
+
 #include <unistd.h>
 #include <linux/i2c-dev.h>
 #include <sys/ioctl.h>
 #include "bme280.h"
+
+#define OVERSAMPLE_TEMP 2
+#define OVERSAMPLE_PRES 2
+#define OVERSAMPLE_HUM 2
 
 struct identifier
 {
@@ -26,7 +36,7 @@ struct identifier
     int8_t fd;
 };
 
-int8_t user_i2c_read(uint8_t reg_addr, uint8_t* data, uint32_t len, void* intf_ptr)
+int8_t SensorBME280::UserI2cRead(uint8_t reg_addr, uint8_t* data, uint32_t len, void* intf_ptr)
 {
     auto id = *((struct identifier*)intf_ptr);
     write(id.fd, &reg_addr, 1);
@@ -34,12 +44,12 @@ int8_t user_i2c_read(uint8_t reg_addr, uint8_t* data, uint32_t len, void* intf_p
     return 0;
 }
 
-void user_delay_us(uint32_t period, void* intf_ptr)
+void SensorBME280::UserDelayUs(uint32_t period, void* intf_ptr)
 {
     usleep(period);
 }
 
-int8_t user_i2c_write(uint8_t reg_addr, const uint8_t* data, uint32_t len, void* intf_ptr)
+int8_t SensorBME280::UserI2cWrite(uint8_t reg_addr, const uint8_t* data, uint32_t len, void* intf_ptr)
 {
     auto id = *((identifier*)intf_ptr);
     auto buf = new uint8_t[len + 1];
@@ -54,46 +64,41 @@ int8_t user_i2c_write(uint8_t reg_addr, const uint8_t* data, uint32_t len, void*
     return BME280_OK;
 }
 
-void print_sensor_data(
-    struct bme280_data* comp_data, 
+void SensorBME280::SaveSensorData(
+    bme280_data* comp_data, 
     SensorBME280DatasStruct* vSensorBME280DatasStruct)
 {
-    float temp, press, hum;
-
+    if (vSensorBME280DatasStruct)
+    {
 #ifdef BME280_FLOAT_ENABLE
-    temp = comp_data->temperature;
-    press = 0.01 * comp_data->pressure;
-    hum = comp_data->humidity;
+        vSensorBME280DatasStruct->temp = comp_data->temperature;
+        vSensorBME280DatasStruct->pres = 0.01 * comp_data->pressure;
+        vSensorBME280DatasStruct->humi = comp_data->humidity;
 #else
     #ifdef BME280_64BIT_ENABLE
-        temp = 0.01f * comp_data->temperature;
-        press = 0.0001f * comp_data->pressure;
-        hum = 1.0f / 1024.0f * comp_data->humidity;
+        vSensorBME280DatasStruct->temp = 0.01f * comp_data->temperature;
+        vSensorBME280DatasStruct->pres = 0.0001f * comp_data->pressure;
+        vSensorBME280DatasStruct->humi = 1.0f / 1024.0f * comp_data->humidity;
     #else
-        temp = 0.01f * comp_data->temperature;
-        press = 0.01f * comp_data->pressure;
-        hum = 1.0f / 1024.0f * comp_data->humidity;
+        vSensorBME280DatasStruct->temp = 0.01f * comp_data->temperature;
+        vSensorBME280DatasStruct->pres = 0.01f * comp_data->pressure;
+        vSensorBME280DatasStruct->humi = 1.0f / 1024.0f * comp_data->humidity;
     #endif
 #endif
 
-    //printf("Chip ID     :", chip_id
-    //printf("Version     :", chip_version
-    printf("Temperature : %.1f C\n", temp);
-    printf("Pressure : %.1f hPa\n", press);
-    printf("Humidity : %.1f %%\n", hum);
+        // epoc time
+        vSensorBME280DatasStruct->epoc = GetCurrentEpochTime();
+    }
 }
 
-#define OVERSAMPLE_TEMP 2
-#define OVERSAMPLE_PRES 2
-#define OVERSAMPLE_HUM 2
-
-int8_t getSensorBME280DataNormalMode(struct bme280_dev* dev, SensorBME280DatasStruct *vSensorBME280DatasStruct)
+int8_t SensorBME280::GetSensorBME280DataNormalMode(
+    bme280_dev* dev, 
+    SensorBME280DatasStruct *vSensorBME280DatasStruct)
 {
     int8_t rslt = -1;
     
     if (vSensorBME280DatasStruct)
     {
-        
         /* Recommended mode of operation: Indoor navigation */
         dev->settings.osr_h = BME280_OVERSAMPLING_2X;
         dev->settings.osr_p = BME280_OVERSAMPLING_2X;
@@ -117,7 +122,7 @@ int8_t getSensorBME280DataNormalMode(struct bme280_dev* dev, SensorBME280DatasSt
 		struct bme280_data comp_data;
 		rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
 
-        print_sensor_data(&comp_data, vSensorBME280DatasStruct);
+        save_sensor_data(&comp_data, vSensorBME280DatasStruct);
     }
 
     return rslt;
@@ -164,13 +169,17 @@ bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct *vSensorBME280Da
 
 	return true;
 }
+
 #else
+
 bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct* vSensorBME280DatasStruct)
 {
     if (vSensorBME280DatasStruct)
     {
-        // andom for the moment just for test
-        vSensorBME280DatasStruct->epoc = rand() % 100000;
+        vSensorBME280DatasStruct->epoc = GetCurrentEpochTime();
+
+        // random on windows for tuning, since we not have the sensor
+        //vSensorBME280DatasStruct->epoc = rand() % 100000;
         vSensorBME280DatasStruct->temp = (float)(rand() % 90) - 40.0f;
         vSensorBME280DatasStruct->pres = (float)(rand() % 1000) + 500.0f;
         vSensorBME280DatasStruct->humi = (float)(rand() % 70) + 30.0f;
@@ -180,9 +189,10 @@ bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct* vSensorBME280Da
 
     return false;
 }
+
 #endif
 
-std::string SensorBME280::ConvertSensorBME280DatasStructToString(const SensorBME280DatasStruct& vDatas)
+std::string SensorBME280::ConvertSensorBME280DatasStructToJSON(const SensorBME280DatasStruct& vDatas)
 {
 	int n = snprintf(buffer, BUFFER_LENGTH,
 		"{\"epoc\":%u,\"temp\":%.5f,\"pres\":%.5f,\"humi\":%.5f}",
@@ -190,10 +200,17 @@ std::string SensorBME280::ConvertSensorBME280DatasStructToString(const SensorBME
 	return std::string(buffer, n);
 }
 
-std::string SensorBME280::GetSensorBME280DatasToString()
+std::string SensorBME280::GetSensorBME280DatasToJSON()
 {
     SensorBME280DatasStruct res;
     if (GetSensorBME280Datas(&res))
-	    return ConvertSensorBME280DatasStructToString(res);
+        return ConvertSensorBME280DatasStructToJSON(res);
     return "";
+}
+
+uint64_t SensorBME280::GetCurrentEpochTime()
+{
+    // epoc time
+    const auto ct = std::chrono::system_clock::now();
+    return std::chrono::duration_cast<std::chrono::seconds>(ct.time_since_epoch()).count();
 }

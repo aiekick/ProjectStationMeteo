@@ -6,9 +6,37 @@
 
 #include "SensorBME280.h"
 
-#include <uv/include/TcpConnection.hpp>
+void SensorHttpServer::Init(uv::EventLoop& vEventLoop)
+{
+	uv::http::HttpServer::SetBufferMode(uv::GlobalConfig::BufferMode::CycleBuffer);
+	m_Server = std::make_unique<uv::http::HttpServer>(&vEventLoop);
 
-void OnConnected(std::weak_ptr<uv::TcpConnection> vPtr)
+	// default page
+	//example:  127.0.0.1:80/
+	m_Server->Get("/", std::bind(&SensorHttpServer::Defaultpage, this, std::placeholders::_1, std::placeholders::_2));
+
+	//example:  127.0.0.1:80/sensor
+	m_Server->Get("/sensor*", std::bind(&SensorHttpServer::SendSensorDatas, this, std::placeholders::_1, std::placeholders::_2));
+
+	//example:  127.0.0.1:80/history:12
+	m_Server->Get("/history:", std::bind(&SensorHttpServer::SendHistory, this, std::placeholders::_1, std::placeholders::_2));
+
+	m_Server->setNewConnectCallback(std::bind(&SensorHttpServer::OnConnected, this, std::placeholders::_1));
+	m_Server->setConnectCloseCallback(std::bind(&SensorHttpServer::OnDisConnected, this, std::placeholders::_1));
+
+	uv::SocketAddr addr("0.0.0.0", 80, uv::SocketAddr::Ipv4);
+
+	static uint32_t time_out_s = 60U * 5U; // 1m * 5 > 5m
+	m_Server->setTimeout(time_out_s);
+
+	m_Server->bindAndListen(addr);
+}
+
+////////////////////////////////////////////////////
+//// PRIVATE ///////////////////////////////////////
+////////////////////////////////////////////////////
+
+void SensorHttpServer::OnConnected(std::weak_ptr<uv::TcpConnection> vPtr)
 {
 	if (!vPtr.expired())
 	{
@@ -20,7 +48,7 @@ void OnConnected(std::weak_ptr<uv::TcpConnection> vPtr)
 	}
 }
 
-void OnDisConnected(std::weak_ptr<uv::TcpConnection> vPtr)
+void SensorHttpServer::OnDisConnected(std::weak_ptr<uv::TcpConnection> vPtr)
 {
 	if (!vPtr.expired())
 	{
@@ -31,37 +59,6 @@ void OnDisConnected(std::weak_ptr<uv::TcpConnection> vPtr)
 		}
 	}
 }
-
-void SensorHttpServer::Run()
-{
-	uv::EventLoop loop;
-	uv::http::HttpServer::SetBufferMode(uv::GlobalConfig::BufferMode::CycleBuffer);
-	uv::http::HttpServer server(&loop);
-
-	// default page
-	//example:  127.0.0.1:80/
-	server.Get("/", std::bind(&SensorHttpServer::Defaultpage, this, std::placeholders::_1, std::placeholders::_2));
-	
-	//example:  127.0.0.1:80/sensor
-	server.Get("/sensor*", std::bind(&SensorHttpServer::SendSensorDatas, this, std::placeholders::_1, std::placeholders::_2));
-
-	//example:  127.0.0.1:80/history:12
-	server.Get("/history:", std::bind(&SensorHttpServer::SendHistory, this, std::placeholders::_1, std::placeholders::_2));
-
-	server.setNewConnectCallback(std::bind(&OnConnected, std::placeholders::_1));
-	server.setConnectCloseCallback(std::bind(&OnDisConnected, std::placeholders::_1));
-
-	uv::SocketAddr addr("0.0.0.0", 80, uv::SocketAddr::Ipv4);
-	server.setTimeout(60);
-	server.bindAndListen(addr);
-
-	loop.run();
-}
-
-////////////////////////////////////////////////////
-//// PRIVATE ///////////////////////////////////////
-////////////////////////////////////////////////////
-
 void SensorHttpServer::Defaultpage(uv::http::Request& req, uv::http::Response* resp)
 {
 	resp->setVersion(uv::http::HttpVersion::Http1_1);
@@ -70,8 +67,8 @@ void SensorHttpServer::Defaultpage(uv::http::Request& req, uv::http::Response* r
 Welcome to BME280 HTTP Service.
 
 You have two type of queries available :
-- start a measure of the sensor : http://ip:port/sensor
-- retrieve an history of last N hourly sensor measures :  http://ip:port/history:N (N msut be a number)
+* start a measure of the sensor : http://ip:port/sensor
+* retrieve an history of last N hourly sensor measures :  http://ip:port/history:N (N msut be a number)
 
 Happy Logging :)
 )";
@@ -83,7 +80,9 @@ void SensorHttpServer::SendSensorDatas(uv::http::Request& req, uv::http::Respons
 	resp->setVersion(uv::http::HttpVersion::Http1_1);
 	resp->setStatus(uv::http::Response::StatusCode::OK, "OK");
 	resp->appendHead("Content-Type", "application/json");
-	std::string json = SensorBME280::Instance()->GetSensorBME280DatasToString();
+
+	std::string json = SensorBME280::Instance()->GetSensorBME280DatasToJSON();
+	
 	resp->swapContent(json);
 }
 
@@ -112,7 +111,7 @@ void SensorHttpServer::SendHistory(uv::http::Request& req, uv::http::Response* r
 					if (i)
 						json += ",\n";
 
-					json += SensorBME280::Instance()->GetSensorBME280DatasToString();
+					json += SensorBME280::Instance()->GetSensorBME280DatasToJSON();
 				}
 
 				json += "]";

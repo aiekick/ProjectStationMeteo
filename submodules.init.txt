@@ -1,3 +1,4 @@
 git submodule add --force -b "master" https://github.com/libuv/libuv.git 3rdparty/libuv
 git submodule add --force -b "master" https://github.com/wlgq2/uv-cpp.git 3rdparty/uv_cpp
 git submodule add --force -b "master" https://github.com/BoschSensortec/BME280_driver.git 3rdparty/BME280_driver
+git submodule add --force -b "master" https://github.com/ReactiveX/RxCpp.git 3rdparty/rxcpp

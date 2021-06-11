@@ -12,7 +12,7 @@ static inline std::string toStr(T t)
 	return os.str();
 }
 
-void DataBase::AddBME280SensorDatas(const int& vDateTime, const float& vTemperature, const float& vPressure, const float& vHumidity)
+void DataBase::AddBME280SensorDatas(const uint64_t& vDateTime, const float& vTemperature, const float& vPressure, const float& vHumidity)
 {
 	if (OpenDB())
 	{
@@ -20,7 +20,7 @@ void DataBase::AddBME280SensorDatas(const int& vDateTime, const float& vTemperat
 		std::string create_query = "insert into tbl_bme280_sensor_history (epoc_time, temperature, pressure, humidity) values(" + toStr(vDateTime) + ", " + toStr(vTemperature) + ", " + toStr(vPressure) + ", " + toStr(vHumidity) + ");";
 		if (sqlite3_exec(m_SqliteDB, create_query.c_str(), nullptr, nullptr, nullptr) != SQLITE_OK)
 		{
-			printf("Fail to create database. cant manage sensors history\n");
+			printf("Fail to insert a sensor record in database\n");
 			m_SqliteDB = nullptr;
 		}
 
@@ -59,7 +59,7 @@ void DataBase::CreateDB()
 		if (m_SqliteDB) // in the doubt
 		{
 			// we must create the table
-			std::string create_query = "create table tbl_sensor_history (epoc_time int PRIMARY KEY NOT NULL, temperature double NOT NULL, pressure double NOT NULL, humidity double NOT NULL);";
+			std::string create_query = "create table tbl_bme280_sensor_history (epoc_time integer PRIMARY KEY NOT NULL, temperature double NOT NULL, pressure double NOT NULL, humidity double NOT NULL);";
 			if (sqlite3_exec(m_SqliteDB, create_query.c_str(), nullptr, nullptr, nullptr) != SQLITE_OK)
 			{
 				printf("Fail to create database. cant manage sensors history\n");

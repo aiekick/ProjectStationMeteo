@@ -5,12 +5,14 @@
 
 struct SensorBME280DatasStruct
 {
-	uint32_t epoc = 0;
+	uint64_t epoc = 0;
 	float temp = 0.0f;
 	float pres = 0.0f;
 	float humi = 0.0f;
 };
 
+struct bme280_data;
+struct bme280_dev;
 class SensorBME280
 {
 private:
@@ -18,8 +20,19 @@ private:
 
 public:
 	bool GetSensorBME280Datas(SensorBME280DatasStruct* vSensorBME280DatasStruct);
-	std::string ConvertSensorBME280DatasStructToString(const SensorBME280DatasStruct& vDatas);
-	std::string GetSensorBME280DatasToString();
+	std::string ConvertSensorBME280DatasStructToJSON(const SensorBME280DatasStruct& vDatas);
+	std::string GetSensorBME280DatasToJSON();
+
+private:
+    uint64_t GetCurrentEpochTime();
+
+#ifdef UNIX
+    int8_t UserI2cRead(uint8_t reg_addr, uint8_t* data, uint32_t len, void* intf_ptr);
+    void UserDelayUs(uint32_t period, void* intf_ptr);
+    int8_t UserI2cWrite(uint8_t reg_addr, const uint8_t* data, uint32_t len, void* intf_ptr);
+	void SaveSensorData(bme280_data* comp_data, SensorBME280DatasStruct* vSensorBME280DatasStruct);
+	int8_t GetSensorBME280DataNormalMode(bme280_dev* dev, SensorBME280DatasStruct* vSensorBME280DatasStruct);
+#endif
 
 public: // singleton
 	static SensorBME280* Instance(const std::string& vI2CBus = "")
