@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <fcntl.h>
+#include <cstdint>
 
 #define BUFFER_LENGTH 1024
 static char buffer[BUFFER_LENGTH + 1] = "";
@@ -27,8 +28,7 @@ struct identifier
 
 int8_t user_i2c_read(uint8_t reg_addr, uint8_t* data, uint32_t len, void* intf_ptr)
 {
-    struct identifier id;
-    id = *((struct identifier*)intf_ptr);
+    auto id = *((struct identifier*)intf_ptr);
     write(id.fd, &reg_addr, 1);
     read(id.fd, data, len);
     return 0;
@@ -41,10 +41,8 @@ void user_delay_us(uint32_t period, void* intf_ptr)
 
 int8_t user_i2c_write(uint8_t reg_addr, const uint8_t* data, uint32_t len, void* intf_ptr)
 {
-    uint8_t* buf;
-    struct identifier id;
-    id = *((struct identifier*)intf_ptr);
-    buf = malloc(len + 1);
+    auto id = *((identifier*)intf_ptr);
+    auto buf = new uint8_t[len + 1];
     buf[0] = reg_addr;
     memcpy(buf + 1, data, len);
     if (write(id.fd, buf, len + 1) < (uint16_t)len)
@@ -52,7 +50,7 @@ int8_t user_i2c_write(uint8_t reg_addr, const uint8_t* data, uint32_t len, void*
         return BME280_E_COMM_FAIL;
     }
 
-    free(buf);
+    delete[] buf;
     return BME280_OK;
 }
 
@@ -95,9 +93,7 @@ int8_t getSensorBME280DataNormalMode(struct bme280_dev* dev, SensorBME280DatasSt
     
     if (vSensorBME280DatasStruct)
     {
-        uint8_t settings_sel;
-        struct bme280_data comp_data;
-
+        
         /* Recommended mode of operation: Indoor navigation */
         dev->settings.osr_h = BME280_OVERSAMPLING_2X;
         dev->settings.osr_p = BME280_OVERSAMPLING_2X;
@@ -105,6 +101,7 @@ int8_t getSensorBME280DataNormalMode(struct bme280_dev* dev, SensorBME280DatasSt
         dev->settings.filter = BME280_FILTER_COEFF_16;
         dev->settings.standby_time = BME280_STANDBY_TIME_62_5_MS;
 
+        uint8_t settings_sel;
         settings_sel = BME280_OSR_PRESS_SEL;
         settings_sel |= BME280_OSR_TEMP_SEL;
         settings_sel |= BME280_OSR_HUM_SEL;
@@ -116,7 +113,9 @@ int8_t getSensorBME280DataNormalMode(struct bme280_dev* dev, SensorBME280DatasSt
         /* Delay while the sensor completes a measurement */
         double wait_time = 1.25 + (2.3 * OVERSAMPLE_TEMP) + ((2.3 * OVERSAMPLE_PRES) + 0.575) + ((2.3 * OVERSAMPLE_HUM) + 0.575);
         dev->delay_us(wait_time * 1000, dev->intf_ptr);
-        rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
+        
+		struct bme280_data comp_data;
+		rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
 
         print_sensor_data(&comp_data, vSensorBME280DatasStruct);
     }
@@ -126,13 +125,10 @@ int8_t getSensorBME280DataNormalMode(struct bme280_dev* dev, SensorBME280DatasSt
 
 bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct *vSensorBME280DatasStruct)
 {
-    struct bme280_dev dev;
     struct identifier id;
-    int8_t rslt = BME280_OK;
-
     if ((id.fd = open(m_I2cBus.c_str(), O_RDWR)) < 0)
     {
-        fprintf(stderr, "Failed to open the i2c bus %s\n", argv[1]);
+        fprintf(stderr, "Failed to open the i2c bus %s\n", m_I2cBus.c_str());
         return false;
     }
 
@@ -143,13 +139,15 @@ bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct *vSensorBME280Da
         return false;
     }
 
+    struct bme280_dev dev;
     dev.intf = BME280_I2C_INTF;
     dev.read = user_i2c_read;
     dev.write = user_i2c_write;
     dev.delay_us = user_delay_us;
     dev.intf_ptr = &id;
 
-    if (bme280_init(&dev) != BME280_OK)
+    int8_t rslt = bme280_init(&dev);
+    if (rslt != BME280_OK)
     {
         fprintf(stderr, "Failed to initialize the device (code %+d).\n", rslt);
         return false;
@@ -157,13 +155,14 @@ bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct *vSensorBME280Da
 
     usleep(9000);
 
-    if (getSensorBME280DataNormalMode(&dev) != BME280_OK, &res)
+	rslt = getSensorBME280DataNormalMode(&dev, vSensorBME280DatasStruct);
+    if (rslt != BME280_OK)
     {
         fprintf(stderr, "Failed to stream sensor data (code %+d).\n", rslt);
         return false;
     }
 
-	return res;
+	return true;
 }
 #else
 bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct* vSensorBME280DatasStruct)
