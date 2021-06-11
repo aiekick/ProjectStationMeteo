@@ -1,4 +1,4 @@
-#include "database.h"
+#include "MeasureDataBase.h"
 #include <sstream>
 #include <sqlite3.h>
 
@@ -12,7 +12,7 @@ static inline std::string toStr(T t)
 	return os.str();
 }
 
-void DataBase::AddBME280SensorDatas(const uint64_t& vDateTime, const float& vTemperature, const float& vPressure, const float& vHumidity)
+void MeasureDataBase::AddBME280SensorDatas(const uint64_t& vDateTime, const float& vTemperature, const float& vPressure, const float& vHumidity)
 {
 	if (OpenDB())
 	{
@@ -28,7 +28,7 @@ void DataBase::AddBME280SensorDatas(const uint64_t& vDateTime, const float& vTem
 	}
 }
 
-std::string DataBase::GetJSonDatas(const int& vCountLastHours)
+std::string MeasureDataBase::GetJSonDatas(const int& vCountLastHours)
 {
 	// recuperation de seulement les vCountLastHours derniers depuis la table tbl_sensor_history avec tri descendant (le dernier d'abord)
 	return "";
@@ -38,7 +38,7 @@ std::string DataBase::GetJSonDatas(const int& vCountLastHours)
 ///// PRIVATE //////////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 
-bool DataBase::OpenDB()
+bool MeasureDataBase::OpenDB()
 {
 	m_SqliteDB = nullptr;
 
@@ -50,7 +50,7 @@ bool DataBase::OpenDB()
 	return (m_SqliteDB != nullptr);
 }
 
-void DataBase::CreateDB()
+void MeasureDataBase::CreateDB()
 {
 	m_SqliteDB = nullptr;
 
@@ -74,7 +74,7 @@ void DataBase::CreateDB()
 	}
 }
 
-void DataBase::CloseDB()
+void MeasureDataBase::CloseDB()
 {
 	if (m_SqliteDB)
 	{

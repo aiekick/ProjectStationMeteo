@@ -3,7 +3,7 @@
 #include <string>
 
 struct sqlite3;
-class DataBase
+class MeasureDataBase
 {
 private:
 	sqlite3* m_SqliteDB = nullptr;
@@ -18,13 +18,13 @@ private:
 	void CloseDB();
 
 public: // singleton
-	static DataBase* Instance()
+	static MeasureDataBase* Instance()
 	{
-		static DataBase _instance;
+		static MeasureDataBase _instance;
 		return &_instance;
 	}
-	DataBase() = default;
-	DataBase(const DataBase&) = delete;
-	DataBase& operator =(const DataBase&) = delete;
-	~DataBase() = default;
+	MeasureDataBase() = default;
+	MeasureDataBase(const MeasureDataBase&) = delete;
+	MeasureDataBase& operator =(const MeasureDataBase&) = delete;
+	~MeasureDataBase() = default;
 };

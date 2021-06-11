@@ -1,6 +1,6 @@
 #include "SensorHistory.h"
 #include "SensorBME280.h"
-#include "DataBase.h"
+#include "MeasureDataBase.h"
 
 void SensorHistory::Init(uv::EventLoop& vEventLoop)
 {
@@ -12,7 +12,7 @@ void SensorHistory::Init(uv::EventLoop& vEventLoop)
 			SensorBME280DatasStruct datas;
 			if (SensorBME280::Instance()->GetSensorBME280Datas(&datas))
 			{
-				DataBase::Instance()->AddBME280SensorDatas(datas.epoc, datas.temp, datas.pres, datas.humi);
+				MeasureDataBase::Instance()->AddBME280SensorDatas(datas.epoc, datas.temp, datas.pres, datas.humi);
 			}
 		});
 	m_Task->start();
