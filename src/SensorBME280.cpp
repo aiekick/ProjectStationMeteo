@@ -204,7 +204,7 @@ bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct* vSensorBME280Da
 std::string SensorBME280::ConvertSensorBME280DatasStructToJSON(const SensorBME280DatasStruct& vDatas)
 {
 	int n = snprintf(buffer, BUFFER_LENGTH,
-		"{\"epoc\":%u,\"temp\":%.5f,\"pres\":%.5f,\"humi\":%.5f}",
+		"{\"epoc\":%zu,\"temp\":%.5f,\"pres\":%.5f,\"humi\":%.5f}",
 		vDatas.epoc, vDatas.temp, vDatas.pres, vDatas.humi);
 	return std::string(buffer, n);
 }
