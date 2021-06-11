@@ -27,10 +27,7 @@ private:
     uint64_t GetCurrentEpochTime();
 
 #ifdef UNIX
-    int8_t UserI2cRead(uint8_t reg_addr, uint8_t* data, uint32_t len, void* intf_ptr);
-    void UserDelayUs(uint32_t period, void* intf_ptr);
-    int8_t UserI2cWrite(uint8_t reg_addr, const uint8_t* data, uint32_t len, void* intf_ptr);
-	void SaveSensorData(bme280_data* comp_data, SensorBME280DatasStruct* vSensorBME280DatasStruct);
+    void SaveSensorData(bme280_data* comp_data, SensorBME280DatasStruct* vSensorBME280DatasStruct);
 	int8_t GetSensorBME280DataNormalMode(bme280_dev* dev, SensorBME280DatasStruct* vSensorBME280DatasStruct);
 #endif
 

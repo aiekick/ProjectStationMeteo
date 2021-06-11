@@ -9,7 +9,7 @@
 void SensorHttpServer::Init(uv::EventLoop& vEventLoop)
 {
 	uv::http::HttpServer::SetBufferMode(uv::GlobalConfig::BufferMode::CycleBuffer);
-	m_Server = std::make_unique<uv::http::HttpServer>(&vEventLoop);
+	m_Server = std::unique_ptr<uv::http::HttpServer>(new uv::http::HttpServer(&vEventLoop));
 
 	// default page
 	//example:  127.0.0.1:80/

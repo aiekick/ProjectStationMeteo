@@ -10,6 +10,7 @@
 #include <cstdint>
 #include <chrono>
 #include <ctime>
+#include <functional>
 
 #define BUFFER_LENGTH 1024
 static char buffer[BUFFER_LENGTH + 1] = "";
@@ -36,7 +37,11 @@ struct identifier
     int8_t fd;
 };
 
-int8_t SensorBME280::UserI2cRead(uint8_t reg_addr, uint8_t* data, uint32_t len, void* intf_ptr)
+/////////////////////////////////////////
+/// CALLBACK ////////////////////////////
+/////////////////////////////////////////
+
+int8_t UserI2cRead(uint8_t reg_addr, uint8_t* data, uint32_t len, void* intf_ptr)
 {
     auto id = *((struct identifier*)intf_ptr);
     write(id.fd, &reg_addr, 1);
@@ -44,12 +49,12 @@ int8_t SensorBME280::UserI2cRead(uint8_t reg_addr, uint8_t* data, uint32_t len, 
     return 0;
 }
 
-void SensorBME280::UserDelayUs(uint32_t period, void* intf_ptr)
+void UserDelayUs(uint32_t period, void* intf_ptr)
 {
     usleep(period);
 }
 
-int8_t SensorBME280::UserI2cWrite(uint8_t reg_addr, const uint8_t* data, uint32_t len, void* intf_ptr)
+int8_t UserI2cWrite(uint8_t reg_addr, const uint8_t* data, uint32_t len, void* intf_ptr)
 {
     auto id = *((identifier*)intf_ptr);
     auto buf = new uint8_t[len + 1];
@@ -63,6 +68,10 @@ int8_t SensorBME280::UserI2cWrite(uint8_t reg_addr, const uint8_t* data, uint32_
     delete[] buf;
     return BME280_OK;
 }
+
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
 
 void SensorBME280::SaveSensorData(
     bme280_data* comp_data, 
@@ -122,7 +131,7 @@ int8_t SensorBME280::GetSensorBME280DataNormalMode(
 		struct bme280_data comp_data;
 		rslt = bme280_get_sensor_data(BME280_ALL, &comp_data, dev);
 
-        save_sensor_data(&comp_data, vSensorBME280DatasStruct);
+        SaveSensorData(&comp_data, vSensorBME280DatasStruct);
     }
 
     return rslt;
@@ -146,9 +155,9 @@ bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct *vSensorBME280Da
 
     struct bme280_dev dev;
     dev.intf = BME280_I2C_INTF;
-    dev.read = user_i2c_read;
-    dev.write = user_i2c_write;
-    dev.delay_us = user_delay_us;
+    dev.read = UserI2cRead;
+    dev.write = UserI2cWrite;
+    dev.delay_us = UserDelayUs;
     dev.intf_ptr = &id;
 
     int8_t rslt = bme280_init(&dev);
@@ -160,7 +169,7 @@ bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct *vSensorBME280Da
 
     usleep(9000);
 
-	rslt = getSensorBME280DataNormalMode(&dev, vSensorBME280DatasStruct);
+	rslt = GetSensorBME280DataNormalMode(&dev, vSensorBME280DatasStruct);
     if (rslt != BME280_OK)
     {
         fprintf(stderr, "Failed to stream sensor data (code %+d).\n", rslt);
