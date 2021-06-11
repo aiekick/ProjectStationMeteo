@@ -12,22 +12,12 @@ static inline std::string toStr(T t)
 	return os.str();
 }
 
-DataBase::DataBase()
-{
-
-}
-
-DataBase::~DataBase()
-{
-
-}
-
-void DataBase::AddSensorDatas(const int& vDateTime, const float& vTemperature, const float& vPressure, const float& vHumidity)
+void DataBase::AddBME280SensorDatas(const int& vDateTime, const float& vTemperature, const float& vPressure, const float& vHumidity)
 {
 	if (OpenDB())
 	{
 		// we must create the table
-		std::string create_query = "insert into tbl_sensor_history (epoc_time, temperature, pressure, humidity) values(" + toStr(vDateTime) + ", " + toStr(vTemperature) + ", " + toStr(vPressure) + ", " + toStr(vHumidity) + ");";
+		std::string create_query = "insert into tbl_bme280_sensor_history (epoc_time, temperature, pressure, humidity) values(" + toStr(vDateTime) + ", " + toStr(vTemperature) + ", " + toStr(vPressure) + ", " + toStr(vHumidity) + ");";
 		if (sqlite3_exec(m_SqliteDB, create_query.c_str(), nullptr, nullptr, nullptr) != SQLITE_OK)
 		{
 			printf("Fail to create database. cant manage sensors history\n");

@@ -1,20 +1,30 @@
+#include <cstdio>
 
-#include "database.h"
-#include "sensor.h"
+#include "SensorHttpServer.h"
+#include <stdexcept>
 
-#include <uv/include/uv11.hpp>
-
-int main(int argc, char** argv)
+int main(int argc, char** args)
 {
-    uv::EventLoop* loop = uv::EventLoop::DefaultLoop();
-    uv::SocketAddr addr("0.0.0.0", 12001, uv::SocketAddr::Ipv4);
+	/*if (argc < 2)
+	{
+		printf("Syntax is : prog i2cBus port\n ex : prog /dev/i2c-1 48001");
+		exit(1);
+	}
+	
+	try
+	{
+		SensorHttpServer server;
 
-    uv::TcpServer server(loop);
-    server.setMessageCallback([](uv::TcpConnectionPtr ptr, const char* data, ssize_t size)
-        {
-            printf("Msg Received : %s\n", data);
-        });
 
-    server.bindAndListen(addr);
-    loop->run();
+	}
+	catch (std::exception& ex)
+	{
+
+	}*/
+
+	
+	SensorHttpServer server;
+	server.Run();
+
+	return 0;
 }
