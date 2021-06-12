@@ -48,7 +48,7 @@ int8_t UserI2cRead(uint8_t reg_addr, uint8_t* data, uint32_t len, void* intf_ptr
     return 0;
 }
 
-void UserDelayUs(uint32_t period, void* intf_ptr)
+void UserDelayUs(uint32_t period, void* /*intf_ptr*/)
 {
     usleep(period);
 }
