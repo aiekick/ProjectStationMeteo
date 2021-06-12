@@ -4,7 +4,7 @@ Description=a http server who will give bme280 datas on url query
 [Service]
 User=root
 WorkingDirectory=/usr/share/bme280Server
-ExecStart=bme280Server /dev/i2c-1 database.db3
+ExecStart=/usr/share/bme280Server -b /dev/i2c-1 -d /usr/share/database.db3 -t 10 -p 80
 Restart=always
 
 [Install]
