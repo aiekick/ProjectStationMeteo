@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdexcept>
+#include <sstream>
 
 #include "SensorBME280.h"
 
@@ -59,7 +60,7 @@ void SensorHttpServer::OnDisConnected(std::weak_ptr<uv::TcpConnection> vPtr)
 		}
 	}
 }
-void SensorHttpServer::Defaultpage(uv::http::Request& req, uv::http::Response* resp)
+void SensorHttpServer::Defaultpage(uv::http::Request& /*req*/, uv::http::Response* resp)
 {
 	resp->setVersion(uv::http::HttpVersion::Http1_1);
 	resp->setStatus(uv::http::Response::StatusCode::OK, "OK");
@@ -68,14 +69,14 @@ Welcome to BME280 HTTP Service.
 
 You have two type of queries available :
 * start a measure of the sensor : http://ip:port/sensor
-* retrieve an history of last N hourly sensor measures :  http://ip:port/history:N (N msut be a number)
+* retrieve an history of last N hourly sensor measures :  http://ip:port/history:N (N must be a valid number)
 
 Happy Logging :)
 )";
 	resp->swapContent(help);
 }
 
-void SensorHttpServer::SendSensorDatas(uv::http::Request& req, uv::http::Response* resp)
+void SensorHttpServer::SendSensorDatas(uv::http::Request& /*req*/, uv::http::Response* resp)
 {
 	resp->setVersion(uv::http::HttpVersion::Http1_1);
 	resp->setStatus(uv::http::Response::StatusCode::OK, "OK");
@@ -104,7 +105,11 @@ void SensorHttpServer::SendHistory(uv::http::Request& req, uv::http::Response* r
 
 			if (count)
 			{
-				json += "\"count\":" + countStr + ",\"history\":[\n";
+				// 4a is converted by atoi without exception in a
+				// so for generate the json we willr econvert count to string isntead of using countStr
+				std::ostringstream os; os << count;
+
+				json += "\"count\":" + os.str() + ",\"history\":[\n";
 
 				for (int i = 0; i < count; i++)
 				{
@@ -125,7 +130,14 @@ void SensorHttpServer::SendHistory(uv::http::Request& req, uv::http::Response* r
 
 	if (json.empty())
 	{
-		json = "bad value for history count";
+		static char err[256 + 1] = "";
+		
+		const char* value = req.getValue().c_str();
+		
+		snprintf(err, 256, "{\"error\":\"history count value %s is a bad value. must be a valid number\"}", value);
+		printf("Error :\n    The url query : %s%s is bad\n    The history count number %s must be a valid number\n", req.getPath().c_str(), value, value);
+		
+		json = std::string(err);
 	}
 	else
 	{

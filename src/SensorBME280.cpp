@@ -15,11 +15,6 @@
 #define BUFFER_LENGTH 1024
 static char buffer[BUFFER_LENGTH + 1] = "";
 
-SensorBME280::SensorBME280(const std::string& vI2CBus) : m_I2cBus(vI2CBus) 
-{
-
-}
-
 #ifdef UNIX
 
 #include <unistd.h>

@@ -10,8 +10,10 @@ class SensorHttpServer
 {
 private:
 	std::unique_ptr<uv::http::HttpServer> m_Server;
+	uint32_t m_Port;
 
 public:
+	SensorHttpServer(const uint32_t& vPort) : m_Port(vPort) {}
 	void Init(uv::EventLoop& vEventLoop);
 
 private:

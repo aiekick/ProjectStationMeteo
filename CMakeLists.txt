@@ -57,3 +57,23 @@ target_link_libraries(${PROJECT} PRIVATE
 	${BME280_LIBRARIES}
 	${SQLITE_LIBRARIES}
 )
+
+if (UNIX)
+set(CMAKE_INSTALL_PREFIX "/usr/share/${PROJECT}")
+install(TARGETS ${PROJECT} DESTINATION ${CMAKE_INSTALL_PREFIX})
+install(FILE sripts/bme280Server.service DESTINATION "${CMAKE_SOURCE_DIR}/")
+install(CODE "EXECUTE_PROCESS(COMMAND ln -s ${CMAKE_INSTALL_PREFIX}/bme280Server.service /etc/systemd/system/bme280Server.service})")
+endif()
+
+########################################################
+################# BUILD INCREMENT TOOL #################
+########################################################
+
+## only for Debug
+add_subdirectory(3rdparty/BuildInc)
+
+add_custom_command(
+	TARGET ${PROJECT} PRE_BUILD
+	COMMAND BuildInc 100:10 $<$<CONFIG:Debug>:${CMAKE_SOURCE_DIR}/src/Build.h>
+	DEPENDS ${PROJECT}
+)

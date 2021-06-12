@@ -2,8 +2,6 @@
 #include <sstream>
 #include <sqlite3.h>
 
-#define DATABASE_FILENAME "database.db3"
-
 template <typename T>
 static inline std::string toStr(T t)
 {
@@ -42,7 +40,7 @@ bool MeasureDataBase::OpenDB()
 {
 	m_SqliteDB = nullptr;
 
-	if (sqlite3_open_v2(DATABASE_FILENAME, &m_SqliteDB, SQLITE_OPEN_READWRITE, nullptr) != SQLITE_OK) // db possibily not exist
+	if (sqlite3_open_v2(m_DataBaseFilePathName.c_str(), &m_SqliteDB, SQLITE_OPEN_READWRITE, nullptr) != SQLITE_OK) // db possibily not exist
 	{
 		CreateDB();
 	}
@@ -54,7 +52,7 @@ void MeasureDataBase::CreateDB()
 {
 	m_SqliteDB = nullptr;
 
-	if (sqlite3_open_v2(DATABASE_FILENAME, &m_SqliteDB, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, nullptr) == SQLITE_OK)
+	if (sqlite3_open_v2(m_DataBaseFilePathName.c_str(), &m_SqliteDB, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, nullptr) == SQLITE_OK)
 	{
 		if (m_SqliteDB) // in the doubt
 		{

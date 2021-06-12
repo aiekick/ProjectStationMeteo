@@ -4,8 +4,8 @@
 
 void SensorHistory::Init(uv::EventLoop& vEventLoop)
 {
-	static uint64_t time_out_ms = 1000U * 10U; // 10s // 60U; // 1s * 60 > 10 s
-	static uint64_t time_repeat_ms = time_out_ms;// * 60U; // 1 min * 60 > 1 h
+	uint64_t time_out_ms = (uint64_t)1100 * m_DelayInSeconds; // 1.1 * m_DelayInSeconds
+	uint64_t time_repeat_ms = (uint64_t)1000 * m_DelayInSeconds; // m_DelayInSeconds
 
 	m_Task = std::unique_ptr<uv::Timer>(new uv::Timer(&vEventLoop, time_out_ms, time_repeat_ms, [](uv::Timer* ptr)
 		{
