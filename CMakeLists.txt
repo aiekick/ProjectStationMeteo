@@ -61,7 +61,7 @@ target_link_libraries(${PROJECT} PRIVATE
 if (UNIX)
 set(CMAKE_INSTALL_PREFIX "/usr/share/${PROJECT}")
 install(TARGETS ${PROJECT} DESTINATION ${CMAKE_INSTALL_PREFIX})
-install(FILE sripts/bme280Server.service DESTINATION "${CMAKE_SOURCE_DIR}/")
+install(FILES sripts/bme280Server.service DESTINATION "${CMAKE_SOURCE_DIR}/")
 install(CODE "EXECUTE_PROCESS(COMMAND ln -s ${CMAKE_INSTALL_PREFIX}/bme280Server.service /etc/systemd/system/bme280Server.service})")
 endif()
 

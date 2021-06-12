@@ -3,6 +3,7 @@
 #include <sqlite3.h>
 #include <sstream>
 #include <vector>
+#include <string.h>  
 
 template <typename T>
 static inline std::string toStr(T t)

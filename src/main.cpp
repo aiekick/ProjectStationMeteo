@@ -1,12 +1,13 @@
 #include <cstdio>
 #include <stdexcept>
 #include <cassert>
+#include <string.h>
 
 #include "SensorHttpServer.h"
 #include "SensorBME280.h"
 #include "SensorHistory.h"
 #include "MeasureDataBase.h"
-#include "build.h"
+#include "Build.h"
 
 #ifdef _DEBUG
 #define TIME_MIN_IN_SECONDS 1
@@ -24,6 +25,7 @@ bool parse_commands(int *vArgc, char** vArgs, std::string* vI2cBus, uint32_t *vP
 	assert(vSaveDelay);
 
 	bool _CantContinue = false;
+	bool _MustQuit = false;
 	try
 	{
 		// when an erro ocurred, i continue the parsing, for show in one time all errors to the user
@@ -99,7 +101,8 @@ bool parse_commands(int *vArgc, char** vArgs, std::string* vI2cBus, uint32_t *vP
 			else if (strcmp(vArgs[i], "-v") == 0) // version
 			{
 				printf("bme280Server %s\n", BuildId);
-
+				_MustQuit = true;
+				
 				// we could break or show erros if other options was specified in more than this one
 				// but in fact i see no reason to show usage for this
 				// ca be valid to launch the program and print the version
@@ -107,7 +110,8 @@ bool parse_commands(int *vArgc, char** vArgs, std::string* vI2cBus, uint32_t *vP
 			else if (strcmp(vArgs[i], "-h") == 0) // help
 			{
 				_CantContinue = true;
-
+				_MustQuit = true;
+				
 				// we could break or show erros if other options was specified in more than this one
 				// but in fact i see no reason to show usage for this
 				// ca be valid to launch the program and print the help
@@ -132,7 +136,7 @@ bool parse_commands(int *vArgc, char** vArgs, std::string* vI2cBus, uint32_t *vP
 		printf("\n");
 		printf("usage : bme280Server [-h] [-v] [-b i2cbus] [-p http_port] [-d database_file] [-t sensor_save_in_db_delay_in_seconds]\n");
 		printf("\n");
-		printf("Options :\n");
+		printf(" Options :\n");
 		printf("  -h      Print this help\n");
 		printf("  -v      Print the version\n");
 		printf("  -b      Specify the i2cbus\n");
@@ -141,11 +145,11 @@ bool parse_commands(int *vArgc, char** vArgs, std::string* vI2cBus, uint32_t *vP
 		printf("          By default, the port 80 is used\n");
 		printf("  -d      Specify the FilePathName of the database.\n");
 		printf("          By default, db.db3 will be used\n");
-		printf("  -t      Specify a delay in second for save bme280 Sensor datas in db. the minimal accepted value is 10s\n");
+		printf("  -t      Specify a delay in second for save bme280 Sensor datas in db\n");
 		printf("          The minimal accepted value is 10s\n");
 		printf("          By default the value will be 3600 (1h)\n");
 		printf("\n");
-		printf("Description :\n");
+		printf(" Description :\n");
 		printf("  this programm get datas from a i2c sensor bme280 and can do many things with it :\n");
 		printf("    - Act as a http server. the possible urls are :\n");
 		printf("      - http://ip:port will show you a page with explanation of possible url options\n");
@@ -158,7 +162,7 @@ bool parse_commands(int *vArgc, char** vArgs, std::string* vI2cBus, uint32_t *vP
 		return false;
 	}
 
-	return true;
+	return !_MustQuit;
 }
 
 int main(int argc, char** args)
