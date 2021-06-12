@@ -19,8 +19,12 @@ private:
 	std::string m_I2cBus;
 
 public:
+	static std::string ConvertSensorBME280DatasToJSON(const uint64_t& vEpoc, const float& vTemp, const float& vPres, const float& vHumi);
+	static std::string ConvertSensorBME280DatasToJSON(const char* vEpoc, const char* vTemp, const char* vPres, const char* vHumi);
+	static std::string ConvertSensorBME280DatasStructToJSON(const SensorBME280DatasStruct& vDatas);
+
+public:
 	bool GetSensorBME280Datas(SensorBME280DatasStruct* vSensorBME280DatasStruct);
-	std::string ConvertSensorBME280DatasStructToJSON(const SensorBME280DatasStruct& vDatas);
 	std::string GetSensorBME280DatasToJSON();
 
 private:

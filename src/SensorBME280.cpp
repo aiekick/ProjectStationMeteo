@@ -9,13 +9,17 @@
 #include <fcntl.h>
 #include <cstdint>
 #include <chrono>
-#include <ctime>
+#include <ctime>        
 #include <functional>
 
 #define BUFFER_LENGTH 1024
 static char buffer[BUFFER_LENGTH + 1] = "";
 
 #ifdef UNIX
+
+/////////////////////////////////////////
+/// UNIX SPECIFIC CODE //////////////////
+/////////////////////////////////////////
 
 #include <unistd.h>
 #include <linux/i2c-dev.h>
@@ -33,7 +37,7 @@ struct identifier
 };
 
 /////////////////////////////////////////
-/// CALLBACK ////////////////////////////
+/// UNIX CALLBACK ///////////////////////
 /////////////////////////////////////////
 
 int8_t UserI2cRead(uint8_t reg_addr, uint8_t* data, uint32_t len, void* intf_ptr)
@@ -65,7 +69,7 @@ int8_t UserI2cWrite(uint8_t reg_addr, const uint8_t* data, uint32_t len, void* i
 }
 
 /////////////////////////////////////////
-/////////////////////////////////////////
+/// UNIX PRIVATE ////////////////////////
 /////////////////////////////////////////
 
 void SensorBME280::SaveSensorData(
@@ -132,6 +136,10 @@ int8_t SensorBME280::GetSensorBME280DataNormalMode(
     return rslt;
 }
 
+/////////////////////////////////////////
+/// UNIX PUBLIC /////////////////////////
+/////////////////////////////////////////
+
 bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct *vSensorBME280DatasStruct)
 {
     struct identifier id;
@@ -176,17 +184,23 @@ bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct *vSensorBME280Da
 
 #else
 
+/////////////////////////////////////////
+/// MSVC SPECIFIC PUBLIC CODE ///////////
+/////////////////////////////////////////
+
 bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct* vSensorBME280DatasStruct)
 {
     if (vSensorBME280DatasStruct)
     {
         vSensorBME280DatasStruct->epoc = GetCurrentEpochTime();
 
+        srand(time(nullptr));
+
         // random on windows for tuning, since we not have the sensor
         //vSensorBME280DatasStruct->epoc = rand() % 100000;
-        vSensorBME280DatasStruct->temp = (float)(rand() % 90) - 40.0f;
-        vSensorBME280DatasStruct->pres = (float)(rand() % 1000) + 500.0f;
-        vSensorBME280DatasStruct->humi = (float)(rand() % 70) + 30.0f;
+        vSensorBME280DatasStruct->temp = (((float)(rand() % 90) - 40.0f) * 10000.0f + (float)rand()) / 10000.0f;
+        vSensorBME280DatasStruct->pres = (((float)(rand() % 1000) + 500.0f) * 10000.0f + (float)rand()) / 10000.0f;
+        vSensorBME280DatasStruct->humi = (((float)(rand() % 70) + 30.0f) * 10000.0f + (float)rand()) / 10000.0f;
 
         return true;
     }
@@ -196,17 +210,38 @@ bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct* vSensorBME280Da
 
 #endif
 
+/////////////////////////////////////////
+/// STATIC //////////////////////////////
+/////////////////////////////////////////
+
+std::string SensorBME280::ConvertSensorBME280DatasToJSON(const uint64_t& vEpoc, const float& vTemp, const float& vPres, const float& vHumi)
+{
+    int n = snprintf(buffer, BUFFER_LENGTH,
+#ifdef UNIX // gcc seems not understand %zu and msvc not understand %llu ...
+        "{\"epoc\":%llu,\"temp\":%f,\"pres\":%f,\"humi\":%f}",
+#else
+        "{\"epoc\":%zu,\"temp\":%f,\"pres\":%f,\"humi\":%f}",
+#endif
+        vEpoc, vTemp, vPres, vHumi);
+    return std::string(buffer, n);
+}
+
+std::string SensorBME280::ConvertSensorBME280DatasToJSON(const char* vEpoc, const char* vTemp, const char* vPres, const char* vHumi)
+{
+    int n = snprintf(buffer, BUFFER_LENGTH,
+        "{\"epoc\":%s,\"temp\":%s,\"pres\":%s,\"humi\":%s}",
+        vEpoc, vTemp, vPres, vHumi);
+    return std::string(buffer, n);
+}
+
 std::string SensorBME280::ConvertSensorBME280DatasStructToJSON(const SensorBME280DatasStruct& vDatas)
 {
-	int n = snprintf(buffer, BUFFER_LENGTH,
-#ifdef UNIX // gcc seems not understand %zu and msvc not understand %llu ...
-		"{\"epoc\":%llu,\"temp\":%.5f,\"pres\":%.5f,\"humi\":%.5f}",
-#else
-		"{\"epoc\":%zu,\"temp\":%.5f,\"pres\":%.5f,\"humi\":%.5f}",
-#endif
-		vDatas.epoc, vDatas.temp, vDatas.pres, vDatas.humi);
-	return std::string(buffer, n);
+	return ConvertSensorBME280DatasToJSON(vDatas.epoc, vDatas.temp, vDatas.pres, vDatas.humi);
 }
+
+/////////////////////////////////////////
+/// PUBLIC //////////////////////////////
+/////////////////////////////////////////
 
 std::string SensorBME280::GetSensorBME280DatasToJSON()
 {
@@ -215,6 +250,10 @@ std::string SensorBME280::GetSensorBME280DatasToJSON()
         return ConvertSensorBME280DatasStructToJSON(res);
     return "";
 }
+
+/////////////////////////////////////////
+/// PRIVATE /////////////////////////////
+/////////////////////////////////////////
 
 uint64_t SensorBME280::GetCurrentEpochTime()
 {

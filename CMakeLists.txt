@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1)
 
-set(PROJECT bme280TcpServer)
+set(PROJECT bme280Server)
 
 enable_language(C CXX)
 

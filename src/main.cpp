@@ -8,6 +8,12 @@
 #include "MeasureDataBase.h"
 #include "build.h"
 
+#ifdef _DEBUG
+#define TIME_MIN_IN_SECONDS 1
+#else
+#define TIME_MIN_IN_SECONDS 10
+#endif
+
 bool parse_commands(int *vArgc, char** vArgs, std::string* vI2cBus, uint32_t *vPort, std::string* vDBFile, uint64_t* vSaveDelay)
 {
 	assert(vArgc);
@@ -73,13 +79,13 @@ bool parse_commands(int *vArgc, char** vArgs, std::string* vI2cBus, uint32_t *vP
 				{
 					const char* delay_s = vArgs[i + 1];
 					int ns = atoi(delay_s); // this function car raise an exception, the try catch is for him
-					if (ns >= 10)
+					if (ns >= TIME_MIN_IN_SECONDS)
 					{
 						*vSaveDelay = ns;
 					}
 					else
 					{
-						printf("err, the delay must be at mini 10 after the option -t\n");
+						printf("err, the delay must be at mini %i after the option -t\n", TIME_MIN_IN_SECONDS);
 						_CantContinue = true;
 					}
 					i++; // jump to next options if any
@@ -140,7 +146,7 @@ bool parse_commands(int *vArgc, char** vArgs, std::string* vI2cBus, uint32_t *vP
 		printf("          By default the value will be 3600 (1h)\n");
 		printf("\n");
 		printf("Description :\n");
-		printf("  this programm get datas from a i2d sensor bme280 and can do many things with it :\n");
+		printf("  this programm get datas from a i2c sensor bme280 and can do many things with it :\n");
 		printf("    - Act as a http server. the possible urls are :\n");
 		printf("      - http://ip:port will show you a page with explanation of possible url options\n");
 		printf("      - http://ip:port/sensor will launch a measure and give you the result in a json format\n");

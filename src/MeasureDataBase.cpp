@@ -1,6 +1,8 @@
 #include "MeasureDataBase.h"
-#include <sstream>
+#include "SensorBME280.h"
 #include <sqlite3.h>
+#include <sstream>
+#include <vector>
 
 template <typename T>
 static inline std::string toStr(T t)
@@ -19,17 +21,67 @@ void MeasureDataBase::AddBME280SensorDatas(const uint64_t& vDateTime, const floa
 		if (sqlite3_exec(m_SqliteDB, create_query.c_str(), nullptr, nullptr, nullptr) != SQLITE_OK)
 		{
 			printf("Fail to insert a sensor record in database\n");
-			m_SqliteDB = nullptr;
 		}
 
 		CloseDB();
 	}
 }
 
-std::string MeasureDataBase::GetJSonDatas(const int& vCountLastHours)
+std::string MeasureDataBase::GetHistoryToJson(const int& vCountLasts)
 {
-	// recuperation de seulement les vCountLastHours derniers depuis la table tbl_sensor_history avec tri descendant (le dernier d'abord)
-	return "";
+	std::string jsonResult;
+
+	// retrieving of last N record from Db, and format them in json format
+	if (OpenDB())
+	{
+		static char buffer[1024 + 1] = "";
+
+		try
+		{
+			// we must create the table
+			std::string select_query = "select * from tbl_bme280_sensor_history order by epoc_time desc limit " + toStr(vCountLasts) + ";";
+			std::vector<std::string> jsonLines;	jsonLines.resize(vCountLasts);
+			sqlite3_stmt* statement = nullptr;
+			if (sqlite3_prepare_v2(m_SqliteDB, select_query.c_str(), -1, &statement, NULL) != SQLITE_OK)
+			{
+				printf("Fail to select last sensor records in database : %s\n", sqlite3_errmsg(m_SqliteDB));
+			}
+			else
+			{
+				std::ostringstream os; os << vCountLasts;
+				jsonResult += "\"count\":" + os.str() + ",\"history\":[\n";
+
+				int rowID = 0;
+				while (sqlite3_step(statement) == SQLITE_ROW)
+				{
+					char* epoc = (char*)sqlite3_column_text(statement, 0); // can raise an exception for out of memory
+					char* temp = (char*)sqlite3_column_text(statement, 1); // can raise an exception for out of memory
+					char* pres = (char*)sqlite3_column_text(statement, 2); // can raise an exception for out of memory
+					char* humi = (char*)sqlite3_column_text(statement, 3); // can raise an exception for out of memory
+
+					if (strlen(epoc) && strlen(temp) && strlen(pres) && strlen(humi))
+					{
+						if (rowID++)
+							jsonResult += ",";
+
+						jsonResult += SensorBME280::ConvertSensorBME280DatasToJSON(epoc, temp, pres, humi);
+					}
+				}
+
+				jsonResult += "\n]";
+
+				sqlite3_finalize(statement);
+			}
+		}
+		catch (std::exception& ex)
+		{
+			printf("Err : %s", ex.what());
+		}
+
+		CloseDB();
+	}
+
+	return jsonResult;
 }
 
 ////////////////////////////////////////////////////////////
@@ -57,8 +109,8 @@ void MeasureDataBase::CreateDB()
 		if (m_SqliteDB) // in the doubt
 		{
 			// we must create the table
-			std::string create_query = "create table tbl_bme280_sensor_history (epoc_time integer PRIMARY KEY NOT NULL, temperature double NOT NULL, pressure double NOT NULL, humidity double NOT NULL);";
-			if (sqlite3_exec(m_SqliteDB, create_query.c_str(), nullptr, nullptr, nullptr) != SQLITE_OK)
+			const char* create_query = "create table tbl_bme280_sensor_history (epoc_time integer PRIMARY KEY NOT NULL, temperature double NOT NULL, pressure double NOT NULL, humidity double NOT NULL);";
+			if (sqlite3_exec(m_SqliteDB, create_query, nullptr, nullptr, nullptr) != SQLITE_OK)
 			{
 				printf("Fail to create database. cant manage sensors history\n");
 				m_SqliteDB = nullptr;
