@@ -1,5 +1,6 @@
 [Unit]
 Description=a http server who will give bme280 datas on url query
+ConditionPathExists=/sys/class/i2c-dev/i2c-1
 
 [Service]
 User=root
@@ -8,4 +9,5 @@ ExecStart=/usr/share/bme280Server/bme280Server -b /dev/i2c-1 -d /usr/share/bme28
 Restart=always
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=sysinit.target
+
