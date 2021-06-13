@@ -1,5 +1,6 @@
 [Unit]
 Description=a http server who will give bme280 datas on url query
+After=network-online.target
 
 [Service]
 User=root
