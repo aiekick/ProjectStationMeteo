@@ -5,51 +5,38 @@ BaliseMer::BaliseMer(int v_resolution, int v_temperatureUnit, string v_hourForma
 DatasMeteo v_Datas, DatasMeteo v_Summary, vector<DatasMeteo> v_History)
 :InfoClient(v_resolution, v_temperatureUnit, v_hourFormat, v_fontFamily, v_displayStyle, v_language)
 {
-	setDatas(v_Datas);
-	setSummary(v_Summary);
-	setHistory(v_History);
 }
 
 BaliseMer::~BaliseMer()
 {
 }
 
-DatasMeteo BaliseMer::getDatas()
+double BaliseMer::getTemperature()
 {
-	return this->datas;
+    return this->temperature;
 }
 
-void BaliseMer::setDatas(DatasMeteo v_Datas)
+void BaliseMer::setTemperature(double v_Temperature)
 {
-	this->datas = v_Datas;
+    this->temperature = v_Temperature;
 }
 
-DatasMeteo BaliseMer::getSummary()
+double BaliseMer::getPressure()
 {
-	return this->summary;
+    return this->pressure;
 }
 
-void BaliseMer::setSummary(DatasMeteo v_Summary)
+void BaliseMer::setPressure(double v_Pressure)
 {
-	this->summary = v_Summary;
+    this->pressure = v_Pressure;
 }
 
-vector<DatasMeteo> BaliseMer::getHistory()
+double BaliseMer::getHumidity()
 {
-	return this->history;
+    return this->humidity;
 }
 
-void BaliseMer::setHistory(vector<DatasMeteo> v_History)
+void BaliseMer::setHumidity(double v_Humidity)
 {
-	this->history = v_History;
-}
-
-string BaliseMer::displayDatas()
-{
-	ostringstream(oss);
-	oss << "Temperature : " << datas.getTemperature() << endl; 
-	oss << "Humidity : " << datas.getHumidity() << endl; 
-	oss << "Pressure : " << datas.getPressure() << endl; 
-
-	return oss.str();
+    this->humidity = v_Humidity;
 }

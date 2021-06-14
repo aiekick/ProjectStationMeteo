@@ -7,22 +7,24 @@
 class BaliseMer : public InfoClient
 {
 private:
+	double temperature;
+	double humidity;
+	double pressure;
 	DatasMeteo datas;
 	DatasMeteo summary;
 	vector<DatasMeteo> history;
 
 public:
+	
 	BaliseMer(int, int, string, string, string, string, DatasMeteo, DatasMeteo, vector<DatasMeteo>);
 	~BaliseMer();
-	DatasMeteo getDatas();
-	void setDatas(DatasMeteo);
-	DatasMeteo getSummary();
-	void setSummary(DatasMeteo);
-	vector<DatasMeteo> getHistory();
-	void setHistory(vector<DatasMeteo>);
 
-	string displayDatas();
-	
+	double getTemperature();
+	void setTemperature(double);
+	double getPressure();
+	void setPressure(double);
+	double getHumidity();
+	void setHumidity(double);
 
 };
 
