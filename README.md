@@ -51,10 +51,10 @@ Options :
 Description :
   this programm get datas from a i2c sensor bme280 and can do many things with it :
     - Act as a http server. the possible urls are :
-    - http://ip:port will show you a page with explanation of possible url options
-    - http://ip:port/sensor will launch a measure and give you the result in a json format
-    - http://ip:port/history:count will extract the last count measures from DB, and show you as a json format
-      count must be a valid number
+        - http://ip:port will show you a page with explanation of possible url options
+        - http://ip:port/sensor will launch a measure and give you the result in a json format
+        - http://ip:port/history:count will extract the last count measures from DB, and show you as a json format
+          count must be a valid number
     - Can start a measure of the i2c sensor bme280 (temperature, pressure, humidity)
     - Do logging each delay, a bm280 measure in a local sqlite database
 ```
