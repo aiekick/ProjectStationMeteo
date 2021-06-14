@@ -18,6 +18,9 @@ double BaliseMer::getTemperature()
 
 void BaliseMer::setTemperature(double v_Temperature)
 {
+    v_Temperature = v_Temperature * 100;
+    v_Temperature = (int)v_Temperature;
+    v_Temperature = v_Temperature / 100;
     this->temperature = v_Temperature;
 }
 
@@ -28,7 +31,7 @@ double BaliseMer::getPressure()
 
 void BaliseMer::setPressure(double v_Pressure)
 {
-    this->pressure = v_Pressure;
+    this->pressure = (int)v_Pressure;
 }
 
 double BaliseMer::getHumidity()
@@ -38,5 +41,5 @@ double BaliseMer::getHumidity()
 
 void BaliseMer::setHumidity(double v_Humidity)
 {
-    this->humidity = v_Humidity;
+    this->humidity = (int)v_Humidity;
 }
