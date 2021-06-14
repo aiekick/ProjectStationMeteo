@@ -37,6 +37,9 @@
 Station_meteo.vcxproj
 Station_meteo.vcxproj.filters
 Station_meteo.vcxproj.user
+Station_meteo.pro.user
+Station_meteo.sln
 debug/
 release/
 ui_mainwindow.h
+
