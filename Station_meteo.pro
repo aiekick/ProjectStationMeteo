@@ -10,13 +10,11 @@ CONFIG += c++11
 
 SOURCES += \
     client.cpp \
-    clientMer.cpp \
     datasMeteo.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
-    clientMer.hpp \
     datasMeteo.hpp \
     infosClient.hpp \
     mainwindow.h
