@@ -14,17 +14,24 @@ SOURCES += \
     baliseVille.cpp \
     datasMeteo.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    settingsdlg.cpp
 HEADERS += \
     balise.h \
     baliseMer.h \
     baliseVille.h \
     datasMeteo.h \
-    mainwindow.h
+    mainwindow.h \
+    settingsdlg.h
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    settingsdlg.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    SettingsDlg.qml \
+    SettingsDlgForm.ui.qml
