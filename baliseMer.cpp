@@ -1,14 +1,15 @@
-#include "baliseMer.hpp"
+#include "baliseMer.h"
 #include <sstream>
 
 BaliseMer::BaliseMer(int v_resolution, int v_temperatureUnit, string v_hourFormat, string v_fontFamily, string v_displayStyle, string v_language,
 DatasMeteo v_Datas, DatasMeteo v_Summary, vector<DatasMeteo> v_History)
-:InfoClient(v_resolution, v_temperatureUnit, v_hourFormat, v_fontFamily, v_displayStyle, v_language)
+:Balise(v_resolution, v_temperatureUnit, v_hourFormat, v_fontFamily, v_displayStyle, v_language)
 {
 }
 
 BaliseMer::~BaliseMer()
 {
+
 }
 
 double BaliseMer::getTemperature()

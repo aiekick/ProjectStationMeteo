@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "infosClient.hpp"
-#include "baliseMer.hpp"
+#include "balise.h"
+#include "baliseMer.h"
 
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -13,8 +13,7 @@
 #include <QJsonValue>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+ : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 }
