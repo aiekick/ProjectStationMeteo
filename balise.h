@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-class InfoClient
+class Balise
 {
 private :
 	int resolution;
@@ -14,8 +14,8 @@ private :
 	string language;
 
 public :
-	InfoClient(int, int, string, string, string, string);
-	~InfoClient();
+    Balise(int, int, string, string, string, string);
+    ~Balise();
 	int getResolution();
 	void setResolution(int);
 	int getTemperatureUnit();
@@ -28,7 +28,6 @@ public :
 	void setDisplayStyle(string);
 	string getLanguage();
 	void setLanguage(string);
-
 };
 
 #endif

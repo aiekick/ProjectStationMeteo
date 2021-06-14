@@ -1,15 +1,12 @@
 #ifndef BALISEVILLE_HPP
 #define BALISEVILLE_HPP
-#include "infosClient.hpp"
-#include "datasMeteo.hpp"
+#include "balise.h"
+#include "datasMeteo.h"
 
-class BaliseVille : public InfoClient
+class BaliseVille : public Balise
 {
 private:
 	DatasMeteo datas;
-
-
-
 
 public:
 	BaliseVille(int, int, string, string, string, string, DatasMeteo);
@@ -21,14 +18,6 @@ public:
 	int getDatas_Pressure();
 
 	void setDatas(DatasMeteo);
-
-
-
-
-
 };
-
-
-
 
 #endif

@@ -9,16 +9,18 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    client.cpp \
-    clientMer.cpp \
+    balise.cpp \
+    baliseMer.cpp \
+    baliseVille.cpp \
     datasMeteo.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
-    clientMer.hpp \
-    datasMeteo.hpp \
-    infosClient.hpp \
+    balise.h \
+    baliseMer.h \
+    baliseVille.h \
+    datasMeteo.h \
     mainwindow.h
 
 FORMS += \

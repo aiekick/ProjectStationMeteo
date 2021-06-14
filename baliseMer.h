@@ -1,10 +1,10 @@
 #ifndef BALISEMER_HPP
 #define BALISEMER_HPP
-#include "infosClient.hpp"
-#include "datasMeteo.hpp"
+#include "balise.h"
+#include "datasMeteo.h"
 #include <vector>
 
-class BaliseMer : public InfoClient
+class BaliseMer : public Balise
 {
 private:
 	DatasMeteo datas;
