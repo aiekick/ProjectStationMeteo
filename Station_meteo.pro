@@ -15,14 +15,12 @@ SOURCES += \
     datasMeteo.cpp \
     main.cpp \
     mainwindow.cpp
-
 HEADERS += \
     balise.h \
     baliseMer.h \
     baliseVille.h \
     datasMeteo.h \
     mainwindow.h
-
 FORMS += \
     mainwindow.ui
 
