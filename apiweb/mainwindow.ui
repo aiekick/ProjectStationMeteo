@@ -27,18 +27,31 @@
      <string>API Meteo</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="textville">
+   <widget class="QWidget" name="">
     <property name="geometry">
      <rect>
-      <x>550</x>
+      <x>490</x>
       <y>80</y>
-      <width>113</width>
-      <height>22</height>
+      <width>179</width>
+      <height>24</height>
      </rect>
     </property>
-    <property name="text">
-     <string>marseille</string>
-    </property>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Ville :</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="textville">
+       <property name="text">
+        <string>marseille</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
