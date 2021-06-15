@@ -10,9 +10,10 @@ namespace Ui
 }
 QT_END_NAMESPACE
 
-class BaliseVillePanel;
-class BaliseMerPanel;
+class QFrame;
 class QVBoxLayout;
+class BaliseMerPanel;
+class BaliseVillePanel;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -29,6 +30,7 @@ private:
     BaliseVillePanel *m_BaliseVillePanel = nullptr;
     BaliseMerPanel *m_BaliseMerPanel = nullptr;
     QVBoxLayout *m_MainLayout = nullptr;
+    QFrame *m_Separator = nullptr;
 };
 
 #endif // MAINWINDOW_H

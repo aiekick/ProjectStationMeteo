@@ -5,6 +5,7 @@
 #include "baliseMerPanel.h"
 #include "settingsdlg.h"
 #include <QVBoxLayout>
+#include <QFrame>
 
 MainWindow::MainWindow(QWidget *parent)
  : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -16,6 +17,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_BaliseMerPanel = new BaliseMerPanel(this);
     m_MainLayout->addWidget(m_BaliseMerPanel);
+
+    m_Separator = new QFrame(this);
+    m_Separator->setFrameShape(QFrame::HLine);
+    m_MainLayout->addWidget(m_Separator);
 
     m_BaliseVillePanel = new BaliseVillePanel(this);
     m_MainLayout->addWidget(m_BaliseVillePanel);
