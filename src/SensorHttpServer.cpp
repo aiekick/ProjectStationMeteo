@@ -7,6 +7,9 @@
 
 #include "SensorBME280.h"
 #include "MeasureDataBase.h"
+#include "SystemInfos.h"
+
+#include "Build.h"
 
 void SensorHttpServer::Init(uv::EventLoop& vEventLoop)
 {
@@ -16,6 +19,9 @@ void SensorHttpServer::Init(uv::EventLoop& vEventLoop)
 	// default page
 	//example:  127.0.0.1:80/
 	m_Server->Get("/", std::bind(&SensorHttpServer::Defaultpage, this, std::placeholders::_1, std::placeholders::_2));
+
+	//example:  127.0.0.1:80/infos
+	m_Server->Get("/infos*", std::bind(&SensorHttpServer::SendInfos, this, std::placeholders::_1, std::placeholders::_2));
 
 	//example:  127.0.0.1:80/sensor
 	m_Server->Get("/sensor*", std::bind(&SensorHttpServer::SendSensorDatas, this, std::placeholders::_1, std::placeholders::_2));
@@ -223,6 +229,12 @@ void SensorHttpServer::Defaultpage(uv::http::Request& /*req*/, uv::http::Respons
 						<ul>
 							<li>
 								<div class="link">
+									<p>Get infos</p>
+									<p>Ex : <a href="/infos">http://ip:port/infos</a></p>
+								</div>
+							</li>
+							<li>
+								<div class="link">
 									<p>Start a measure of the sensor</p>
 									<p>Ex : <a href="/sensor">http://ip:port/sensor</a></p>
 								</div>
@@ -251,6 +263,17 @@ void SensorHttpServer::Defaultpage(uv::http::Request& /*req*/, uv::http::Respons
 </html>
 )";
 	resp->swapContent(help);
+}
+
+void SensorHttpServer::SendInfos(uv::http::Request& /*req*/, uv::http::Response* resp)
+{
+	resp->setVersion(uv::http::HttpVersion::Http1_1);
+	resp->setStatus(uv::http::Response::StatusCode::OK, "OK");
+	resp->appendHead("Content-Type", "application/json");
+
+	std::string json = SystemInfos::Instance()->GetInfosToJSON();
+	
+	resp->swapContent(json);
 }
 
 void SensorHttpServer::SendSensorDatas(uv::http::Request& /*req*/, uv::http::Response* resp)
