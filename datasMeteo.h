@@ -2,36 +2,36 @@
 #define DATASMETEO_HPP
 
 #include <QString>
-#include <iostream>
-using namespace std;
 
 class DatasMeteo
 {
 private :
-	string picto;
-	float temperature;
-	float humidity;
-	float pressure;
-    QString ville;
-
+    QString picto;                      // icone pour les données
+    QString ville;                      // la ville associée aux donnée tempérées
+    double temperatureCelsius = 0.0;    // temperature en celsius
+    double humidity = 0.0;              // humitidty en %
+    double pressure = 0.0;              // pressure en hPa
 
 public:
 	DatasMeteo();
-	DatasMeteo(string, float, float, float);
+    DatasMeteo(QString, double, double, double);
 	~DatasMeteo();
-	string getPicto();
-	void setPicto(string);
-	float getTemperature();
-	void setTemperature(float);
-	float getHumidity();
-	void setHumidity(float);
-	float getPressure();
-	void setPressure(float);
 
+    QString getPicto() const;
+    QString getVille() const;
+    double getTemperatureCelsius() const;
+    double getTemperatureKelvin() const;
+    double getTemperatureFahrenheit() const;
+    double getHumidity() const;
+    double getPressure() const;
 
-
-    const QString &getVille() const;
-    void setVille(const QString &newVille);
+    void setPicto(const QString& vPicto);
+    void setVille(const QString& vNewVille);
+    void setTemperatureCelsius(const double& vTemperature);
+    void setTemperatureKelvin(const double& vTemperature);
+    void setTemperatureFahrenheit(const double& vTemperature);
+    void setHumidity(const double& vHumidity);
+    void setPressure(const double& vPressure);
 };
 
 #endif

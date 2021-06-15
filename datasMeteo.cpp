@@ -1,26 +1,18 @@
 #include "datasMeteo.h"
 
-
-
-const QString &DatasMeteo::getVille() const
-{
-    return ville;
-}
-
-void DatasMeteo::setVille(const QString &newVille)
-{
-    ville = newVille;
-}
+////////////////////////////////////////////////////
+/// CTOR / DTOR
+////////////////////////////////////////////////////
 
 DatasMeteo::DatasMeteo()
 {
 
 }
 
-DatasMeteo::DatasMeteo(string v_Picto, float v_Temperature, float v_Humidity, float v_Pressure)
+DatasMeteo::DatasMeteo(QString v_Picto, double v_Temperature, double v_Humidity, double v_Pressure)
 {
 	setPicto(v_Picto);
-	setTemperature(v_Temperature);
+    setTemperatureCelsius(v_Temperature);
 	setHumidity(v_Humidity);
 	setPressure(v_Pressure);
 }
@@ -30,42 +22,81 @@ DatasMeteo::~DatasMeteo()
 
 }
 
-string DatasMeteo::getPicto()
+////////////////////////////////////////////////////
+/// GETTERS
+////////////////////////////////////////////////////
+
+QString DatasMeteo::getPicto() const
 {
-	return this->picto;
+    return this->picto;
+}
+double DatasMeteo::getTemperatureCelsius() const
+{
+    return this->temperatureCelsius;
+}
+double DatasMeteo::getTemperatureKelvin() const
+{
+    // https://fr.wikipedia.org/wiki/Kelvin
+    return this->temperatureCelsius + 273.15;
 }
 
-void DatasMeteo::setPicto(string v_Picto)
+double DatasMeteo::getTemperatureFahrenheit() const
 {
-	this->picto = v_Picto;
+    // https://fr.wikipedia.org/wiki/Degr%C3%A9_Fahrenheit
+    return this->temperatureCelsius * 9.0 / 5.0 + 32.0;
 }
 
-float DatasMeteo::getTemperature()
+double DatasMeteo::getHumidity() const
 {
-	return this->temperature;
+    return this->humidity;
+}
+double DatasMeteo::getPressure() const
+{
+    return this->pressure;
 }
 
-void DatasMeteo::setTemperature(float v_Temperature)
+QString DatasMeteo::getVille() const
 {
-	this->temperature = v_Temperature;
+    return ville;
 }
 
-float DatasMeteo::getHumidity()
+////////////////////////////////////////////////////
+/// SETTERS
+////////////////////////////////////////////////////
+
+void DatasMeteo::setPicto(const QString& vPicto)
 {
-	return this->humidity;
+    this->picto = vPicto;
 }
 
-void DatasMeteo::setHumidity(float v_Humidity)
+void DatasMeteo::setTemperatureCelsius(const double& vTemperature)
 {
-	this->humidity = v_Humidity;
+    this->temperatureCelsius = vTemperature;
 }
 
-float DatasMeteo::getPressure()
+void DatasMeteo::setTemperatureKelvin(const double& vTemperature)
 {
-	return this->pressure;
+    // https://fr.wikipedia.org/wiki/Kelvin
+    this->temperatureCelsius = vTemperature - 273.15;
 }
 
-void DatasMeteo::setPressure(float v_Pressure)
+void DatasMeteo::setTemperatureFahrenheit(const double& vTemperature)
 {
-	this->pressure = v_Pressure;
+    // https://fr.wikipedia.org/wiki/Degr%C3%A9_Fahrenheit
+    this->temperatureCelsius = (vTemperature - 32.0) * 5.0 / 9.0;
+}
+
+void DatasMeteo::setHumidity(const double& vHumidity)
+{
+    this->humidity = vHumidity;
+}
+
+void DatasMeteo::setPressure(const double& vPressure)
+{
+    this->pressure = vPressure;
+}
+
+void DatasMeteo::setVille(const QString& vNewVille)
+{
+    this->ville = vNewVille;
 }

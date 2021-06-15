@@ -1,13 +1,13 @@
 #ifndef BALISEVILLEPANEL_H
 #define BALISEVILLEPANEL_H
 #include "baliseVille.h"
-#include <QMainWindow>
+#include <QWidget>
 
 namespace Ui {
 class BaliseVillePanel;
 }
 
-class BaliseVillePanel : public QMainWindow
+class BaliseVillePanel : public QWidget
 {
     Q_OBJECT
 
@@ -20,7 +20,7 @@ private slots:
 
 private:
     Ui::BaliseVillePanel *ui;
-   BaliseVille objville;
+    BaliseVille objville;
 };
 
 #endif // BALISEVILLEPANEL_H

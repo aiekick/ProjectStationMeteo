@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include "balisevillepanel.h"
+#include "baliseMerPanel.h"
 #include <QVBoxLayout>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -11,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_MainLayout = new QVBoxLayout(ui->centralwidget);
     ui->centralwidget->setLayout(m_MainLayout);
+
+    m_BaliseMerPanel = new BaliseMerPanel(this);
+    m_MainLayout->addWidget(m_BaliseMerPanel);
 
     m_BaliseVillePanel = new BaliseVillePanel(this);
     m_MainLayout->addWidget(m_BaliseVillePanel);

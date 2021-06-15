@@ -1,4 +1,5 @@
 #include "baliseVille.h"
+
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -7,15 +8,12 @@
 #include <QNetworkRequest>
 #include <QDebug>
 #include <QSettings>
+#include <QApplication>
+
 #include "datasMeteo.h"
-#include "balisevillepanel.h"
-#include "ui_balisevillepanel.h"
 
-
-
- DatasMeteo &BaliseVille::getDatas()
+BaliseVille::BaliseVille() : Balise()
 {
-    return datas;
 }
 
 BaliseVille::BaliseVille(int v_resolution, int v_temperatureUnit, string v_hourFormat, string v_fontFamily, string v_displayStyle, string v_language, DatasMeteo v_DatasMeteo)
@@ -28,14 +26,14 @@ BaliseVille::~BaliseVille()
 {
 }
 
-string BaliseVille::getDatas_Picto()
+QString BaliseVille::getDatas_Picto()
 {
     return this->datas.getPicto();
 }
 
 double BaliseVille::getDatas_Temperature()
 {
-    return this->datas.getTemperature();
+    return this->datas.getTemperatureCelsius();
 }
 
 int BaliseVille::getDatas_Humidity()
@@ -48,18 +46,21 @@ int BaliseVille::getDatas_Pressure()
     return this->datas.getPressure();
 }
 
+DatasMeteo &BaliseVille::getDatas()
+{
+    return datas;
+}
+
 void BaliseVille::setDatas(DatasMeteo v_DatasMeteo)
 {
     this->datas.setPicto(v_DatasMeteo.getPicto());
-    this->datas.setTemperature(v_DatasMeteo.getTemperature());
+    this->datas.setTemperatureCelsius(v_DatasMeteo.getTemperatureCelsius());
     this->datas.setHumidity(v_DatasMeteo.getHumidity());
     this->datas.setPressure(v_DatasMeteo.getPressure());
 }
+
 void BaliseVille::RecuperationApi()
 {
-
-
-
     qDebug() << "SSL ? " << QSslSocket::supportsSsl();
 
     QNetworkRequest request(QUrl("http://api.openweathermap.org/data/2.5/forecast/?q="+datas.getVille()+"&appid=58e08b52cadfc9c96fc8354666cec712"));
@@ -81,7 +82,7 @@ void BaliseVille::RecuperationApi()
 
     qDebug() << "Size: " << response_data.size();
 
-    //Conversion du ByteArryay en Json
+    //Conversion du ByteArray en Json
     QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
 
 
@@ -117,16 +118,5 @@ void BaliseVille::RecuperationApi()
             QJsonObject obj1 = value1.toObject();
             qDebug() << "description: " << obj1["description"].toString();
         }
-
-
-
-
     }
-
-
-
-
-
-
-
 }

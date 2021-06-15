@@ -11,6 +11,7 @@ namespace Ui
 QT_END_NAMESPACE
 
 class BaliseVillePanel;
+class BaliseMerPanel;
 class QVBoxLayout;
 class MainWindow : public QMainWindow
 {
@@ -20,12 +21,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void InitUI();
-    void UnitUI();
-
 private:
     Ui::MainWindow *ui = nullptr;
     BaliseVillePanel *m_BaliseVillePanel = nullptr;
+    BaliseMerPanel *m_BaliseMerPanel = nullptr;
     QVBoxLayout *m_MainLayout = nullptr;
 
 };

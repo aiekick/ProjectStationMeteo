@@ -14,7 +14,7 @@
 
 
 BaliseVillePanel::BaliseVillePanel(QWidget *parent) :
-    QMainWindow(parent),
+    QWidget(parent),
     ui(new Ui::BaliseVillePanel)
 {
     ui->setupUi(this);
