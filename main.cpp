@@ -1,11 +1,14 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include "infosClient.hpp"
+#include "balise.h"
+#include "balisevillepanel.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
+   // MainWindow w;
+    //w.show();
+
+    balisevillepanel b;
     return a.exec();
 }

@@ -2,9 +2,6 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
-  <property name="enabled">
-   <bool>true</bool>
-  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -17,30 +14,30 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton_Test">
+   <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>110</y>
-      <width>131</width>
-      <height>41</height>
+      <x>280</x>
+      <y>130</y>
+      <width>93</width>
+      <height>28</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>API Meteo</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_Test">
+   <widget class="QLineEdit" name="textville">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>110</y>
-      <width>351</width>
-      <height>131</height>
+      <x>550</x>
+      <y>80</y>
+      <width>113</width>
+      <height>22</height>
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>marseille</string>
     </property>
    </widget>
   </widget>
