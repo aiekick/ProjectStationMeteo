@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     GlobalSettings.cpp \
+    StyleManager.cpp \
     balise.cpp \
     baliseMer.cpp \
     baliseMerPanel.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
 
 HEADERS += \
     GlobalSettings.h \
+    StyleManager.h \
     balise.h \
     baliseMer.h \
     baliseMerPanel.h \
