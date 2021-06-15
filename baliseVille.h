@@ -8,7 +8,10 @@ class BaliseVille : public Balise
 private:
     DatasMeteo datas;
 
+
 public:
+    BaliseVille() :Balise()   {}
+
     BaliseVille(int, int, string, string, string, string, DatasMeteo);
     ~BaliseVille();
 
@@ -16,8 +19,13 @@ public:
     double getDatas_Temperature();
     int getDatas_Humidity();
     int getDatas_Pressure();
-
+    void RecuperationApi();
     void setDatas(DatasMeteo);
+
+
+
+
+     DatasMeteo &getDatas() ;
 };
 
 #endif

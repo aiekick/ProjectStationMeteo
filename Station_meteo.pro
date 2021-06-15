@@ -12,6 +12,7 @@ SOURCES += \
     balise.cpp \
     baliseMer.cpp \
     baliseVille.cpp \
+    balisevillepanel.cpp \
     datasMeteo.cpp \
     main.cpp \
     mainwindow.cpp
@@ -19,9 +20,11 @@ HEADERS += \
     balise.h \
     baliseMer.h \
     baliseVille.h \
+    balisevillepanel.h \
     datasMeteo.h \
     mainwindow.h
 FORMS += \
+    balisevillepanel.ui \
     mainwindow.ui
 
 # Default rules for deployment.

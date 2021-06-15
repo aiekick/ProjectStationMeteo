@@ -14,6 +14,8 @@ private :
 	string language;
 
 public :
+
+    Balise(){}
     Balise(int, int, string, string, string, string);
     ~Balise();
 	int getResolution();
