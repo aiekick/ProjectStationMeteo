@@ -1,5 +1,17 @@
 #include "baliseMer.h"
-#include <sstream>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QDebug>
+#include <QJsonValue>
+#include <qapplication.h>
+
+BaliseMer::BaliseMer()
+{
+}
 
 BaliseMer::BaliseMer(int v_resolution, int v_temperatureUnit, string v_hourFormat, string v_fontFamily, string v_displayStyle, string v_language,
 DatasMeteo v_Datas, DatasMeteo v_Summary, vector<DatasMeteo> v_History)
@@ -9,38 +21,38 @@ DatasMeteo v_Datas, DatasMeteo v_Summary, vector<DatasMeteo> v_History)
 
 BaliseMer::~BaliseMer()
 {
-
 }
 
-double BaliseMer::getTemperature()
+DatasMeteo BaliseMer::getDatas()
 {
-    return this->temperature;
+    return datas;
 }
 
-void BaliseMer::setTemperature(double v_Temperature)
+void BaliseMer::requestData()
 {
-    v_Temperature = v_Temperature * 100;
-    v_Temperature = (int)v_Temperature;
-    v_Temperature = v_Temperature / 100;
-    this->temperature = v_Temperature;
-}
+    QNetworkRequest request(QUrl("http://82.65.244.166:48001/sensor"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    QNetworkAccessManager nam;
+    QNetworkReply* reply = nam.get(request);
+    
+    
+    while (!reply->isFinished())
+    {
+        qApp->processEvents();
+    }
+    reply->deleteLater();
+    
 
-double BaliseMer::getPressure()
-{
-    return this->pressure;
-}
+    QByteArray response_data = reply->readAll();
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+    QJsonObject jsonObject = jsonResponse.object();
 
-void BaliseMer::setPressure(double v_Pressure)
-{
-    this->pressure = (int)v_Pressure;
-}
+    // Temperature
+    datas.setTemperature(jsonObject["temp"].toDouble());
+    
+    // Pressure
+    datas.setPressure(jsonObject["pres"].toDouble());
 
-double BaliseMer::getHumidity()
-{
-    return this->humidity;
-}
-
-void BaliseMer::setHumidity(double v_Humidity)
-{
-    this->humidity = (int)v_Humidity;
+    //Humidity
+    datas.setHumidity(jsonObject["humi"].toDouble());
 }

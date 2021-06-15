@@ -1,5 +1,9 @@
 #include "balise.h"
 
+Balise::Balise()
+{
+}
+
 Balise::Balise(int v_resolution, int v_temperatureUnit, string v_hourFormat, string v_fontFamily, string v_displayStyle, string v_language)
 {
 	setResolution(v_resolution);

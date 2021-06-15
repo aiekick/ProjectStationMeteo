@@ -63,7 +63,7 @@ public:
         label_Pressure_Mer->setGeometry(QRect(290, 80, 47, 13));
         label_6 = new QLabel(centralWidget);
         label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setGeometry(QRect(350, 80, 47, 13));
+        label_6->setGeometry(QRect(390, 80, 47, 13));
         label_5 = new QLabel(centralWidget);
         label_5->setObjectName(QString::fromUtf8("label_5"));
         label_5->setGeometry(QRect(230, 110, 47, 13));
@@ -72,10 +72,10 @@ public:
         label_Humidity_Mer->setGeometry(QRect(300, 110, 47, 13));
         label_8 = new QLabel(centralWidget);
         label_8->setObjectName(QString::fromUtf8("label_8"));
-        label_8->setGeometry(QRect(360, 110, 47, 13));
+        label_8->setGeometry(QRect(400, 110, 47, 13));
         pushButton_Degrees = new QPushButton(centralWidget);
         pushButton_Degrees->setObjectName(QString::fromUtf8("pushButton_Degrees"));
-        pushButton_Degrees->setGeometry(QRect(350, 50, 31, 21));
+        pushButton_Degrees->setGeometry(QRect(390, 50, 31, 21));
         baliseMerPanel->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(baliseMerPanel);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));

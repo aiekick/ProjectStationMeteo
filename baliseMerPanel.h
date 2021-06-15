@@ -2,6 +2,7 @@
 #define BALISEMERPANEL_H
 
 #include <QMainWindow>
+#include "baliseMer.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class baliseMerPanel; }
@@ -14,7 +15,8 @@ class baliseMerPanel : public QMainWindow
 public:
 	baliseMerPanel(QWidget *parent = nullptr);
 	~baliseMerPanel();
-	void updateData();
+	void updateData(); //Print data to the panel
+
 
 private slots:
     void on_pushButton_Refresh_clicked();
@@ -23,7 +25,8 @@ private slots:
 
 private:
 	Ui::baliseMerPanel *ui;
-};
+	BaliseMer baliseMer; 
 
+};
 
 #endif

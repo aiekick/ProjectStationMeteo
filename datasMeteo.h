@@ -8,22 +8,26 @@ class DatasMeteo
 {
 private :
 	string picto;
-	float temperature;
-	float humidity;
-	float pressure;
+	double temperature;
+	double humidity;
+	double pressure;
 
 public:
 	DatasMeteo();
-	DatasMeteo(string, float, float, float);
+	DatasMeteo(string, double, double, double);
 	~DatasMeteo();
 	string getPicto();
 	void setPicto(string);
-	float getTemperature();
-	void setTemperature(float);
-	float getHumidity();
-	void setHumidity(float);
-	float getPressure();
-	void setPressure(float);
+	double getTemperature();
+	void setTemperature(double);
+	double getHumidity();
+	void setHumidity(double);
+	double getPressure();
+	void setPressure(double);
+
+	double kelvinToCelsius();
+	double celsiusToFahrenheit();
+	double fahrenheitToCelsius();
 
 };
 

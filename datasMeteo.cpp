@@ -2,9 +2,12 @@
 
 DatasMeteo::DatasMeteo()
 {
+	setTemperature(1);
+	setHumidity(1);
+	setPressure(1);
 }
 
-DatasMeteo::DatasMeteo(string v_Picto, float v_Temperature, float v_Humidity, float v_Pressure)
+DatasMeteo::DatasMeteo(string v_Picto, double v_Temperature, double v_Humidity, double v_Pressure)
 {
 	setPicto(v_Picto);
 	setTemperature(v_Temperature);
@@ -26,32 +29,50 @@ void DatasMeteo::setPicto(string v_Picto)
 	this->picto = v_Picto;
 }
 
-float DatasMeteo::getTemperature()
+double DatasMeteo::getTemperature()
 {
 	return this->temperature;
 }
 
-void DatasMeteo::setTemperature(float v_Temperature)
+void DatasMeteo::setTemperature(double v_Temperature)
 {
 	this->temperature = v_Temperature;
 }
 
-float DatasMeteo::getHumidity()
+double DatasMeteo::getHumidity()
 {
 	return this->humidity;
 }
 
-void DatasMeteo::setHumidity(float v_Humidity)
+void DatasMeteo::setHumidity(double v_Humidity)
 {
 	this->humidity = v_Humidity;
 }
 
-float DatasMeteo::getPressure()
+double DatasMeteo::getPressure()
 {
 	return this->pressure;
 }
 
-void DatasMeteo::setPressure(float v_Pressure)
+void DatasMeteo::setPressure(double v_Pressure)
 {
 	this->pressure = v_Pressure;
+}
+
+double DatasMeteo::kelvinToCelsius()
+{
+	this->temperature -= 273.15;
+	return this->temperature;
+}
+
+double DatasMeteo::celsiusToFahrenheit()
+{
+	this->temperature += 32;
+	return this->temperature;
+}
+
+double DatasMeteo::fahrenheitToCelsius()
+{
+	this->temperature -= 32;
+	return this->temperature;
 }
