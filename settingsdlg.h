@@ -1,13 +1,13 @@
 #ifndef SETTINGSDLG_H
 #define SETTINGSDLG_H
 
-#include <QWidget>
+#include <QDialog>
 
 namespace Ui {
 class SettingsDlg;
 }
 
-class SettingsDlg : public QWidget
+class SettingsDlg : public QDialog
 {
     Q_OBJECT
 

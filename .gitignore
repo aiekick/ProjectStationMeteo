@@ -43,3 +43,15 @@ debug/
 release/
 ui_mainwindow.h
 
+/ui_settingsdlg.h
+/.vs
+/debug
+/release
+/.qmake.stash
+/Station_meteo.sln
+/Station_meteo.vcxproj
+/Station_meteo.vcxproj.filters
+/Station_meteo.vcxproj.user
+/ui_baliseMerPanel.h
+/ui_balisevillepanel.h
+/ui_mainwindow.h

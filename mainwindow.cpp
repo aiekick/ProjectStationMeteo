@@ -3,6 +3,7 @@
 
 #include "balisevillepanel.h"
 #include "baliseMerPanel.h"
+#include "settingsdlg.h"
 #include <QVBoxLayout>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -26,3 +27,11 @@ MainWindow::~MainWindow()
     delete m_MainLayout;
     delete ui;
 }
+
+void MainWindow::on_actionSettings_triggered()
+{
+    SettingsDlg _SettingsDlg;
+    _SettingsDlg.setModal(true);
+    _SettingsDlg.exec();
+}
+

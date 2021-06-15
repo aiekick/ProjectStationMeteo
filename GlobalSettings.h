@@ -12,7 +12,8 @@ enum class HourFormatEnum
 enum class TemperatureUnitEnum
 {
     UNIT_CELSIUS=0,
-    UNIT_FAHRENHEIT
+    UNIT_FAHRENHEIT,
+    UNIT_KELVIN
 };
 
 class GlobalSettings
@@ -22,6 +23,9 @@ private:
     TemperatureUnitEnum m_TemperatureUnit = TemperatureUnitEnum::UNIT_CELSIUS;
     QString m_Ville = "Paris";
     QString m_FontFamily = "Arial";
+	QString m_ApiKey;
+	QString m_IP;
+	QString m_Port;
     QVector<QString> m_Styles;
 
 public:
