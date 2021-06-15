@@ -20,6 +20,7 @@ private:
 	void OnConnected(std::weak_ptr<uv::TcpConnection> vPtr);
 	void OnDisConnected(std::weak_ptr<uv::TcpConnection> vPtr);
 	void Defaultpage(uv::http::Request& req, uv::http::Response* resp);
+	void SendInfos(uv::http::Request& req, uv::http::Response* resp);
 	void SendSensorDatas(uv::http::Request& req, uv::http::Response* resp);
 	void SendHistory(uv::http::Request& req, uv::http::Response* resp);
 };

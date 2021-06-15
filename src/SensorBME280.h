@@ -15,6 +15,9 @@ struct bme280_data;
 struct bme280_dev;
 class SensorBME280
 {
+public:
+	static bool sDisabled;
+	
 private:
 	std::string m_I2cBus;
 
@@ -41,7 +44,7 @@ public: // singleton
 		static SensorBME280 _instance(vI2CBus);
 		return &_instance;
 	}
-	SensorBME280(const std::string& vI2CBus) : m_I2cBus(vI2CBus) {}
+	SensorBME280(const std::string& vI2CBus);
 	SensorBME280(const SensorBME280&) = delete;
 	SensorBME280& operator =(const SensorBME280&) = delete;
 	~SensorBME280() = default;

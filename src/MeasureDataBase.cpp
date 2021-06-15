@@ -87,6 +87,89 @@ std::string MeasureDataBase::GetHistoryToJson(const int& vCountLasts)
 	return jsonResult;
 }
 
+std::string MeasureDataBase::GetDatabaseInfos()
+{
+	std::string jsonResult;
+
+	// retrieving of last N record from Db, and format them in json format
+	if (OpenDB())
+	{
+		sqlite3_stmt* statement;
+
+		// get count records
+		statement = nullptr;
+		std::string countRecords;
+		std::string count_query = "select count(*) from tbl_bme280_sensor_history;";
+		if (sqlite3_prepare_v2(m_SqliteDB, count_query.c_str(), -1, &statement, NULL) != SQLITE_OK)
+		{
+			printf("Fail to get count records in table tbl_bme280_sensor_history from database : %s\n", sqlite3_errmsg(m_SqliteDB));
+		}
+		else
+		{
+			int rowID = 0;
+			try
+			{
+				std::string lastLine;
+				while (sqlite3_step(statement) == SQLITE_ROW)
+				{
+					auto count = (char*)sqlite3_column_text(statement, 0); // can raise an exception for out of memory
+					
+					if (strlen(count))
+					{
+						countRecords = std::string(count);
+					}
+				}
+			}
+			catch (std::exception& ex)
+			{
+				printf("Err : %s", ex.what());
+			}
+
+			sqlite3_finalize(statement);
+		}
+
+		// get database version
+		statement = nullptr;
+		std::string databaseVersion;
+		std::string version_query = "select sqlite_version();";
+		if (sqlite3_prepare_v2(m_SqliteDB, version_query.c_str(), -1, &statement, NULL) != SQLITE_OK)
+		{
+			printf("Fail to get version of database file : %s\n", sqlite3_errmsg(m_SqliteDB));
+		}
+		else
+		{
+			int rowID = 0;
+			try
+			{
+				std::string lastLine;
+				while (sqlite3_step(statement) == SQLITE_ROW)
+				{
+					auto version = (char*)sqlite3_column_text(statement, 0); // can raise an exception for out of memory
+
+					if (strlen(version))
+					{
+						databaseVersion = std::string(version);
+					}
+				}
+			}
+			catch (std::exception& ex)
+			{
+				printf("Err : %s", ex.what());
+			}
+
+			sqlite3_finalize(statement);
+		}
+
+		jsonResult += "\"count_records\":" + countRecords + ",";
+		jsonResult += "\"database_version\":\"" + databaseVersion + "\",";
+		jsonResult += "\"database_path\":\"" + m_DataBaseFilePathName + "\",";
+		
+		CloseDB();
+	}
+
+	return jsonResult;
+}	
+	
 ////////////////////////////////////////////////////////////
 ///// PRIVATE //////////////////////////////////////////////
 ////////////////////////////////////////////////////////////

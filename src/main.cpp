@@ -7,6 +7,7 @@
 #include "SensorBME280.h"
 #include "SensorHistory.h"
 #include "MeasureDataBase.h"
+#include "SystemInfos.h"
 #include "Build.h"
 
 #ifdef _DEBUG
@@ -38,6 +39,10 @@ bool parse_commands(int *vArgc, char** vArgs, std::string* vI2cBus, uint32_t *vP
 			{
 				if (i + 1 < *vArgc)
 				{
+					/*
+					FOR DEBUG ON A DEVICE WHO NOT HAVE THE BME280
+					YOU CAN USE "debug" in *vI2cBus
+					*/
 					*vI2cBus = std::string(vArgs[i + 1]);
 					i++; // jump to next options if any
 				}
@@ -122,6 +127,8 @@ bool parse_commands(int *vArgc, char** vArgs, std::string* vI2cBus, uint32_t *vP
 				_CantContinue = true;
 			}
 		}
+
+		SystemInfos::Instance()->SetCommandLine(vArgc, vArgs);
 	}
 	catch (std::exception& ex)
 	{
@@ -153,6 +160,7 @@ bool parse_commands(int *vArgc, char** vArgs, std::string* vI2cBus, uint32_t *vP
 		printf("  this programm get datas from a i2c sensor bme280 and can do many things with it :\n");
 		printf("    - Act as a http server. the possible urls are :\n");
 		printf("      - http://ip:port will show you a page with explanation of possible url options\n");
+		printf("      - http://ip:port/infos will show general infos and stats\n");
 		printf("      - http://ip:port/sensor will launch a measure and give you the result in a json format\n");
 		printf("      - http://ip:port/history:count will extract the last count measures from DB, and show you as a json format\n");
 		printf("        count must be a valid number\n");

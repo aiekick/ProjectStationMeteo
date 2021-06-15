@@ -12,7 +12,8 @@ private:
 public:
 	void AddBME280SensorDatas(const uint64_t& vDateTime, const float& vTemperature, const float& vPressure, const float& vHumidity);
 	std::string GetHistoryToJson(const int& vCountLasts);
-
+	std::string GetDatabaseInfos();
+	
 private:
 	bool OpenDB();
 	void CreateDB();

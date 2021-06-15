@@ -15,6 +15,29 @@
 #define BUFFER_LENGTH 512
 static char buffer[BUFFER_LENGTH + 1] = "";
 
+/////////////////////////////////////////
+/// STATIC //////////////////////////////
+/////////////////////////////////////////
+
+bool SensorBME280::sDisabled = false;
+
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
+
+SensorBME280::SensorBME280(const std::string& vI2CBus) : m_I2cBus(vI2CBus) 
+{
+	if (vI2CBus == "debug")
+	{
+		SensorBME280::sDisabled = true;
+		printf("SensorBME280 MEasure is disabled, for debug purpose\n");
+	}
+}
+	
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
+	
 #ifdef UNIX
 
 /////////////////////////////////////////
@@ -142,6 +165,9 @@ int8_t SensorBME280::GetSensorBME280DataNormalMode(
 
 bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct *vSensorBME280DatasStruct)
 {
+	if (SensorBME280::sDisabled)
+		return false;
+	
     struct identifier id;
     if ((id.fd = open(m_I2cBus.c_str(), O_RDWR)) < 0)
     {
@@ -195,6 +221,9 @@ bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct *vSensorBME280Da
 
 bool SensorBME280::GetSensorBME280Datas(SensorBME280DatasStruct* vSensorBME280DatasStruct)
 {
+    if (SensorBME280::sDisabled)
+		return false;
+	
     if (vSensorBME280DatasStruct)
     {
         vSensorBME280DatasStruct->epoc = GetCurrentEpochTime();
