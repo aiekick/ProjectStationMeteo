@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     balise.cpp \
     baliseMer.cpp \
+    baliseMerPanel.cpp \
     baliseVille.cpp \
     datasMeteo.cpp \
     main.cpp \
@@ -18,10 +19,12 @@ SOURCES += \
 HEADERS += \
     balise.h \
     baliseMer.h \
+    baliseMerPanel.h \
     baliseVille.h \
     datasMeteo.h \
     mainwindow.h
 FORMS += \
+    baliseMerPanel.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -16,12 +16,14 @@ MainWindow::MainWindow(QWidget *parent)
  : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    QWidget::setWindowTitle("Fenetre principale");
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
 void MainWindow::on_pushButton_UpdateMer_clicked()
 {
     QNetworkRequest request(QUrl("http://82.65.244.166:48001/sensor"));
