@@ -4,9 +4,14 @@
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui
+{
+    class MainWindow;
+}
 QT_END_NAMESPACE
 
+class BaliseVillePanel;
+class QVBoxLayout;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -15,10 +20,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
-    void on_pushButton_UpdateMer_clicked();
+    void InitUI();
+    void UnitUI();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow *ui = nullptr;
+    BaliseVillePanel *m_BaliseVillePanel = nullptr;
+    QVBoxLayout *m_MainLayout = nullptr;
+
 };
+
 #endif // MAINWINDOW_H

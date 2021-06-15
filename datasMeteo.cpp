@@ -1,5 +1,17 @@
 #include "datasMeteo.h"
 
+
+
+const QString &DatasMeteo::getVille() const
+{
+    return ville;
+}
+
+void DatasMeteo::setVille(const QString &newVille)
+{
+    ville = newVille;
+}
+
 DatasMeteo::DatasMeteo()
 {
 

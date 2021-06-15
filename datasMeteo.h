@@ -1,6 +1,7 @@
 #ifndef DATASMETEO_HPP
 #define DATASMETEO_HPP
 
+#include <QString>
 #include <iostream>
 using namespace std;
 
@@ -11,6 +12,8 @@ private :
 	float temperature;
 	float humidity;
 	float pressure;
+    QString ville;
+
 
 public:
 	DatasMeteo();
@@ -25,6 +28,10 @@ public:
 	float getPressure();
 	void setPressure(float);
 
+
+
+    const QString &getVille() const;
+    void setVille(const QString &newVille);
 };
 
 #endif

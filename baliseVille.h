@@ -6,18 +6,26 @@
 class BaliseVille : public Balise
 {
 private:
-	DatasMeteo datas;
+    DatasMeteo datas;
+
 
 public:
-	BaliseVille(int, int, string, string, string, string, DatasMeteo);
-	~BaliseVille();
+    BaliseVille() :Balise()   {}
 
-	string getDatas_Picto();
-	double getDatas_Temperature();
-	int getDatas_Humidity();
-	int getDatas_Pressure();
+    BaliseVille(int, int, string, string, string, string, DatasMeteo);
+    ~BaliseVille();
 
-	void setDatas(DatasMeteo);
+    string getDatas_Picto();
+    double getDatas_Temperature();
+    int getDatas_Humidity();
+    int getDatas_Pressure();
+    void RecuperationApi();
+    void setDatas(DatasMeteo);
+
+
+
+
+     DatasMeteo &getDatas() ;
 };
 
 #endif
