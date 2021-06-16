@@ -37,13 +37,9 @@ void BaliseMerPanel::updateData()
     this->ui->label_Humidity_Mer->setText(humidity);
 
     // Mean Temperature
-    QString meanTemperature = QString::number(baliseMer.getMeanTemp());
-    qDebug() << meanTemperature;
+    QString meanTemperature = QString::number(baliseMer.getSummary().getTemperatureCelsius());
     this->ui->label_Mean_Temperature_Mer->setText(meanTemperature);
-    qDebug() << "before" << baliseMer.getHistory()->size();
     baliseMer.getHistory()->clear();
-    qDebug() << "after" << baliseMer.getHistory()->size();
-    
 }
 
 void BaliseMerPanel::on_pushButton_Refresh_clicked()
