@@ -9,17 +9,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="balisevillepanel.ui" line="27"/>
+        <location filename="balisevillepanel.ui" line="52"/>
         <source>api meteo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="balisevillepanel.ui" line="43"/>
+        <location filename="balisevillepanel.ui" line="29"/>
         <source>Ville:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="balisevillepanel.ui" line="50"/>
+        <location filename="balisevillepanel.ui" line="36"/>
         <source>paris</source>
         <translation type="unfinished"></translation>
     </message>
@@ -45,138 +45,144 @@
 <context>
     <name>SettingsDlg</name>
     <message>
-        <location filename="settingsdlg.ui" line="23"/>
+        <location filename="settingsdlg.ui" line="35"/>
         <source>Parametres</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="32"/>
+        <location filename="settingsdlg.ui" line="47"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="40"/>
+        <location filename="settingsdlg.ui" line="55"/>
         <source>Unité de Temperature</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="52"/>
+        <location filename="settingsdlg.ui" line="85"/>
         <source>Celsius</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="62"/>
+        <location filename="settingsdlg.ui" line="95"/>
         <source>Fahrenheit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="69"/>
+        <location filename="settingsdlg.ui" line="102"/>
         <source>Kelvin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="94"/>
+        <location filename="settingsdlg.ui" line="130"/>
         <source>Police</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="106"/>
+        <location filename="settingsdlg.ui" line="160"/>
         <source>24H</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="116"/>
+        <location filename="settingsdlg.ui" line="170"/>
         <source>12H</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="138"/>
+        <location filename="settingsdlg.ui" line="195"/>
         <source>Styles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="149"/>
+        <location filename="settingsdlg.ui" line="206"/>
+        <location filename="settingsdlg.cpp" line="78"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="157"/>
+        <location filename="settingsdlg.ui" line="214"/>
         <source>Format d&apos;heure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="167"/>
+        <location filename="settingsdlg.ui" line="224"/>
         <source>Langue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="178"/>
+        <location filename="settingsdlg.ui" line="235"/>
         <source>Français</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="191"/>
+        <location filename="settingsdlg.ui" line="248"/>
         <source>Balise Mer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="199"/>
+        <location filename="settingsdlg.ui" line="256"/>
         <source>000.000.000.000</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="202"/>
+        <location filename="settingsdlg.ui" line="259"/>
         <source>82.65.244.166</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="212"/>
+        <location filename="settingsdlg.ui" line="269"/>
         <source>IP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="222"/>
+        <location filename="settingsdlg.ui" line="279"/>
         <source>Port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="232"/>
+        <location filename="settingsdlg.ui" line="289"/>
         <source>00000</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="235"/>
+        <location filename="settingsdlg.ui" line="292"/>
         <source>48001</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="247"/>
+        <location filename="settingsdlg.ui" line="304"/>
         <source>Balise Ville</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="258"/>
+        <location filename="settingsdlg.ui" line="315"/>
         <source>Api Key</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="268"/>
+        <location filename="settingsdlg.ui" line="325"/>
         <source>Ville</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="278"/>
+        <location filename="settingsdlg.ui" line="335"/>
         <source>Paris</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="305"/>
+        <location filename="settingsdlg.ui" line="362"/>
         <source>Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="settingsdlg.ui" line="312"/>
+        <location filename="settingsdlg.ui" line="369"/>
         <source>Annuler</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="settingsdlg.ui" line="379"/>
+        <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -188,44 +194,44 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="baliseMerPanel.ui" line="27"/>
+        <location filename="baliseMerPanel.ui" line="78"/>
         <source>Refresh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="baliseMerPanel.ui" line="40"/>
+        <location filename="baliseMerPanel.ui" line="26"/>
         <source>Temperature :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="baliseMerPanel.ui" line="53"/>
-        <location filename="baliseMerPanel.ui" line="79"/>
-        <location filename="baliseMerPanel.ui" line="118"/>
+        <location filename="baliseMerPanel.ui" line="65"/>
+        <location filename="baliseMerPanel.ui" line="91"/>
+        <location filename="baliseMerPanel.ui" line="143"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="baliseMerPanel.ui" line="66"/>
+        <location filename="baliseMerPanel.ui" line="104"/>
         <source>Pression : </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="baliseMerPanel.ui" line="92"/>
+        <location filename="baliseMerPanel.ui" line="39"/>
         <source>hPa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="baliseMerPanel.ui" line="105"/>
+        <location filename="baliseMerPanel.ui" line="130"/>
         <source>Humidité :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="baliseMerPanel.ui" line="131"/>
+        <location filename="baliseMerPanel.ui" line="52"/>
         <source>%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="baliseMerPanel.ui" line="144"/>
+        <location filename="baliseMerPanel.ui" line="117"/>
         <source>°C</source>
         <translation type="unfinished"></translation>
     </message>
