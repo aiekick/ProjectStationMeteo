@@ -27,6 +27,10 @@ private slots:
     void on_cbFontFamily_currentFontChanged(const QFont &vFont);
     void on_cbStyle_activated(const QString &vStyle);
     void on_cbLanguage_activated(const QString &vLanguage);
+    void on_edIP_textChanged(const QString &vIp);
+    void on_edPort_textChanged(const QString &vPort);
+    void on_edApiKey_textChanged(const QString &vApiKey);
+    void on_edCity_textChanged(const QString &vVille);
 
 private:
     bool Init();

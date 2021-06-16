@@ -160,3 +160,28 @@ void SettingsDlg::on_cbLanguage_activated(const QString &vLanguage)
     s_SettingsStruct.m_Language = vLanguage;
     CheckIfSomethingWasChanged();
 }
+
+void SettingsDlg::on_edIP_textChanged(const QString &vIp)
+{
+    s_SettingsStruct.m_IP = vIp;
+    CheckIfSomethingWasChanged();
+}
+
+void SettingsDlg::on_edPort_textChanged(const QString &vPort)
+{
+    s_SettingsStruct.m_Port = vPort;
+    CheckIfSomethingWasChanged();
+}
+
+void SettingsDlg::on_edApiKey_textChanged(const QString &vApiKey)
+{
+    s_SettingsStruct.m_ApiKey = vApiKey;
+    CheckIfSomethingWasChanged();
+}
+
+void SettingsDlg::on_edCity_textChanged(const QString &vVille)
+{
+    s_SettingsStruct.m_Ville = vVille;
+    CheckIfSomethingWasChanged();
+}
+

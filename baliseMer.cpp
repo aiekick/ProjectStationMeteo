@@ -8,6 +8,8 @@
 #include <QDebug>
 #include <QJsonValue>
 #include <qapplication.h>
+#include <QUrl>
+#include "GlobalSettings.h"
 
 BaliseMer::BaliseMer()
 {
@@ -30,7 +32,8 @@ DatasMeteo BaliseMer::getDatas()
 
 void BaliseMer::requestData()
 {
-    QNetworkRequest request(QUrl("http://82.65.244.166:48001/sensor"));
+    const auto& url = QUrl("http://" + GlobalSettings::Instance()->getIP() + ":" + GlobalSettings::Instance()->getPort() + "/sensor");
+    QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QNetworkAccessManager nam;
     QNetworkReply* reply = nam.get(request);
