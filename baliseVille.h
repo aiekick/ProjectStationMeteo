@@ -22,11 +22,7 @@ public:
     int getDatas_Pressure();
     void RecuperationApi();
     void setDatas(DatasMeteo);
-
-
-
-
-     DatasMeteo &getDatas() ;
+    DatasMeteo &getDatas() ;
 };
 
 #endif

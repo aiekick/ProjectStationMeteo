@@ -22,6 +22,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private:
+    void InitMainWindow();
+    void UnitMainWindow();
+    void OpenSettingsDialog();
+
 private slots:
     void on_actionSettings_triggered();
 
