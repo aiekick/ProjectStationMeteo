@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     GlobalSettings.cpp \
     StyleManager.cpp \
+    aboutdialog.cpp \
     balise.cpp \
     baliseMer.cpp \
     baliseMerPanel.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
 HEADERS += \
     GlobalSettings.h \
     StyleManager.h \
+    aboutdialog.h \
     balise.h \
     baliseMer.h \
     baliseMerPanel.h \
@@ -34,6 +36,7 @@ HEADERS += \
     settingsdlg.h
 
 FORMS += \
+    aboutdialog.ui \
     baliseMerPanel.ui \
     balisevillepanel.ui \
     mainwindow.ui \
@@ -47,3 +50,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 TRANSLATIONS += \
     station_meteo_en.ts \
     station_meteo_fr.ts
+
+RESOURCES += \
+    res.qrc

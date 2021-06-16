@@ -7,6 +7,7 @@
 #include "baliseMerPanel.h"
 #include "StyleManager.h"
 #include "settingsdlg.h"
+#include "aboutdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
  : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -27,7 +28,21 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    OpenSettingsDialog();
+    SettingsDlg _SettingsDlg(this);
+    _SettingsDlg.setModal(true);
+    _SettingsDlg.exec();
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+    AboutDialog _AboutDialog(this);
+    _AboutDialog.setModal(true);
+    _AboutDialog.exec();
+}
+
+void MainWindow::on_actionRefresh_triggered()
+{
+    UpdateMainWindow();
 }
 
 ////////////////////////////////////////
@@ -67,11 +82,9 @@ void MainWindow::UnitMainWindow()
 }
 
 ////////////////////////////////////////
-/// \brief Open the settings dialog
+/// \brief Will upodate meteo datas and widgets
 ///
-void MainWindow::OpenSettingsDialog()
+void MainWindow::UpdateMainWindow()
 {
-    SettingsDlg _SettingsDlg(this);
-    _SettingsDlg.setModal(true);
-    _SettingsDlg.exec();
+
 }

@@ -25,10 +25,12 @@ public:
 private:
     void InitMainWindow();
     void UnitMainWindow();
-    void OpenSettingsDialog();
+    void UpdateMainWindow();
 
 private slots:
     void on_actionSettings_triggered();
+    void on_actionAbout_triggered();
+    void on_actionRefresh_triggered();
 
 private:
     Ui::MainWindow *ui = nullptr;
