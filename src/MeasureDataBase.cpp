@@ -64,6 +64,11 @@ std::string MeasureDataBase::GetHistoryToJson(const int& vCountLasts)
 						lastLine = SensorBME280::ConvertSensorBME280DatasToJSON(epoc, temp, pres, humi);
 						if (!lastLine.empty())
 						{
+							if (jsonResult.size() + lastLine.size() > jsonResult.max_size())
+							{
+								printf("sonResult.max_size() was reached. stop json extraction\n");
+								break;
+							}
 							jsonResult += lastLine;
 							rowID++;
 						}
@@ -78,6 +83,9 @@ std::string MeasureDataBase::GetHistoryToJson(const int& vCountLasts)
 			std::ostringstream os; os << rowID;
 			jsonResult = "\"count\":" + os.str() + ",\"history\":[\n" + jsonResult + "\n]";
 
+			
+			//printf("result : %s, length : %llu\n", jsonResult.c_str(), jsonResult.size());
+			
 			sqlite3_finalize(statement);
 		}
 
@@ -106,7 +114,6 @@ std::string MeasureDataBase::GetDatabaseInfos()
 		}
 		else
 		{
-			int rowID = 0;
 			try
 			{
 				std::string lastLine;
@@ -138,7 +145,6 @@ std::string MeasureDataBase::GetDatabaseInfos()
 		}
 		else
 		{
-			int rowID = 0;
 			try
 			{
 				std::string lastLine;
@@ -160,9 +166,9 @@ std::string MeasureDataBase::GetDatabaseInfos()
 			sqlite3_finalize(statement);
 		}
 
-		jsonResult += "\"count_records\":" + countRecords + ",";
-		jsonResult += "\"database_version\":\"" + databaseVersion + "\",";
-		jsonResult += "\"database_path\":\"" + m_DataBaseFilePathName + "\",";
+		jsonResult += "\"database_records\":" + countRecords;
+		jsonResult += ",\"database_version\":\"" + databaseVersion + "\"";
+		jsonResult += ",\"database_path\":\"" + m_DataBaseFilePathName + "\"";
 		
 		CloseDB();
 	}

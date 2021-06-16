@@ -194,7 +194,8 @@ int main(int argc, char** args)
 			server.Init(loop);
 			history.Init(loop);
 
-			printf("bme280Server is started\n");
+			printf("bme280Server %s is started\n", ((sizeof(size_t) == 8)?"X64":"X32"));
+
 			loop.run();
 		}
 		catch (std::exception& ex)

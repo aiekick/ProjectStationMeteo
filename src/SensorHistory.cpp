@@ -6,6 +6,10 @@ void SensorHistory::Init(uv::EventLoop& vEventLoop)
 {
 	uint64_t time_out_ms = (uint64_t)1100 * m_DelayInSeconds; // 1.1 * m_DelayInSeconds
 	uint64_t time_repeat_ms = (uint64_t)1000 * m_DelayInSeconds; // m_DelayInSeconds
+	
+#ifdef UNIX
+	printf("Save Delay in ms %llu\n", time_repeat_ms);
+#endif
 
 	m_Task = std::unique_ptr<uv::Timer>(new uv::Timer(&vEventLoop, time_out_ms, time_repeat_ms, [](uv::Timer* ptr)
 		{

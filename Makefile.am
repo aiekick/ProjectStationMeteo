@@ -68,6 +68,8 @@ bme280Server_SOURCES =  \
 	src/SensorHistory.h \
 	src/SensorHttpServer.cpp \
 	src/SensorHttpServer.h \
+	src/SystemInfos.cpp \
+	src/SystemInfos.h \
 	src/main.cpp
 
 bme280Server_CXXFLAGS = @CXXFLAGS@ -pthread
