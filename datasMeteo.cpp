@@ -27,7 +27,7 @@ DatasMeteo::~DatasMeteo()
 ////////////////////////////////////////////////////
 QString DatasMeteo::getDate() const
 {
-    return this-> ville;
+    return this-> date;
 
 }
 QString DatasMeteo::getPicto() const
