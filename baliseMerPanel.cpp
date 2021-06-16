@@ -36,47 +36,15 @@ void BaliseMerPanel::updateData()
     QString humidity = QString::number(baliseMer.getDatas().getHumidity());
     this->ui->label_Humidity_Mer->setText(humidity);
 
-    /*
-    // Pushbutton degrees
-    QString degrees = "°F";
-    if (this->ui->pushButton_Degrees->text() == degrees)
-    {
-        QString temp = this->ui->label_Temperature_Mer->text();
-        double newTemp = temp.toDouble();
-        newTemp += 32;
-        temp = QString::number(newTemp);
-        this->ui->label_Temperature_Mer->setText(temp);
-        this->ui->pushButton_Degrees->setText("°F");
-    }
-    */
+    // Mean Temperature
+    QString meanTemperature = QString::number(baliseMer.getSummary().getTemperatureCelsius());
+    this->ui->label_Mean_Temperature_Mer->setText(meanTemperature);
+    baliseMer.getHistory()->clear();
 }
 
 void BaliseMerPanel::on_pushButton_Refresh_clicked()
 {
     baliseMer.requestData();
+    baliseMer.requestMeanData();
     updateData();
-}
-
-void BaliseMerPanel::on_pushButton_Degrees_clicked()
-{ 
-    /*
-    static int a = 0;
-
-    if (a == 0) // Celsius to Fahrenheit
-    {
-        baliseMer.requestData();
-        updateData();
-
-        QString temp = this->ui->label_Temperature_Mer->text();
-        double newTemp = QString::number(temp);
-
-
-        a = 1;
-    }
-    else // Fahrenheit to Celsius
-    {
-       
-        a = 0;
-    }
-    */
 }

@@ -21,7 +21,6 @@ public:
 private slots:
     void on_pushButton_Refresh_clicked();
 
-    void on_pushButton_Degrees_clicked();
 
 private:
 	Ui::baliseMerPanel *ui;

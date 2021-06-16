@@ -30,6 +30,16 @@ DatasMeteo BaliseMer::getDatas()
     return datas;
 }
 
+vector<DatasMeteo>* BaliseMer::getHistory()
+{
+    return &history;
+}
+
+DatasMeteo BaliseMer::getSummary()
+{
+    return this->summary;
+}
+
 void BaliseMer::requestData()
 {
     const auto& url = QUrl("http://" + GlobalSettings::Instance()->getIP() + ":" + GlobalSettings::Instance()->getPort() + "/sensor");
@@ -58,4 +68,47 @@ void BaliseMer::requestData()
 
     //Humidity
     datas.setHumidity(jsonObject["humi"].toDouble());
+}
+
+void BaliseMer::requestMeanData()
+{
+    QNetworkRequest request(QUrl("http://82.65.244.166:48001/history:12"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    QNetworkAccessManager nam;
+    QNetworkReply* reply = nam.get(request);
+
+
+    while (!reply->isFinished())
+    {
+        qApp->processEvents();
+    }
+    reply->deleteLater();
+
+
+    QByteArray response_data = reply->readAll();
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+    QJsonObject jsonObject = jsonResponse.object();
+    QJsonArray jsonArray = jsonObject["history"].toArray();
+
+    foreach(const QJsonValue &value, jsonArray)
+    {
+        QJsonObject obj = value.toObject();
+        DatasMeteo* ptrDM = new DatasMeteo;
+        ptrDM->setTemperatureCelsius(obj["temp"].toDouble());
+        this->history.push_back(*ptrDM);
+    }
+
+    // Mean Temperature
+    double sumTemp = 0.0;
+    for (int a = 0; a < history.size(); a++)
+    {
+        sumTemp += history.at(a).getTemperatureCelsius();   
+    }
+    setSummary(sumTemp / history.size());
+   
+}
+
+void BaliseMer::setSummary(double vMeanTemp)
+{
+    this->summary.setTemperatureCelsius(vMeanTemp);
 }

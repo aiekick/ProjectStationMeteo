@@ -8,7 +8,7 @@ class BaliseMer : public Balise
 {
 private:
 	DatasMeteo datas;
-	DatasMeteo summary;
+	DatasMeteo summary;					// Average values
 	vector<DatasMeteo> history;
 
 public:
@@ -17,10 +17,12 @@ public:
 	~BaliseMer();
 
 	DatasMeteo getDatas();
+	vector<DatasMeteo>* getHistory();
+	DatasMeteo getSummary();
 
-
-	void requestData(); // Send request to server and retrieve infos
-
+	void requestData();     // Send request to server and retrieve infos
+	void requestMeanData(); // Same as requestData but only for temperature over the last 12 hours
+	void setSummary(double);
 };
 
 #endif
