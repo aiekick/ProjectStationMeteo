@@ -20,7 +20,8 @@ SOURCES += \
     datasMeteo.cpp \
     main.cpp \
     mainwindow.cpp \
-    settingsdlg.cpp
+    settingsdlg.cpp \
+    widgetville.cpp
 
 HEADERS += \
     GlobalSettings.h \
@@ -33,14 +34,16 @@ HEADERS += \
     balisevillepanel.h \
     datasMeteo.h \
     mainwindow.h \
-    settingsdlg.h
+    settingsdlg.h \
+    widgetville.h
 
 FORMS += \
     aboutdialog.ui \
     baliseMerPanel.ui \
     balisevillepanel.ui \
     mainwindow.ui \
-    settingsdlg.ui
+    settingsdlg.ui \
+    widgetville.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -46,10 +46,17 @@ int BaliseVille::getDatas_Pressure()
     return this->datas.getPressure();
 }
 
+QString BaliseVille::getDatas_date()
+{
+
+return this->datas.getDate();
+}
+
 DatasMeteo &BaliseVille::getDatas()
 {
     return datas;
 }
+
 
 void BaliseVille::setDatas(DatasMeteo v_DatasMeteo)
 {
@@ -58,6 +65,13 @@ void BaliseVille::setDatas(DatasMeteo v_DatasMeteo)
     this->datas.setHumidity(v_DatasMeteo.getHumidity());
     this->datas.setPressure(v_DatasMeteo.getPressure());
 }
+
+
+
+
+
+
+
 
 void BaliseVille::RecuperationApi()
 {
@@ -100,7 +114,8 @@ void BaliseVille::RecuperationApi()
 
 
 
-    foreach(const QJsonValue &value, jsonArray)
+ /* foreach(const QJsonValue &value, jsonArray)
+
     {
         QJsonObject obj = value.toObject();
         qDebug() << "dt: " << obj["dt"].toInt();
@@ -118,5 +133,57 @@ void BaliseVille::RecuperationApi()
             QJsonObject obj1 = value1.toObject();
             qDebug() << "description: " << obj1["description"].toString();
         }
+
+
+
+
+
+
+    }*/
+
+
+    foreach(const QJsonValue &value, jsonArray)
+
+        {
+QJsonObject obj = value.toObject();
+    qDebug() << "dt: " << obj["dt"].toInt();
+    qDebug() << "date: " << obj["dt_txt"].toString();
+
+
+    QJsonObject mainObject = obj["main"].toObject();
+    qDebug() << "temp: " << mainObject["temp"].toDouble();
+    qDebug() << "humidity: " << mainObject["humidity"].toInt();
+    qDebug() << "pressure: " << mainObject["pressure"].toInt();
+
+    QJsonArray weatherArray = obj["weather"].toArray();
+    foreach(const QJsonValue &value1, weatherArray)
+    {
+        QJsonObject obj1 = value1.toObject();
+        qDebug() << "description: " << obj1["description"].toString();
+        //Picto
+        datas.setPicto( obj1["description"].toString());
     }
+
+
+    //date
+    datas.setDate(obj["dt_txt"].toString());
+
+   // datas.
+    // Temperature
+    datas.setTemperatureKelvin(mainObject["temp"].toDouble());
+
+    // Pressure
+    datas.setPressure(mainObject["pressure"].toDouble());
+
+    //Humidity
+    datas.setHumidity(mainObject["humidity"].toDouble());
+
+     //date
+    datas.setDate(obj["dt_txt"].toString());
+
+    break;
 }
+
+
+}
+

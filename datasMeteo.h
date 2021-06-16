@@ -11,12 +11,16 @@ private :
     double temperatureCelsius = 0.0;    // temperature en celsius
     double humidity = 0.0;              // humitidty en %
     double pressure = 0.0;              // pressure en hPa
+    QString date;
+
+
 
 public:
 	DatasMeteo();
     DatasMeteo(QString, double, double, double);
 	~DatasMeteo();
 
+    QString getDate()const;
     QString getPicto() const;
     QString getVille() const;
     double getTemperatureCelsius() const;
@@ -25,6 +29,7 @@ public:
     double getHumidity() const;
     double getPressure() const;
 
+    void setDate(const QString& vdate);
     void setPicto(const QString& vPicto);
     void setVille(const QString& vNewVille);
     void setTemperatureCelsius(const double& vTemperature);
