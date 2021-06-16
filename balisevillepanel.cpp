@@ -8,7 +8,7 @@
 #include <QNetworkRequest>
 #include <QDebug>
 #include <QSettings>
-
+#include "widgetville.h"
 
 
 
@@ -18,6 +18,10 @@ BaliseVillePanel::BaliseVillePanel(QWidget *parent) :
     ui(new Ui::BaliseVillePanel)
 {
     ui->setupUi(this);
+    jouractu=new widgetville(this);
+    ui->layoutville->addWidget(jouractu);
+
+
 }
 
 BaliseVillePanel::~BaliseVillePanel()
@@ -30,8 +34,8 @@ void BaliseVillePanel::on_pushButtonville_clicked()
     QString ville2=ui->textville->text();
     objville.getDatas().setVille(ville2);
 
-objville.RecuperationApi();
-
+    objville.RecuperationApi();
+    jouractu->remplissage(objville.getDatas());
 
 }
 

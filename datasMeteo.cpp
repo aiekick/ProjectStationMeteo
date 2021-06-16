@@ -25,7 +25,11 @@ DatasMeteo::~DatasMeteo()
 ////////////////////////////////////////////////////
 /// GETTERS
 ////////////////////////////////////////////////////
+QString DatasMeteo::getDate() const
+{
+    return this-> ville;
 
+}
 QString DatasMeteo::getPicto() const
 {
     return this->picto;
@@ -63,6 +67,11 @@ QString DatasMeteo::getVille() const
 ////////////////////////////////////////////////////
 /// SETTERS
 ////////////////////////////////////////////////////
+void DatasMeteo::setDate(const QString &vdate)
+{
+
+  this->date=vdate;
+}
 
 void DatasMeteo::setPicto(const QString& vPicto)
 {

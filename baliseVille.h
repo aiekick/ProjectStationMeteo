@@ -15,7 +15,7 @@ public:
     BaliseVille();
     BaliseVille(int, int, string, string, string, string, DatasMeteo);
     ~BaliseVille();
-
+    QString getDatas_date();
     QString getDatas_Picto();
     double getDatas_Temperature();
     int getDatas_Humidity();
