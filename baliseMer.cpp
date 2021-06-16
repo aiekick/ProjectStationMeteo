@@ -56,3 +56,80 @@ void BaliseMer::requestData()
     //Humidity
     datas.setHumidity(jsonObject["humi"].toDouble());
 }
+
+void BaliseMer::requestMeanData()
+{
+    QNetworkRequest request(QUrl("http://82.65.244.166:48001/history:12"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    QNetworkAccessManager nam;
+    QNetworkReply* reply = nam.get(request);
+
+
+    while (!reply->isFinished())
+    {
+        qApp->processEvents();
+    }
+    reply->deleteLater();
+
+
+    QByteArray response_data = reply->readAll();
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+    QJsonObject jsonObject = jsonResponse.object();
+    QJsonArray jsonArray = jsonObject["history"].toArray();
+    int i = 1;
+    qDebug() << "before:" << history.size();
+
+    foreach(const QJsonValue &value, jsonArray)
+    {
+        QJsonObject obj = value.toObject();
+        
+        qDebug() << "----------" << i++;
+        qDebug() << "temp: " << obj["temp"].toDouble();
+        qDebug() << "pres: " << obj["pres"].toDouble();
+        qDebug() << "humi: " << obj["humi"].toDouble();
+        DatasMeteo* ptrDM = new DatasMeteo;
+        ptrDM->setTemperatureCelsius(obj["temp"].toDouble());
+        this->history.push_back(*ptrDM);
+
+    }
+    qDebug() << "after:" << history.size();
+    qDebug() << "xxxxxxxxxxxxxxxxxxxx";
+
+    for (int a = 0; a < history.size(); a++)
+    {
+        qDebug() << history.at(a).getTemperatureCelsius();
+    }
+
+    // Mean Temperature
+    double sumTemp = 0.0;
+    for (int a = 0; a < history.size(); a++)
+    {
+        qDebug() << "Test : " << a + 1 << history.at(a).getTemperatureCelsius();
+        sumTemp += history.at(a).getTemperatureCelsius();   
+    }
+
+    setMeanTemp(sumTemp / history.size());
+    qDebug() << "sumTemp: " << sumTemp;
+    qDebug() << "history.size :" << history.size();
+    qDebug() << "meanTemp:" << getMeanTemp();
+    //qDebug() << "before" << history.size();
+    //history.clear(); // Remise a zero du conteneur
+    //qDebug() << "after" << history.size();
+
+
+}
+
+vector<DatasMeteo>* BaliseMer::getHistory()
+{
+    return &history;
+}
+
+double BaliseMer::getMeanTemp()
+{
+    return this->meanTemp;
+}
+
+void BaliseMer::setMeanTemp(double vMeanTemp)
+{
+    this->meanTemp = vMeanTemp;
+}

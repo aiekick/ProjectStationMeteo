@@ -13,7 +13,15 @@
   <property name="windowTitle">
    <string>baliseMerPanel</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
+  <widget class="QWidget" name="centralWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>571</width>
+     <height>241</height>
+    </rect>
+   </property>
    <widget class="QPushButton" name="pushButton_Refresh">
     <property name="geometry">
      <rect>
@@ -131,13 +139,52 @@
      <string>%</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_Degrees">
+   <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>390</x>
+      <x>190</x>
+      <y>130</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Mean temperature &lt;br&gt;over last 12 hours</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Mean_Temperature_Mer">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>140</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Degrees_Mer">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>140</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>°C</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_Degrees_Mer_2">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
       <y>50</y>
-      <width>31</width>
-      <height>21</height>
+      <width>47</width>
+      <height>13</height>
      </rect>
     </property>
     <property name="text">
@@ -145,7 +192,7 @@
     </property>
    </widget>
   </widget>
-  </widget>
+ </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>

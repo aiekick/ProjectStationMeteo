@@ -10,6 +10,7 @@ private:
 	DatasMeteo datas;
 	DatasMeteo summary;
 	vector<DatasMeteo> history;
+	double meanTemp = 0.0;               // Temperature moyenne
 
 public:
 	BaliseMer();
@@ -17,10 +18,13 @@ public:
 	~BaliseMer();
 
 	DatasMeteo getDatas();
+	vector<DatasMeteo>* getHistory();
+	double getMeanTemp();
 
 
-	void requestData(); // Send request to server and retrieve infos
-
+	void requestData();     // Send request to server and retrieve infos
+	void requestMeanData(); // Same as requestData but only for temperature over the last 12 hours
+	void setMeanTemp(double);
 };
 
 #endif
