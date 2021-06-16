@@ -22,9 +22,9 @@ std::string SystemInfos::GetInfosToJSON()
 {
 	std::string json = "{";
 
-	json += "\"server_version\" : \"" + std::string(BuildId) + "\",";
-	json += "\"server_command\" : \"" + m_CommandLine + "\",";
-	json += MeasureDataBase::Instance()->GetDatabaseInfos();
+	json += "\"server_version\" : \"" + std::string(BuildId) + "." + ((sizeof(size_t)==6)?"X64":"X32") + "\"" ;
+	json += ",\"server_command\" : \"" + m_CommandLine + "\"";
+	json += "," + MeasureDataBase::Instance()->GetDatabaseInfos();
 
 	// os
 #ifdef UNIX
@@ -41,16 +41,13 @@ std::string SystemInfos::GetInfosToJSON()
 	}
 */
 	struct utsname _utsName;
-	if (uname(struct utsname* buf) == 0)
+	if (uname(&_utsName) == 0)
 	{
-		json += "\"os_sys_name\":\"" + std::string(_utsName.sysname) + "\",";
-		json += "\"os_nodename\":\"" + std::string(_utsName.nodename) + "\",";
-		json += "\"os_release\":\"" + std::string(_utsName.release) + "\",";
-		json += "\"os_version\":\"" + std::string(_utsName.version) + "\",";
-		json += "\"os_machine\":\"" + std::string(_utsName.machine) + "\",";
-#ifdef _GNU_SOURCE
-		json += "\"os_domain_name\":\"" + std::string(_utsName.domainname) + "\",";
-#endif
+		json += ",\"os_sys_name\":\"" + std::string(_utsName.sysname) + "\"";
+		//json += ",\"os_nodename\":\"" + std::string(_utsName.nodename) + "\"";, not necessary to export user name
+		json += ",\"os_release\":\"" + std::string(_utsName.release) + "\"";
+		json += ",\"os_version\":\"" + std::string(_utsName.version) + "\"";
+		json += ",\"os_machine\":\"" + std::string(_utsName.machine) + "\"";
 	}
 #endif
 
