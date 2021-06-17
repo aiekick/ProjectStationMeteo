@@ -33,8 +33,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_BaliseVillePanel = new BaliseVillePanel(this);
     m_MainLayout->addWidget(m_BaliseVillePanel);
 
-    m_Timer = new QTimer(this);
-    connect(m_Timer, SIGNAL(timeout()), this, SLOT(on_timeout()));
+    m_Timer.setParent(this);
+    connect(&m_Timer, SIGNAL(timeout()), this, SLOT(on_timeout()));
 
     UpdateTimer();
     UpdateMainWindow();
@@ -42,7 +42,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete m_Timer;
     delete m_BaliseVillePanel;
     delete m_Separator;
     delete m_BaliseMerPanel;
@@ -105,6 +104,5 @@ void MainWindow::UpdateMainWindow()
 void MainWindow::UpdateTimer()
 {
     const auto _delayMs = 1000 * 60 * GlobalSettings::Instance()->getRefreshDelayInMinutes();
-    m_Timer->setInterval(_delayMs);
-    m_Timer->start();
+    m_Timer.start(_delayMs);
 }
