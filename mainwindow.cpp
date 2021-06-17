@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     StyleManager::Instance()->Init();
     GlobalSettings::Instance()->LoadConfigFile();
+    StyleManager::Instance()->ApplyStyle(GlobalSettings::Instance()->getStyle());
 
     m_MainLayout = new QVBoxLayout(ui->centralwidget);
     ui->centralwidget->setLayout(m_MainLayout);

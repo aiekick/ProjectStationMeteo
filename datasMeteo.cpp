@@ -2,7 +2,7 @@
 #include <qdebug.h>
 #include <QtMath>
 
-#define TRUNC_PRECISION 1
+const int TRUNC_PRECISION = 1;
 
 ////////////////////////////////////////////////////
 /// CTOR / DTOR
@@ -59,11 +59,11 @@ QString DatasMeteo::getTemperatureToStringFromSettings()
     switch (GlobalSettings::Instance()->getTemperatureUnit())
     {
     case TemperatureUnitEnum::UNIT_CELSIUS:
-        return QString::number(getTemperatureCelsius()) + " °C";
+        return QString::number(getTemperatureCelsius()) + QString::fromUtf8(u8"\u00B0""C");
     case TemperatureUnitEnum::UNIT_FAHRENHEIT:
-        return QString::number(getTemperatureFahrenheit()) + " °F";
+        return QString::number(getTemperatureFahrenheit()) + QString::fromUtf8(u8"\u00B0""F");
     case TemperatureUnitEnum::UNIT_KELVIN:
-        return QString::number(getTemperatureKelvin()) + " K";
+        return QString::number(getTemperatureKelvin()) + QString::fromUtf8(" K");
     }
 
     return "";

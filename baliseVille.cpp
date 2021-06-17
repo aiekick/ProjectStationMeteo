@@ -60,10 +60,6 @@ DatasMeteo &BaliseVille::getDatas()
 void BaliseVille::setDatas(DatasMeteo v_DatasMeteo)
 {
     this->datas = v_DatasMeteo;
-    //this->datas.setDescription(v_DatasMeteo.getDescription());
-    //this->datas.setTemperatureCelsius(v_DatasMeteo.getTemperatureCelsius());
-    //this->datas.setHumidity(v_DatasMeteo.getHumidity());
-    //this->datas.setPressure(v_DatasMeteo.getPressure());
 }
 
 void BaliseVille::RecuperationApi()

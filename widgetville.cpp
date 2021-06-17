@@ -18,6 +18,7 @@ widgetville::~widgetville()
 void widgetville::remplissage(DatasMeteo argu)
 {
 
+    /*
     QString temperature;
     if (GlobalSettings::Instance()->getTemperatureUnit()==TemperatureUnitEnum::UNIT_CELSIUS )
     {
@@ -34,6 +35,9 @@ void widgetville::remplissage(DatasMeteo argu)
         temperature=QString::number((argu.getTemperatureKelvin()));
         ui->texttempville->setText(temperature+" °K");
     }
+    */
+    ui->texttempville->setText(argu.getTemperatureToStringFromSettings());
+
 
     QString pression=QString::number( (argu.getPressure()));
     ui->textpressville->setText(pression+" hpa");
