@@ -1,4 +1,4 @@
-QT       += core gui network
+QT       += core gui network opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -21,6 +21,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     settingsdlg.cpp \
+    shaderwidget.cpp \
     widgetville.cpp
 
 HEADERS += \
@@ -35,6 +36,7 @@ HEADERS += \
     datasMeteo.h \
     mainwindow.h \
     settingsdlg.h \
+    shaderwidget.h \
     widgetville.h
 
 FORMS += \
@@ -55,6 +57,7 @@ TRANSLATIONS += \
     station_meteo_fr.ts
 
 RESOURCES += \
-    res.qrc
+    res.qrc \
+    shaders.qrc
 
 DISTFILES +=

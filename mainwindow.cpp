@@ -7,6 +7,7 @@
 #include "GlobalSettings.h"
 #include "balisevillepanel.h"
 #include "baliseMerPanel.h"
+#include "shaderwidget.h"
 #include "StyleManager.h"
 #include "settingsdlg.h"
 #include "aboutdialog.h"
@@ -22,6 +23,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_MainLayout = new QVBoxLayout(ui->centralwidget);
     ui->centralwidget->setLayout(m_MainLayout);
+
+    m_ShaderWidget = new ShaderWidget(this);
+    m_ShaderWidget->Start();
+    m_MainLayout->addWidget(m_ShaderWidget);
 
     m_BaliseMerPanel = new BaliseMerPanel(this);
     m_MainLayout->addWidget(m_BaliseMerPanel);
