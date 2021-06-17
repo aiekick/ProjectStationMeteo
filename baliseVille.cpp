@@ -75,6 +75,9 @@ void BaliseVille::setDatas(DatasMeteo v_DatasMeteo)
 
 void BaliseVille::RecuperationApi()
 {
+
+
+
     qDebug() << "SSL ? " << QSslSocket::supportsSsl();
 
     QNetworkRequest request(QUrl("http://api.openweathermap.org/data/2.5/forecast/?q="+datas.getVille()+"&appid=58e08b52cadfc9c96fc8354666cec712"));
@@ -140,20 +143,29 @@ void BaliseVille::RecuperationApi()
 
 
     }*/
+    QString datesansheure=0;
+     QString Datesansheurecompare=0;
 
 
     foreach(const QJsonValue &value, jsonArray)
 
         {
-
+        //if (i=0)Datesansheurecompare=datesansheure;
     QJsonObject obj = value.toObject();
 
     QString dates1=obj["dt_txt"].toString();
     QStringList datesdecompose=dates1.split(QRegularExpression("\\s+"));
-    QString datesansheure= datesdecompose[0];
+     datesansheure= datesdecompose[0];
+
+    // if(datesansheure!=Datesansheurecompare)
+      //   i++;
     qDebug() <<"datesansheure: "<<datesansheure;
-    qDebug() << "dt: " << obj["dt"].toInt();
+
     qDebug() << "date: " << obj["dt_txt"].toString();
+
+
+    qDebug() << "dt: " << obj["dt"].toInt();
+
 
     QJsonObject mainObject = obj["main"].toObject();
     qDebug() << "temp: " << mainObject["temp"].toDouble();
@@ -169,14 +181,43 @@ void BaliseVille::RecuperationApi()
         //icon
         qDebug() << "icone: " << obj1["icon"].toString();
          //icon
-         datas.setIcon(obj1["icon"].toString());
+ //if (i=0)
+        //{
+        datas.setIcon(obj1["icon"].toString());
         //Picto
         datas.setPicto( obj1["description"].toString());
+        // }
+/* if (i=1)
+ * {
+        datas2.setIcon(obj1["icon"].toString());
+        //Picto
+        datas2.setPicto( obj1["description"].toString());
+        }
+// if (i=2)
+        {
+        datas3.setIcon(obj1["icon"].toString());
+        //Picto
+        datas3.setPicto( obj1["description"].toString());
+        }
+ // if (i=3)
+        {
+        datas4.setIcon(obj1["icon"].toString());
+        //Picto
+        datas4.setPicto( obj1["description"].toString());
+        }
+// if (i=4)
+        {
+        datas5.setIcon(obj1["icon"].toString());
+        //Picto
+        datas5.setPicto( obj1["description"].toString());
+        } */
 
-    }
+}
 
 
-        //date
+//if (i=0)
+ // {
+   //date
      datas.setDate(datesansheure);
 
     // Temperature
@@ -187,11 +228,71 @@ void BaliseVille::RecuperationApi()
 
     //Humidity
     datas.setHumidity(mainObject["humidity"].toDouble());
+   //}
+
+  /* if (i=1)
+   {
+   //date
+     datas2.setDate(datesansheure);
+
+    // Temperature
+    datas2.setTemperatureKelvin(mainObject["temp"].toDouble());
+
+    // Pressure
+    datas2.setPressure(mainObject["pressure"].toDouble());
+
+    //Humidity
+    datas2.setHumidity(mainObject["humidity"].toDouble());
+   }
+
+ if (i=2)
+   {
+   //date
+     datas3.setDate(datesansheure);
+
+    // Temperature
+    datas3.setTemperatureKelvin(mainObject["temp"].toDouble());
+
+    // Pressure
+    data3s.setPressure(mainObject["pressure"].toDouble());
+
+    //Humidity
+    datas3.setHumidity(mainObject["humidity"].toDouble());
+   }
+
+ if (i=3)
+   {
+   //date
+     datas4.setDate(datesansheure);
+
+    // Temperature
+    datas4.setTemperatureKelvin(mainObject["temp"].toDouble());
+
+    // Pressure
+    datas4.setPressure(mainObject["pressure"].toDouble());
+
+    //Humidity
+    datas4.setHumidity(mainObject["humidity"].toDouble());
+   }
+ if (i=4)
+   {
+   //date
+     datas5.setDate(datesansheure);
+
+    // Temperature
+    datas5.setTemperatureKelvin(mainObject["temp"].toDouble());
+
+    // Pressure
+    datas5.setPressure(mainObject["pressure"].toDouble());
+
+    //Humidity
+    datas5.setHumidity(mainObject["humidity"].toDouble());
+   }
 
 
+   Datesansheurecompare=datesansheure;
 
-
-    //QString Datesansheurecompare=datesansheure;
+  */
 
 break;
 }
