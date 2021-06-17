@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>282</width>
-    <height>381</height>
+    <height>410</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>282</width>
-    <height>381</height>
+    <height>410</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>282</width>
-    <height>381</height>
+    <height>410</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -91,7 +91,7 @@
         </font>
        </property>
        <property name="text">
-        <string> pour AKKA technologie</string>
+        <string> pour AKKA technologies</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -192,6 +192,25 @@
        <property name="alignment">
         <set>Qt::AlignCenter</set>
        </property>
+       <property name="openExternalLinks">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_12">
+       <property name="font">
+        <font>
+         <family>Comic Sans MS</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Depot Github :</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
       </widget>
      </item>
      <item>
@@ -203,10 +222,19 @@
         </font>
        </property>
        <property name="text">
-        <string/>
+        <string>&lt;a href=&quot;https://github.com/aiekick/ProjectStationMeteo&quot;&gt;ProjectStationMeteo&lt;/a&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
+       </property>
+       <property name="openExternalLinks">
+        <bool>true</bool>
+       </property>
+       <property name="textInteractionFlags">
+        <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
        </property>
       </widget>
      </item>
