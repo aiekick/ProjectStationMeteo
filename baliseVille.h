@@ -10,6 +10,10 @@ class BaliseVille : public Balise
 {
 private:
     DatasMeteo datas;
+    DatasMeteo datas2;
+    DatasMeteo datas3;
+    DatasMeteo datas4;
+    DatasMeteo datas5;
 
 public:
     BaliseVille();
@@ -23,6 +27,8 @@ public:
     void RecuperationApi();
     void setDatas(DatasMeteo);
     DatasMeteo &getDatas() ;
+
+
 };
 
 #endif

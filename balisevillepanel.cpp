@@ -31,11 +31,19 @@ BaliseVillePanel::~BaliseVillePanel()
 
 void BaliseVillePanel::on_pushButtonville_clicked()
 {
+updatedataville();
+
+}
+void BaliseVillePanel::updatedataville()
+{
+
+
     QString ville2=ui->textville->text();
     objville.getDatas().setVille(ville2);
 
     objville.RecuperationApi();
     jouractu->remplissage(objville.getDatas());
 
-}
 
+
+}

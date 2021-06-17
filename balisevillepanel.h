@@ -14,7 +14,7 @@ class BaliseVillePanel : public QWidget
 public:
     explicit BaliseVillePanel(QWidget *parent = nullptr);
     ~BaliseVillePanel();
-
+void updatedataville();
     widgetville widget;
 
 private slots:

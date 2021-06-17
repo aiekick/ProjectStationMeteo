@@ -145,10 +145,15 @@ void BaliseVille::RecuperationApi()
     foreach(const QJsonValue &value, jsonArray)
 
         {
+
     QJsonObject obj = value.toObject();
+
+    QString dates1=obj["dt_txt"].toString();
+    QStringList datesdecompose=dates1.split(QRegularExpression("\\s+"));
+    QString datesansheure= datesdecompose[0];
+    qDebug() <<"datesansheure: "<<datesansheure;
     qDebug() << "dt: " << obj["dt"].toInt();
     qDebug() << "date: " << obj["dt_txt"].toString();
-
 
     QJsonObject mainObject = obj["main"].toObject();
     qDebug() << "temp: " << mainObject["temp"].toDouble();
@@ -159,20 +164,20 @@ void BaliseVille::RecuperationApi()
     foreach(const QJsonValue &value1, weatherArray)
     {
         QJsonObject obj1 = value1.toObject();
-        //Picto
+
         qDebug() << "description: " << obj1["description"].toString();
-        datas.setPicto( obj1["description"].toString());
         //icon
         qDebug() << "icone: " << obj1["icon"].toString();
-        datas.setIcon(obj1["icon"].toString());
-
+         //icon
+         datas.setIcon(obj1["icon"].toString());
+        //Picto
+        datas.setPicto( obj1["description"].toString());
 
     }
 
 
-    //date
-    datas.setDate(obj["dt_txt"].toString());
-
+        //date
+     datas.setDate(datesansheure);
 
     // Temperature
     datas.setTemperatureKelvin(mainObject["temp"].toDouble());
@@ -183,12 +188,11 @@ void BaliseVille::RecuperationApi()
     //Humidity
     datas.setHumidity(mainObject["humidity"].toDouble());
 
-     //date
-    datas.setDate(obj["dt_txt"].toString());
 
-    break;
+
+
+    //QString Datesansheurecompare=datesansheure;
+
+break;
 }
-
-
 }
-
