@@ -15,17 +15,16 @@ public:
     explicit BaliseVillePanel(QWidget *parent = nullptr);
     ~BaliseVillePanel();
 
-    widgetville widget;
+    void updatedataville();
 
 private slots:
     void on_pushButtonville_clicked();
-
-
 
 private:
     Ui::BaliseVillePanel *ui;
     BaliseVille objville;
     widgetville * jouractu;
+    widgetville widget;
 
 };
 

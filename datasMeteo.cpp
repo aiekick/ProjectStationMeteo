@@ -2,55 +2,47 @@
 #include <qdebug.h>
 #include <QtMath>
 
+#define TRUNC_PRECISION 1
+
 ////////////////////////////////////////////////////
 /// CTOR / DTOR
 ////////////////////////////////////////////////////
 
-DatasMeteo::DatasMeteo()
-{
-
-}
-
-DatasMeteo::DatasMeteo(QString v_Picto, double v_Temperature, double v_Humidity, double v_Pressure)
-{
-	setPicto(v_Picto);
-    setTemperatureCelsius(v_Temperature);
-	setHumidity(v_Humidity);
-	setPressure(v_Pressure);
-}
-
-DatasMeteo::~DatasMeteo()
-{
-
-}
+DatasMeteo::DatasMeteo() = default;
+DatasMeteo::~DatasMeteo() = default;
 
 ////////////////////////////////////////////////////
 /// GETTERS
 ////////////////////////////////////////////////////
-///
+
+const QString &DatasMeteo::getIcon() const
+{
+    return icon;
+}
+
 QString DatasMeteo::getDate() const
 {
     return this-> date;
 
 }
-QString DatasMeteo::getPicto() const
+QString DatasMeteo::getDescription() const
 {
-    return this->picto;
+    return this->description;
 }
 double DatasMeteo::getTemperatureCelsius() const
 {
-    return TruncDoubleToPrecision(this->temperatureCelsius, 1);
+    return TruncDoubleToPrecision(this->temperatureCelsius, TRUNC_PRECISION);
 }
 double DatasMeteo::getTemperatureKelvin() const
 {
     // https://fr.wikipedia.org/wiki/Kelvin
-    return TruncDoubleToPrecision(this->temperatureCelsius + 273.15, 1);
+    return TruncDoubleToPrecision(this->temperatureCelsius + 273.15, TRUNC_PRECISION);
 }
 
 double DatasMeteo::getTemperatureFahrenheit() const
 {
     // https://fr.wikipedia.org/wiki/Degr%C3%A9_Fahrenheit
-    return TruncDoubleToPrecision(this->temperatureCelsius * 9.0 / 5.0 + 32.0, 1);
+    return TruncDoubleToPrecision(this->temperatureCelsius * 9.0 / 5.0 + 32.0, TRUNC_PRECISION);
 }
 
 int DatasMeteo::getHumidity() const
@@ -62,22 +54,19 @@ int DatasMeteo::getPressure() const
     return this->pressure;
 }
 
-QString DatasMeteo::displayCorrectUnit()
+QString DatasMeteo::getTemperatureToStringFromSettings()
 {
-    QString temperature;
-    if (GlobalSettings::Instance()->getTemperatureUnit() == TemperatureUnitEnum::UNIT_CELSIUS)
+    switch (GlobalSettings::Instance()->getTemperatureUnit())
     {
-        temperature = QString::number(getTemperatureCelsius()) + QString::fromUtf8(" Â°C");
+    case TemperatureUnitEnum::UNIT_CELSIUS:
+        return QString::number(getTemperatureCelsius()) + " °C";
+    case TemperatureUnitEnum::UNIT_FAHRENHEIT:
+        return QString::number(getTemperatureFahrenheit()) + " °F";
+    case TemperatureUnitEnum::UNIT_KELVIN:
+        return QString::number(getTemperatureKelvin()) + " K";
     }
-    else if (GlobalSettings::Instance()->getTemperatureUnit() == TemperatureUnitEnum::UNIT_FAHRENHEIT)
-    {
-        temperature = QString::number(getTemperatureFahrenheit()) + " Â°F";
-    }
-    else
-    {
-        temperature = QString::number(getTemperatureKelvin()) + " K";
-    }
-    return temperature;
+
+    return "";
 }
 
 QString DatasMeteo::getVille() const
@@ -89,32 +78,37 @@ QString DatasMeteo::getVille() const
 /// SETTERS
 ////////////////////////////////////////////////////
 
+void DatasMeteo::setIcon(const QString &newIcon)
+{
+    icon = newIcon;
+}
+
 void DatasMeteo::setDate(const QString &vdate)
 {
 
   this->date=vdate;
 }
 
-void DatasMeteo::setPicto(const QString& vPicto)
+void DatasMeteo::setDescription(const QString& vDescription)
 {
-    this->picto = vPicto;
+    this->description = vDescription;
 }
 
 void DatasMeteo::setTemperatureCelsius(const double& vTemperature)
 {
-    this->temperatureCelsius = TruncDoubleToPrecision(vTemperature, 1);
+    this->temperatureCelsius = TruncDoubleToPrecision(vTemperature, TRUNC_PRECISION);
 }
 
 void DatasMeteo::setTemperatureKelvin(const double& vTemperature)
 {
     // https://fr.wikipedia.org/wiki/Kelvin
-    this->temperatureCelsius = TruncDoubleToPrecision(vTemperature - 273.15, 1);
+    this->temperatureCelsius = TruncDoubleToPrecision(vTemperature - 273.15, TRUNC_PRECISION);
 }
 
 void DatasMeteo::setTemperatureFahrenheit(const double& vTemperature)
 {
     // https://fr.wikipedia.org/wiki/Degr%C3%A9_Fahrenheit
-    this->temperatureCelsius = TruncDoubleToPrecision((vTemperature - 32.0) * 5.0 / 9.0, 1);
+    this->temperatureCelsius = TruncDoubleToPrecision((vTemperature - 32.0) * 5.0 / 9.0, TRUNC_PRECISION);
 }
 
 void DatasMeteo::setHumidity(const int& vHumidity)

@@ -98,6 +98,7 @@ void MainWindow::on_ApplySettingsChange()
 void MainWindow::UpdateMainWindow()
 {
     m_BaliseMerPanel->updateData();
+    m_BaliseVillePanel->updatedataville();
 }
 
 void MainWindow::UpdateTimer()

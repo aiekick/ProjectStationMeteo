@@ -2,7 +2,7 @@
 #define WIDGETVILLE_H
 #include "baliseVille.h"
 #include <QWidget>
-
+#include "GlobalSettings.h"
 namespace Ui {
 class widgetville;
 }
@@ -14,7 +14,6 @@ class widgetville : public QWidget
 public:
     explicit widgetville(QWidget *parent = nullptr);
     ~widgetville();
-
 
 
 
