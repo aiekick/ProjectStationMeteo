@@ -12,6 +12,8 @@ private :
     double humidity = 0.0;              // humitidty en %
     double pressure = 0.0;              // pressure en hPa
     QString date;
+    QString icon;
+
 
 
 
@@ -37,6 +39,8 @@ public:
     void setTemperatureFahrenheit(const double& vTemperature);
     void setHumidity(const double& vHumidity);
     void setPressure(const double& vPressure);
+    const QString &getIcon() const;
+    void setIcon(const QString &newIcon);
 };
 
 #endif

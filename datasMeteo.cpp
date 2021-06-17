@@ -4,6 +4,9 @@
 /// CTOR / DTOR
 ////////////////////////////////////////////////////
 
+
+
+
 DatasMeteo::DatasMeteo()
 {
 
@@ -25,6 +28,12 @@ DatasMeteo::~DatasMeteo()
 ////////////////////////////////////////////////////
 /// GETTERS
 ////////////////////////////////////////////////////
+
+const QString &DatasMeteo::getIcon() const
+{
+    return icon;
+}
+
 QString DatasMeteo::getDate() const
 {
     return this-> date;
@@ -67,6 +76,12 @@ QString DatasMeteo::getVille() const
 ////////////////////////////////////////////////////
 /// SETTERS
 ////////////////////////////////////////////////////
+
+void DatasMeteo::setIcon(const QString &newIcon)
+{
+    icon = newIcon;
+}
+
 void DatasMeteo::setDate(const QString &vdate)
 {
 
