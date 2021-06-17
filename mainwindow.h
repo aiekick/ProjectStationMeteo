@@ -10,6 +10,7 @@ namespace Ui
 }
 QT_END_NAMESPACE
 
+class QTimer;
 class QFrame;
 class QVBoxLayout;
 class BaliseMerPanel;
@@ -23,14 +24,15 @@ public:
     ~MainWindow();
 
 private:
-    void InitMainWindow();
-    void UnitMainWindow();
     void UpdateMainWindow();
+    void UpdateTimer();
 
 private slots:
     void on_actionSettings_triggered();
     void on_actionAbout_triggered();
     void on_actionRefresh_triggered();
+    void on_timeout();
+    void on_ApplySettingsChange();
 
 private:
     Ui::MainWindow *ui = nullptr;
@@ -38,6 +40,7 @@ private:
     BaliseMerPanel *m_BaliseMerPanel = nullptr;
     QVBoxLayout *m_MainLayout = nullptr;
     QFrame *m_Separator = nullptr;
+    QTimer *m_Timer = nullptr;
 };
 
 #endif // MAINWINDOW_H

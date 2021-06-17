@@ -24,8 +24,11 @@ BaliseMerPanel::~BaliseMerPanel()
 
 void BaliseMerPanel::updateData()
 {
+    baliseMer.requestData();
+    baliseMer.requestMeanData();
+
     // Temperature
-    QString temperature = QString::number(baliseMer.getDatas().getTemperatureCelsius());
+    QString temperature = QString::number(baliseMer.getDatas().getTemperatureCelsius()) + "°C";
     this->ui->label_Temperature_Mer->setText(temperature);
 
     // Pressure
@@ -39,12 +42,11 @@ void BaliseMerPanel::updateData()
     // Mean Temperature
     QString meanTemperature = QString::number(baliseMer.getSummary().getTemperatureCelsius());
     this->ui->label_Mean_Temperature_Mer->setText(meanTemperature);
+
     baliseMer.getHistory()->clear();
 }
 
 void BaliseMerPanel::on_pushButton_Refresh_clicked()
 {
-    baliseMer.requestData();
-    baliseMer.requestMeanData();
     updateData();
 }
