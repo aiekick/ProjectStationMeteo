@@ -72,7 +72,7 @@ void BaliseMer::requestData()
 
 void BaliseMer::requestMeanData()
 {
-    QNetworkRequest request(QUrl("http://82.65.244.166:48001/history:12"));
+    QNetworkRequest request(QUrl("http://" + GlobalSettings::Instance()->getIP() + ":" + GlobalSettings::Instance()->getPort() + "/history:12"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QNetworkAccessManager nam;
     QNetworkReply* reply = nam.get(request);
@@ -104,11 +104,34 @@ void BaliseMer::requestMeanData()
     {
         sumTemp += history.at(a).getTemperatureCelsius();   
     }
-    setSummary(sumTemp / history.size());
-   
+    setSummary(sumTemp / history.size());   
 }
 
 void BaliseMer::setSummary(double vMeanTemp)
 {
     this->summary.setTemperatureCelsius(vMeanTemp);
+}
+
+
+QPixmap BaliseMer::displayWeatherIcon()
+{
+    QPixmap picture;
+    QPixmap pictureScaled;
+
+    if (datas.getPressure() <= 1000)
+    {
+        picture.load(":/new/Default/icons/rain.png");
+        pictureScaled = picture.scaledToHeight(90);
+    }
+    else if ((datas.getPressure() > 1000) && (datas.getPressure() <= 1020))
+    {
+        picture.load(":/new/Default/icons/clouds.png");
+        pictureScaled = picture.scaledToHeight(90);
+    }
+    else
+    {
+        picture.load(":/new/Default/icons/sun.png");
+        pictureScaled = picture.scaledToHeight(90);
+    }
+    return pictureScaled;
 }

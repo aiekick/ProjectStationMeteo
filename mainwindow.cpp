@@ -85,6 +85,7 @@ void MainWindow::on_timeout()
 void MainWindow::on_ApplySettingsChange()
 {
     UpdateTimer();
+    UpdateMainWindow();
 }
 
 ////////////////////////////////////////

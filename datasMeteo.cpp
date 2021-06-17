@@ -1,4 +1,6 @@
 #include "datasMeteo.h"
+#include <qdebug.h>
+#include <QtMath>
 
 ////////////////////////////////////////////////////
 /// CTOR / DTOR
@@ -25,6 +27,7 @@ DatasMeteo::~DatasMeteo()
 ////////////////////////////////////////////////////
 /// GETTERS
 ////////////////////////////////////////////////////
+///
 QString DatasMeteo::getDate() const
 {
     return this-> date;
@@ -36,27 +39,45 @@ QString DatasMeteo::getPicto() const
 }
 double DatasMeteo::getTemperatureCelsius() const
 {
-    return this->temperatureCelsius;
+    return TruncDoubleToPrecision(this->temperatureCelsius, 1);
 }
 double DatasMeteo::getTemperatureKelvin() const
 {
     // https://fr.wikipedia.org/wiki/Kelvin
-    return this->temperatureCelsius + 273.15;
+    return TruncDoubleToPrecision(this->temperatureCelsius + 273.15, 1);
 }
 
 double DatasMeteo::getTemperatureFahrenheit() const
 {
     // https://fr.wikipedia.org/wiki/Degr%C3%A9_Fahrenheit
-    return this->temperatureCelsius * 9.0 / 5.0 + 32.0;
+    return TruncDoubleToPrecision(this->temperatureCelsius * 9.0 / 5.0 + 32.0, 1);
 }
 
-double DatasMeteo::getHumidity() const
+int DatasMeteo::getHumidity() const
 {
     return this->humidity;
 }
-double DatasMeteo::getPressure() const
+int DatasMeteo::getPressure() const
 {
     return this->pressure;
+}
+
+QString DatasMeteo::displayCorrectUnit()
+{
+    QString temperature;
+    if (GlobalSettings::Instance()->getTemperatureUnit() == TemperatureUnitEnum::UNIT_CELSIUS)
+    {
+        temperature = QString::number(getTemperatureCelsius()) + QString::fromUtf8(" °C");
+    }
+    else if (GlobalSettings::Instance()->getTemperatureUnit() == TemperatureUnitEnum::UNIT_FAHRENHEIT)
+    {
+        temperature = QString::number(getTemperatureFahrenheit()) + " °F";
+    }
+    else
+    {
+        temperature = QString::number(getTemperatureKelvin()) + " K";
+    }
+    return temperature;
 }
 
 QString DatasMeteo::getVille() const
@@ -67,6 +88,7 @@ QString DatasMeteo::getVille() const
 ////////////////////////////////////////////////////
 /// SETTERS
 ////////////////////////////////////////////////////
+
 void DatasMeteo::setDate(const QString &vdate)
 {
 
@@ -80,27 +102,27 @@ void DatasMeteo::setPicto(const QString& vPicto)
 
 void DatasMeteo::setTemperatureCelsius(const double& vTemperature)
 {
-    this->temperatureCelsius = vTemperature;
+    this->temperatureCelsius = TruncDoubleToPrecision(vTemperature, 1);
 }
 
 void DatasMeteo::setTemperatureKelvin(const double& vTemperature)
 {
     // https://fr.wikipedia.org/wiki/Kelvin
-    this->temperatureCelsius = vTemperature - 273.15;
+    this->temperatureCelsius = TruncDoubleToPrecision(vTemperature - 273.15, 1);
 }
 
 void DatasMeteo::setTemperatureFahrenheit(const double& vTemperature)
 {
     // https://fr.wikipedia.org/wiki/Degr%C3%A9_Fahrenheit
-    this->temperatureCelsius = (vTemperature - 32.0) * 5.0 / 9.0;
+    this->temperatureCelsius = TruncDoubleToPrecision((vTemperature - 32.0) * 5.0 / 9.0, 1);
 }
 
-void DatasMeteo::setHumidity(const double& vHumidity)
+void DatasMeteo::setHumidity(const int& vHumidity)
 {
     this->humidity = vHumidity;
 }
 
-void DatasMeteo::setPressure(const double& vPressure)
+void DatasMeteo::setPressure(const int& vPressure)
 {
     this->pressure = vPressure;
 }
@@ -108,4 +130,14 @@ void DatasMeteo::setPressure(const double& vPressure)
 void DatasMeteo::setVille(const QString& vNewVille)
 {
     this->ville = vNewVille;
+}
+
+////////////////////////////////////////////////////
+/// PRIVATE
+////////////////////////////////////////////////////
+
+double DatasMeteo::TruncDoubleToPrecision(const double vValue, int vPrecision) const
+{
+    const double po = qPow(10, vPrecision);
+    return qFloor(vValue * po) / po;
 }

@@ -10,6 +10,7 @@
 #include <QNetworkRequest>
 #include <QDebug>
 #include <QJsonValue>
+#include "GlobalSettings.h"
 
 BaliseMerPanel::BaliseMerPanel(QWidget *parent)
     : QWidget(parent), ui(new Ui::baliseMerPanel)
@@ -28,22 +29,24 @@ void BaliseMerPanel::updateData()
     baliseMer.requestMeanData();
 
     // Temperature
-    QString temperature = QString::number(baliseMer.getDatas().getTemperatureCelsius()) + "°C";
+    QString temperature = baliseMer.getDatas().displayCorrectUnit();
     this->ui->label_Temperature_Mer->setText(temperature);
 
     // Pressure
     QString pressure = QString::number(baliseMer.getDatas().getPressure());
-    this->ui->label_Pressure_Mer->setText(pressure);
+    this->ui->label_Pressure_Mer->setText(pressure + " hPa");
 
     //Humidity
     QString humidity = QString::number(baliseMer.getDatas().getHumidity());
-    this->ui->label_Humidity_Mer->setText(humidity);
+    this->ui->label_Humidity_Mer->setText(humidity + " %");
 
     // Mean Temperature
-    QString meanTemperature = QString::number(baliseMer.getSummary().getTemperatureCelsius());
+    QString meanTemperature = baliseMer.getSummary().displayCorrectUnit();
     this->ui->label_Mean_Temperature_Mer->setText(meanTemperature);
-
     baliseMer.getHistory()->clear();
+
+    // Display weather icon depending on the pressure
+    this->ui->label_2->setPixmap(baliseMer.displayWeatherIcon());
 }
 
 void BaliseMerPanel::on_pushButton_Refresh_clicked()

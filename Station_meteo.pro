@@ -56,3 +56,5 @@ TRANSLATIONS += \
 
 RESOURCES += \
     res.qrc
+
+DISTFILES +=
