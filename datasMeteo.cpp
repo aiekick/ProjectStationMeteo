@@ -1,4 +1,5 @@
 #include "datasMeteo.h"
+#include <qdebug.h>
 
 ////////////////////////////////////////////////////
 /// CTOR / DTOR
@@ -36,7 +37,10 @@ QString DatasMeteo::getPicto() const
 }
 double DatasMeteo::getTemperatureCelsius() const
 {
-    return this->temperatureCelsius;
+    double tempFormated = this->temperatureCelsius * 10;
+    tempFormated = (int)tempFormated;
+    tempFormated = tempFormated / 10;
+    return tempFormated;
 }
 double DatasMeteo::getTemperatureKelvin() const
 {
@@ -50,11 +54,11 @@ double DatasMeteo::getTemperatureFahrenheit() const
     return this->temperatureCelsius * 9.0 / 5.0 + 32.0;
 }
 
-double DatasMeteo::getHumidity() const
+int DatasMeteo::getHumidity() const
 {
     return this->humidity;
 }
-double DatasMeteo::getPressure() const
+int DatasMeteo::getPressure() const
 {
     return this->pressure;
 }
@@ -80,7 +84,10 @@ void DatasMeteo::setPicto(const QString& vPicto)
 
 void DatasMeteo::setTemperatureCelsius(const double& vTemperature)
 {
-    this->temperatureCelsius = vTemperature;
+    double tempFormated = vTemperature * 10;
+    tempFormated = (int)tempFormated;
+    tempFormated = tempFormated / 10;
+    this->temperatureCelsius = tempFormated;
 }
 
 void DatasMeteo::setTemperatureKelvin(const double& vTemperature)
@@ -95,12 +102,12 @@ void DatasMeteo::setTemperatureFahrenheit(const double& vTemperature)
     this->temperatureCelsius = (vTemperature - 32.0) * 5.0 / 9.0;
 }
 
-void DatasMeteo::setHumidity(const double& vHumidity)
+void DatasMeteo::setHumidity(const int& vHumidity)
 {
     this->humidity = vHumidity;
 }
 
-void DatasMeteo::setPressure(const double& vPressure)
+void DatasMeteo::setPressure(const int& vPressure)
 {
     this->pressure = vPressure;
 }
