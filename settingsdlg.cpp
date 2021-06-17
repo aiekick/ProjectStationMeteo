@@ -80,9 +80,13 @@ bool SettingsDlg::Init()
     {
         ui->cbStyle->addItem(key.first);
     }
+    ui->cbStyle->setCurrentText(s_SettingsStruct.m_Style);
 
     // Languages
     ui->cbLanguage->clear();
+
+    // Timer Delay
+    ui->sbDelay->setValue(s_SettingsStruct.m_RefreshDelayInMinutes);
 
     // Panel Mer
     ui->edIP->setText(s_SettingsStruct.m_IP);
@@ -104,7 +108,9 @@ void SettingsDlg::ApplyConfig()
 {
     GlobalSettings::Instance()->setSettingsStruct(s_SettingsStruct);
     StyleManager::Instance()->ApplyStyle(s_SettingsStruct.m_Style);
+
     CheckIfSomethingWasChanged();
+    emit(SettingsDlg::ApplySettingsChange());
 }
 
 void SettingsDlg::CheckIfSomethingWasChanged()
@@ -161,6 +167,12 @@ void SettingsDlg::on_cbLanguage_activated(const QString &vLanguage)
     CheckIfSomethingWasChanged();
 }
 
+void SettingsDlg::on_sbDelay_valueChanged(const int& vRefreshDelayInMinutes)
+{
+    s_SettingsStruct.m_RefreshDelayInMinutes = vRefreshDelayInMinutes;
+    CheckIfSomethingWasChanged();
+}
+
 void SettingsDlg::on_edIP_textChanged(const QString &vIp)
 {
     s_SettingsStruct.m_IP = vIp;
@@ -184,4 +196,3 @@ void SettingsDlg::on_edCity_textChanged(const QString &vVille)
     s_SettingsStruct.m_Ville = vVille;
     CheckIfSomethingWasChanged();
 }
-

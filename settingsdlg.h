@@ -15,6 +15,9 @@ public:
     explicit SettingsDlg(QWidget *parent = nullptr);
     ~SettingsDlg();
 
+signals:
+    void ApplySettingsChange();
+
 private slots:
     void on_cancelBtn_clicked();
     void on_okBtn_clicked();
@@ -27,6 +30,7 @@ private slots:
     void on_cbFontFamily_currentFontChanged(const QFont &vFont);
     void on_cbStyle_activated(const QString &vStyle);
     void on_cbLanguage_activated(const QString &vLanguage);
+    void on_sbDelay_valueChanged(const int& vRefreshDelayInMinutes);
     void on_edIP_textChanged(const QString &vIp);
     void on_edPort_textChanged(const QString &vPort);
     void on_edApiKey_textChanged(const QString &vApiKey);
