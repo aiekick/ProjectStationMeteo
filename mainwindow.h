@@ -36,10 +36,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui = nullptr;
-    BaliseVillePanel *m_BaliseVillePanel = nullptr;
-    BaliseMerPanel *m_BaliseMerPanel = nullptr;
-    QVBoxLayout *m_MainLayout = nullptr;
-    QFrame *m_Separator = nullptr;
     QTimer m_Timer;
 };
 

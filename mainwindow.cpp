@@ -20,19 +20,6 @@ MainWindow::MainWindow(QWidget *parent)
     GlobalSettings::Instance()->LoadConfigFile();
     StyleManager::Instance()->ApplyStyle(GlobalSettings::Instance()->getStyle());
 
-    m_MainLayout = new QVBoxLayout(ui->centralwidget);
-    ui->centralwidget->setLayout(m_MainLayout);
-
-    m_BaliseMerPanel = new BaliseMerPanel(this);
-    m_MainLayout->addWidget(m_BaliseMerPanel);
-
-    m_Separator = new QFrame(this);
-    m_Separator->setFrameShape(QFrame::HLine);
-    m_MainLayout->addWidget(m_Separator);
-
-    m_BaliseVillePanel = new BaliseVillePanel(this);
-    m_MainLayout->addWidget(m_BaliseVillePanel);
-
     m_Timer.setParent(this);
     connect(&m_Timer, SIGNAL(timeout()), this, SLOT(on_timeout()));
 
@@ -42,11 +29,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    delete m_BaliseVillePanel;
-    delete m_Separator;
-    delete m_BaliseMerPanel;
-    delete m_MainLayout;
-
     GlobalSettings::Instance()->SaveConfigFile();
     StyleManager::Instance()->Unit();
 
@@ -97,8 +79,8 @@ void MainWindow::on_ApplySettingsChange()
 ///
 void MainWindow::UpdateMainWindow()
 {
-    m_BaliseMerPanel->updateData();
-    m_BaliseVillePanel->updatedataville();
+    ui->baliseMerPanel->updateData();
+    ui->baliseVillePanel->updatedataville();
 }
 
 void MainWindow::UpdateTimer()

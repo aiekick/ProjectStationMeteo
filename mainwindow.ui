@@ -13,7 +13,25 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="BaliseMerPanel" name="baliseMerPanel" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout_2"/>
+     </widget>
+    </item>
+    <item>
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="BaliseVillePanel" name="baliseVillePanel" native="true"/>
+    </item>
+   </layout>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -81,6 +99,20 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>BaliseVillePanel</class>
+   <extends>QWidget</extends>
+   <header>balisevillepanel.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>BaliseMerPanel</class>
+   <extends>QWidget</extends>
+   <header>balisemerpanel.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="res.qrc"/>
  </resources>
