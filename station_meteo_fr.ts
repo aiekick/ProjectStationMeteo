@@ -2,6 +2,49 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fr_FR">
 <context>
+    <name>AboutDialog</name>
+    <message>
+        <location filename="aboutdialog.ui" line="32"/>
+        <source>Dialog</source>
+        <translation>A propos</translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.ui" line="46"/>
+        <source>Station Meteo v1.0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.ui" line="78"/>
+        <source>dans le cadre du Reskilling par AJC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.ui" line="94"/>
+        <source> pour AKKA technologie</source>
+        <translation>pour AKKA Technologies</translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.ui" line="126"/>
+        <source>Equipe :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.ui" line="142"/>
+        <source>Lucas Saner</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.ui" line="158"/>
+        <source>Mickael Antheaume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutdialog.ui" line="174"/>
+        <source>Stephane Cuillerdier</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>BaliseVillePanel</name>
     <message>
         <location filename="balisevillepanel.ui" line="14"/>
@@ -9,17 +52,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="balisevillepanel.ui" line="52"/>
+        <location filename="balisevillepanel.ui" line="41"/>
         <source>api meteo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="balisevillepanel.ui" line="29"/>
+        <location filename="balisevillepanel.ui" line="25"/>
         <source>Ville:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="balisevillepanel.ui" line="36"/>
+        <location filename="balisevillepanel.ui" line="32"/>
         <source>paris</source>
         <translation type="unfinished"></translation>
     </message>
@@ -37,8 +80,26 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="42"/>
+        <location filename="mainwindow.ui" line="50"/>
         <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="59"/>
+        <source>Refresh</source>
+        <translation type="unfinished">Rafraichir</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="68"/>
+        <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QObject</name>
+    <message>
+        <location filename="baliseMerPanel.cpp" line="32"/>
+        <source>C</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -47,12 +108,12 @@
     <message>
         <location filename="settingsdlg.ui" line="35"/>
         <source>Parametres</source>
-        <translation type="unfinished"></translation>
+        <translation>Paramètres</translation>
     </message>
     <message>
         <location filename="settingsdlg.ui" line="47"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Général</translation>
     </message>
     <message>
         <location filename="settingsdlg.ui" line="55"/>
@@ -98,12 +159,12 @@
         <location filename="settingsdlg.ui" line="206"/>
         <location filename="settingsdlg.cpp" line="78"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Défaut</translation>
     </message>
     <message>
         <location filename="settingsdlg.ui" line="214"/>
         <source>Format d&apos;heure</source>
-        <translation type="unfinished"></translation>
+        <translation>Format de l&apos;heure</translation>
     </message>
     <message>
         <location filename="settingsdlg.ui" line="224"/>
@@ -158,7 +219,7 @@
     <message>
         <location filename="settingsdlg.ui" line="315"/>
         <source>Api Key</source>
-        <translation type="unfinished"></translation>
+        <translation>Clef API</translation>
     </message>
     <message>
         <location filename="settingsdlg.ui" line="325"/>
@@ -183,7 +244,7 @@
     <message>
         <location filename="settingsdlg.ui" line="379"/>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>Appliquer</translation>
     </message>
 </context>
 <context>
@@ -191,48 +252,112 @@
     <message>
         <location filename="baliseMerPanel.ui" line="14"/>
         <source>baliseMerPanel</source>
-        <translation type="unfinished"></translation>
+        <translation>Panneau Balise Mer</translation>
     </message>
     <message>
         <location filename="baliseMerPanel.ui" line="78"/>
         <source>Refresh</source>
-        <translation type="unfinished"></translation>
+        <translation>Rafraichir</translation>
     </message>
     <message>
-        <location filename="baliseMerPanel.ui" line="26"/>
+        <location filename="baliseMerPanel.ui" line="52"/>
         <source>Temperature :</source>
-        <translation type="unfinished"></translation>
+        <translation>Température : </translation>
     </message>
     <message>
         <location filename="baliseMerPanel.ui" line="65"/>
-        <location filename="baliseMerPanel.ui" line="91"/>
-        <location filename="baliseMerPanel.ui" line="143"/>
+        <location filename="baliseMerPanel.ui" line="130"/>
+        <location filename="baliseMerPanel.ui" line="156"/>
+        <location filename="baliseMerPanel.ui" line="182"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="baliseMerPanel.ui" line="104"/>
+        <location filename="baliseMerPanel.ui" line="91"/>
         <source>Pression : </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="baliseMerPanel.ui" line="39"/>
+        <location filename="baliseMerPanel.ui" line="26"/>
         <source>hPa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="baliseMerPanel.ui" line="130"/>
+        <location filename="baliseMerPanel.ui" line="39"/>
         <source>Humidité :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="baliseMerPanel.ui" line="52"/>
+        <location filename="baliseMerPanel.ui" line="117"/>
         <source>%</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="baliseMerPanel.ui" line="117"/>
+        <location filename="baliseMerPanel.ui" line="104"/>
+        <source>Mean temperature &lt;br&gt;over last 12 hours</source>
+        <translation>Température moyenne au cours&lt;br&gt;des 12 dernières heures</translation>
+    </message>
+    <message>
+        <location filename="baliseMerPanel.ui" line="143"/>
+        <location filename="baliseMerPanel.ui" line="169"/>
         <source>°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>widgetville</name>
+    <message>
+        <location filename="widgetville.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgetville.ui" line="33"/>
+        <source>Date :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgetville.ui" line="40"/>
+        <location filename="widgetville.ui" line="58"/>
+        <location filename="widgetville.ui" line="88"/>
+        <location filename="widgetville.ui" line="97"/>
+        <location filename="widgetville.ui" line="115"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgetville.ui" line="49"/>
+        <source>Humidite :</source>
+        <translation type="unfinished">Humidité :</translation>
+    </message>
+    <message>
+        <location filename="widgetville.ui" line="65"/>
+        <source>%</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgetville.ui" line="74"/>
+        <source>Temperature :</source>
+        <translation type="unfinished">Température :</translation>
+    </message>
+    <message>
+        <location filename="widgetville.ui" line="81"/>
+        <source>Description: </source>
+        <translation>Description :</translation>
+    </message>
+    <message>
+        <location filename="widgetville.ui" line="104"/>
+        <source>°C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgetville.ui" line="122"/>
+        <source>hpa</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="widgetville.ui" line="131"/>
+        <source>Pression :</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

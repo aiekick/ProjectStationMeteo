@@ -2,6 +2,7 @@
 #define DATASMETEO_HPP
 
 #include <QString>
+#include "GlobalSettings.h"
 
 class DatasMeteo
 {
@@ -28,6 +29,7 @@ public:
     double getTemperatureFahrenheit() const;
     int getHumidity() const;
     int getPressure() const;
+    QString displayCorrectUnit();
 
     void setDate(const QString& vdate);
     void setPicto(const QString& vPicto);

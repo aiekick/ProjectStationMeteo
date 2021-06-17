@@ -63,6 +63,24 @@ int DatasMeteo::getPressure() const
     return this->pressure;
 }
 
+QString DatasMeteo::displayCorrectUnit()
+{
+    QString temperature;
+    if (GlobalSettings::Instance()->getTemperatureUnit() == TemperatureUnitEnum::UNIT_CELSIUS)
+    {
+        temperature = QString::number(getTemperatureCelsius()) + QString::fromUtf8(" °C");
+    }
+    else if (GlobalSettings::Instance()->getTemperatureUnit() == TemperatureUnitEnum::UNIT_FAHRENHEIT)
+    {
+        temperature = QString::number(getTemperatureFahrenheit()) + " °F";
+    }
+    else
+    {
+        temperature = QString::number(getTemperatureKelvin()) + " K";
+    }
+    return temperature;
+}
+
 QString DatasMeteo::getVille() const
 {
     return ville;

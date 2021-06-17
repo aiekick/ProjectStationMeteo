@@ -104,8 +104,7 @@ void BaliseMer::requestMeanData()
     {
         sumTemp += history.at(a).getTemperatureCelsius();   
     }
-    setSummary(sumTemp / history.size());
-   
+    setSummary(sumTemp / history.size());   
 }
 
 void BaliseMer::setSummary(double vMeanTemp)
