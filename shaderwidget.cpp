@@ -38,6 +38,22 @@ void ShaderWidget::Stop()
     m_Timer.stop();
 }
 
+bool ShaderWidget::Compile()
+{
+    if (!m_Program.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/quad.vert"))
+        return false;
+    if (!m_Program.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/quad.frag"))
+        return false;
+    if (!m_Program.link())
+        return false;
+    if (!m_Program.bind())
+        return false;
+
+    m_Program.enableAttributeArray(0);
+    m_Program.setAttributeBuffer(0, GL_FLOAT, 0, 2, 0);
+    return true;
+}
+
 void ShaderWidget::initializeGL()
 {
     initializeOpenGLFunctions();
@@ -61,14 +77,10 @@ void ShaderWidget::initializeGL()
 
     m_Vbo.allocate(vertices, 12 * sizeof(float));
 
-    if (m_Program.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/shaders/quad.vert"))
-        if (m_Program.addShaderFromSourceFile(QOpenGLShader::Fragment, ":/shaders/quad.frag"))
-            if (m_Program.link())
-                if (m_Program.bind())
-                {
-                    m_Program.enableAttributeArray(0);
-                    m_Program.setAttributeBuffer(0, GL_FLOAT, 0, 2, 0);
-                }
+    if (!Compile())
+    {
+        qDebug() << "Shaders Compilation issues";
+    }
 
     m_Vbo.release();
     m_Vao.release();
@@ -94,8 +106,8 @@ void ShaderWidget::paintGL()
     glClear(GL_COLOR_BUFFER_BIT);
 
     m_Program.bind();
-    m_Program.setUniformValue("time", m_Time);
-    m_Program.setUniformValue("size", m_Size);
+    m_Program.setUniformValue("uTime", m_Time);
+    m_Program.setUniformValue("uSize", m_Size);
 
     m_Vao.bind();
     glDrawArrays(GL_TRIANGLES, 0, 6);

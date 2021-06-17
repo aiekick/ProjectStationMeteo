@@ -25,6 +25,7 @@ protected:
     void resizeGL(int w, int h) override;
     void paintGL() override;
     void timerEvent(QTimerEvent *vTimerEvent) override;
+    bool Compile();
 
 private:
     QOpenGLVertexArrayObject m_Vao;
