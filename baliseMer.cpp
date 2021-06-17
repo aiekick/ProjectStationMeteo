@@ -111,3 +111,27 @@ void BaliseMer::setSummary(double vMeanTemp)
 {
     this->summary.setTemperatureCelsius(vMeanTemp);
 }
+
+
+QPixmap BaliseMer::displayWeatherIcon()
+{
+    QPixmap picture;
+    QPixmap pictureScaled;
+
+    if (datas.getPressure() <= 1000)
+    {
+        picture.load(":/new/Default/icons/rain.png");
+        pictureScaled = picture.scaledToHeight(90);
+    }
+    else if ((datas.getPressure() > 1000) && (datas.getPressure() <= 1020))
+    {
+        picture.load(":/new/Default/icons/clouds.png");
+        pictureScaled = picture.scaledToHeight(90);
+    }
+    else
+    {
+        picture.load(":/new/Default/icons/sun.png");
+        pictureScaled = picture.scaledToHeight(90);
+    }
+    return pictureScaled;
+}

@@ -30,6 +30,7 @@ public:
     int getHumidity() const;
     int getPressure() const;
     QString displayCorrectUnit();
+    
 
     void setDate(const QString& vdate);
     void setPicto(const QString& vPicto);
