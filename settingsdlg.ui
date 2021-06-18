@@ -207,13 +207,7 @@
          </layout>
         </item>
         <item row="4" column="1">
-         <widget class="QComboBox" name="cbLanguage">
-          <item>
-           <property name="text">
-            <string>Français</string>
-           </property>
-          </item>
-         </widget>
+         <widget class="QComboBox" name="cbLanguage"/>
         </item>
         <item row="2" column="1">
          <widget class="QFontComboBox" name="cbFontFamily"/>
@@ -229,13 +223,7 @@
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QComboBox" name="cbStyle">
-          <item>
-           <property name="text">
-            <string>Default</string>
-           </property>
-          </item>
-         </widget>
+         <widget class="QComboBox" name="cbStyle"/>
         </item>
         <item row="0" column="0">
          <widget class="QLabel" name="label_5">
@@ -276,7 +264,7 @@
            <string>000.000.000.000</string>
           </property>
           <property name="text">
-           <string>82.65.244.166</string>
+           <string>...</string>
           </property>
           <property name="echoMode">
            <enum>QLineEdit::Normal</enum>
@@ -309,7 +297,7 @@
            <string>00000</string>
           </property>
           <property name="text">
-           <string>48001</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -349,7 +337,7 @@
         <item row="1" column="1">
          <widget class="QLineEdit" name="edCity">
           <property name="text">
-           <string>Paris</string>
+           <string/>
           </property>
          </widget>
         </item>
