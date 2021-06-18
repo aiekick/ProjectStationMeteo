@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     GlobalSettings.cpp \
+    LangManager.cpp \
     StyleManager.cpp \
     aboutdialog.cpp \
     balise.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
 
 HEADERS += \
     GlobalSettings.h \
+    LangManager.h \
     StyleManager.h \
     aboutdialog.h \
     balise.h \
@@ -51,10 +53,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 TRANSLATIONS += \
-    station_meteo_en.ts \
-    station_meteo_fr.ts
+    lang/station_meteo_en.ts \
+    lang/station_meteo_fr.ts
 
 RESOURCES += \
     res.qrc
 
-DISTFILES +=

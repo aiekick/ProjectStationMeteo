@@ -3,6 +3,7 @@
 
 #include "GlobalSettings.h"
 #include "StyleManager.h"
+#include "LangManager.h"
 
 static GlobalSettings::SettingsStruct s_SettingsStruct;
 
@@ -83,7 +84,13 @@ bool SettingsDlg::Init()
     ui->cbStyle->setCurrentText(s_SettingsStruct.m_Style);
 
     // Languages
+    auto langs = LangManager::Instance()->getTranslations();
     ui->cbLanguage->clear();
+    for(const auto& key : langs)
+    {
+        ui->cbLanguage->addItem(key.first);
+    }
+    ui->cbLanguage->setCurrentText(s_SettingsStruct.m_Language);
 
     // Timer Delay
     ui->sbDelay->setValue(s_SettingsStruct.m_RefreshDelayInMinutes);
@@ -108,7 +115,7 @@ void SettingsDlg::ApplyConfig()
 {
     GlobalSettings::Instance()->setSettingsStruct(s_SettingsStruct);
     StyleManager::Instance()->ApplyStyle(s_SettingsStruct.m_Style);
-
+    LangManager::Instance()->ApplyLang(s_SettingsStruct.m_Language);
     CheckIfSomethingWasChanged();
     emit(SettingsDlg::ApplySettingsChange());
 }
@@ -196,3 +203,5 @@ void SettingsDlg::on_edCity_textChanged(const QString &vVille)
     s_SettingsStruct.m_Ville = vVille;
     CheckIfSomethingWasChanged();
 }
+
+

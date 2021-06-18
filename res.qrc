@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/new/Default">
+    <qresource prefix="/">
         <file>icons/Help.png</file>
         <file>icons/Information.png</file>
         <file>icons/Refresh.png</file>
@@ -9,5 +9,23 @@
         <file>icons/clouds.png</file>
         <file>icons/rain.png</file>
         <file>icons/sun.png</file>
+        <file>styles/AMOLED.qss</file>
+        <file>styles/Aqua.qss</file>
+        <file>styles/Blue.qss</file>
+        <file>styles/ConsoleStyle.qss</file>
+        <file>styles/ElegantDark.qss</file>
+        <file>styles/MacOS.qss</file>
+        <file>styles/ManjaroMix.qss</file>
+        <file>styles/MaterialDark.qss</file>
+        <file>styles/NeonButtons.qss</file>
+        <file>styles/Ubuntu.qss</file>
+        <file>lang/station_meteo_en.qm</file>
+        <file>lang/station_meteo_fr.qm</file>
+        <file>styles/baseDay.qss</file>
+        <file>styles/baseNight.qss</file>
+        <file>icons/Disk.png</file>
+        <file>skin/Button.png</file>
+        <file>skin/button-152243_960_720.png</file>
+        <file>skin/unnamed.jpg</file>
     </qresource>
 </RCC>
