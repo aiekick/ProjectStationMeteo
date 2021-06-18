@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>665</width>
-    <height>291</height>
+    <width>1009</width>
+    <height>663</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>130</y>
+     <x>600</x>
+     <y>120</y>
      <width>47</width>
      <height>13</height>
     </rect>
@@ -32,27 +32,27 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>70</y>
+     <x>340</x>
+     <y>120</y>
      <width>81</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Temperature :</string>
+    <string>Temperature</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_Humidity_Mer">
    <property name="geometry">
     <rect>
-     <x>300</x>
-     <y>130</y>
-     <width>47</width>
-     <height>13</height>
+     <x>590</x>
+     <y>70</y>
+     <width>111</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>Humidity_value</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_Refresh">
@@ -71,8 +71,8 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>230</x>
-     <y>100</y>
+     <x>480</x>
+     <y>120</y>
      <width>47</width>
      <height>13</height>
     </rect>
@@ -84,8 +84,8 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>150</y>
+     <x>400</x>
+     <y>160</y>
      <width>101</width>
      <height>41</height>
     </rect>
@@ -97,8 +97,8 @@
   <widget class="QLabel" name="label_Mean_Temperature_Mer">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>160</y>
+     <x>520</x>
+     <y>170</y>
      <width>47</width>
      <height>13</height>
     </rect>
@@ -110,34 +110,34 @@
   <widget class="QLabel" name="label_Pressure_Mer">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>100</y>
-     <width>47</width>
-     <height>13</height>
+     <x>450</x>
+     <y>70</y>
+     <width>101</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>Pressure_value</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_Temperature_Mer">
    <property name="geometry">
     <rect>
-     <x>330</x>
+     <x>320</x>
      <y>70</y>
-     <width>47</width>
-     <height>13</height>
+     <width>111</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>Temperature_value</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>420</x>
-     <y>60</y>
+     <x>120</x>
+     <y>20</y>
      <width>121</width>
      <height>121</height>
     </rect>
@@ -146,7 +146,31 @@
     <string notr="true"/>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>Weather_Icon</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>650</x>
+     <y>50</y>
+     <width>301</width>
+     <height>191</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout"/>
+  </widget>
+  <widget class="QPushButton" name="pushButton_See_Graph_Details">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>200</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>See Graph Details</string>
    </property>
   </widget>
  </widget>

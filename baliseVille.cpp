@@ -66,7 +66,7 @@ void BaliseVille::RecuperationApi()
 {
     qDebug() << "SSL ? " << QSslSocket::supportsSsl();
 
-    QNetworkRequest request(QUrl("http://api.openweathermap.org/data/2.5/forecast/?q="+datas.getVille()+"&appid=58e08b52cadfc9c96fc8354666cec712"));
+    QNetworkRequest request(QUrl("http://api.openweathermap.org/data/2.5/forecast/?q="+datas.getVille()+",fr&appid=58e08b52cadfc9c96fc8354666cec712"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
 

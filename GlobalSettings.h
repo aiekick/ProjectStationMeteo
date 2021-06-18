@@ -25,7 +25,7 @@ public:
         TemperatureUnitEnum m_TemperatureUnit = TemperatureUnitEnum::UNIT_CELSIUS;
         QString m_Ville = "Paris";
         QString m_FontFamily = "Arial";
-        QString m_ApiKey = "467fdde738c8df563afa33a978b53563";
+        QString m_ApiKey = "58e08b52cadfc9c96fc8354666cec712";
         QString m_IP = "78.199.78.207";
         QString m_Port = "48001";
         QString m_Language = "FR";
