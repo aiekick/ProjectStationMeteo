@@ -46,7 +46,7 @@ void StyleManager::ApplyStyle(const QString& vStyleToApply)
                 if (!pathToLoad.isEmpty())
                 {
                     QFile fp(pathToLoad);
-                    if (fp.open(QIODevice::ReadOnly | QIODevice::Text | QIODevice::ExistingOnly))
+                    if (fp.open(QIODevice::ReadOnly | QIODevice::Text))
                     {
                         const auto& fc = fp.readAll();
                         qApp->setStyleSheet(fc);

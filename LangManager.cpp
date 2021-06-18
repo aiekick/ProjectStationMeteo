@@ -2,6 +2,7 @@
 #include "GlobalSettings.h"
 #include <QApplication>
 #include <QDir>
+#include <QDebug>
 
 void LangManager::Init()
 {
@@ -9,8 +10,8 @@ void LangManager::Init()
     QString defaultLocale = QLocale::system().name(); // "fr_FR"
     defaultLocale.truncate(defaultLocale.lastIndexOf('_')); // "fr"
 
-    /*auto m_langPath = QApplication::applicationDirPath();
-    m_langPath.append("/lang");
+    auto m_langPath = QApplication::applicationDirPath();
+    m_langPath.append("/langs");
     QDir dir(m_langPath);
     QStringList fileNames = dir.entryList(QStringList("*.qm"));
 
@@ -22,10 +23,7 @@ void LangManager::Init()
         lang.remove(0, lang.lastIndexOf('_') + 1); // "fr"
         lang = lang.toUpper(); // FR
         m_Translations[lang] = m_langPath + "/" + fileNames[i];
-    }*/
-
-    m_Translations["FR"] = ":/lang/station_meteo_fr.qm";
-    m_Translations["EN"] = ":/lang/station_meteo_en.qm";
+    }
 
     const auto& lang = GlobalSettings::Instance()->getLanguage();
     ApplyLang(lang);
@@ -40,8 +38,14 @@ void LangManager::ApplyLang(const QString& vLang)
 {
     if (m_Translations.find(vLang) != m_Translations.end())
     {
-        m_AppTranslator.load(m_Translations[vLang]);
-        qApp->installTranslator(&m_AppTranslator);
+        QTranslator appTranslator;
+        if (appTranslator.load(m_Translations[vLang]))
+        {
+            if (!qApp->installTranslator(&appTranslator))
+            {
+                qDebug() << "Fail to install translation";
+            }
+        }
     }
 }
 

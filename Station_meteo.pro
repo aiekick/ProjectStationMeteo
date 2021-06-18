@@ -53,8 +53,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 TRANSLATIONS += \
-    lang/station_meteo_en.ts \
-    lang/station_meteo_fr.ts
+    station_meteo_en.ts \
+    station_meteo_fr.ts
 
 RESOURCES += \
     res.qrc

@@ -270,7 +270,7 @@
     <message>
         <location filename="../baliseMerPanel.ui" line="42"/>
         <source>Temperature :</source>
-        <translation>Température : </translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../baliseMerPanel.ui" line="55"/>
@@ -307,12 +307,12 @@
     <message>
         <location filename="../widgetville.ui" line="33"/>
         <source>Date :</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../widgetville.ui" line="60"/>
         <source>Pression :</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../widgetville.ui" line="67"/>
@@ -327,7 +327,7 @@
     <message>
         <location filename="../widgetville.ui" line="74"/>
         <source>Description: </source>
-        <translation>Description :</translation>
+        <translation></translation>
     </message>
 </context>
 </TS>
