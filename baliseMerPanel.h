@@ -15,19 +15,15 @@ class BaliseMerPanel : public QWidget
 public:
     BaliseMerPanel(QWidget *parent = nullptr);
     ~BaliseMerPanel();
+
 	void updateData(); //Print data to the panel
 
-
 private slots:
-    void on_pushButton_Refresh_clicked();
-
-
     void on_pushButton_See_Graph_Details_clicked();
 
 private:
 	Ui::baliseMerPanel *ui;
 	BaliseMer baliseMer; 
-
 };
 
 #endif

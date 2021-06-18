@@ -15,8 +15,7 @@ private:
 
 public:
 	BaliseMer();
-	BaliseMer(int, int, string, string, string, string, DatasMeteo, DatasMeteo, vector<DatasMeteo>);
-	~BaliseMer();
+    ~BaliseMer();
 
 	DatasMeteo getDatas();
 	vector<DatasMeteo>* getHistory();
@@ -26,7 +25,6 @@ public:
 
 	void requestData();     // Send request to server and retrieve infos
 	void requestMeanData(); // Same as requestData but only for temperature over the last 12 hours
-	void setSummary(double);
 };
 
 #endif

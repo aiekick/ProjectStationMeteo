@@ -15,35 +15,68 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QVBoxLayout" name="layoutville"/>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Ville:</string>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-      </widget>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
      <item>
-      <widget class="QLineEdit" name="textville">
-       <property name="text">
-        <string>paris</string>
+      <widget class="WidgetVille" name="jouractu" native="true"/>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-      </widget>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>
    <item>
-    <widget class="QPushButton" name="pushButtonville">
-     <property name="text">
-      <string>api meteo</string>
-     </property>
-    </widget>
+    <layout class="QVBoxLayout" name="layoutville">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="WidgetVille" name="jour2" native="true"/>
+       </item>
+       <item>
+        <widget class="WidgetVille" name="jour3" native="true"/>
+       </item>
+       <item>
+        <widget class="WidgetVille" name="jour4" native="true"/>
+       </item>
+       <item>
+        <widget class="WidgetVille" name="jour5" native="true"/>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>WidgetVille</class>
+   <extends>QWidget</extends>
+   <header>widgetville.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

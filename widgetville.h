@@ -1,27 +1,26 @@
 #ifndef WIDGETVILLE_H
 #define WIDGETVILLE_H
-#include "baliseVille.h"
+
 #include <QWidget>
 #include "GlobalSettings.h"
+#include "datasMeteo.h"
+
 namespace Ui {
-class widgetville;
+class WidgetVille;
 }
 
-class widgetville : public QWidget
+class WidgetVille : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit widgetville(QWidget *parent = nullptr);
-    ~widgetville();
+    explicit WidgetVille(QWidget *parent = nullptr);
+    ~WidgetVille();
 
+    void remplissage(DatasMeteo);
 
-
-
-
-void remplissage(DatasMeteo);
 private:
-    Ui::widgetville *ui;
+    Ui::WidgetVille *ui;
 };
 
 #endif // WIDGETVILLE_H

@@ -59,11 +59,6 @@ void BaliseMerPanel::updateData()
     //baliseMer.getHistory()->clear(); // A deplacer ailleurs
 }
 
-void BaliseMerPanel::on_pushButton_Refresh_clicked()
-{
-    updateData();
-}
-
 void BaliseMerPanel::on_pushButton_See_Graph_Details_clicked()
 {
     QChartView* view = baliseMer.displayDetailedChart();

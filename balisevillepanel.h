@@ -2,7 +2,9 @@
 #define BALISEVILLEPANEL_H
 #include "baliseVille.h"
 #include <QWidget>
+
 #include "widgetville.h"
+
 namespace Ui {
 class BaliseVillePanel;
 }
@@ -17,15 +19,9 @@ public:
 
     void updatedataville();
 
-private slots:
-    void on_pushButtonville_clicked();
-
 private:
     Ui::BaliseVillePanel *ui;
     BaliseVille objville;
-    widgetville * jouractu;
-    widgetville widget;
-
 };
 
 #endif // BALISEVILLEPANEL_H

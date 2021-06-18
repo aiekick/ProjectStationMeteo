@@ -20,6 +20,11 @@ const QString &DatasMeteo::getIcon() const
     return icon;
 }
 
+QPixmap DatasMeteo::getImage() const
+{
+    return this->imagetemp;
+}
+
 QString DatasMeteo::getDate() const
 {
     return this-> date;
@@ -69,6 +74,8 @@ QString DatasMeteo::getTemperatureToStringFromSettings()
     return "";
 }
 
+
+
 QString DatasMeteo::getVille() const
 {
     return ville;
@@ -77,6 +84,14 @@ QString DatasMeteo::getVille() const
 ////////////////////////////////////////////////////
 /// SETTERS
 ////////////////////////////////////////////////////
+
+
+
+void DatasMeteo::setImage(const QPixmap &vimage)
+{
+    imagetemp=vimage;
+}
+
 
 void DatasMeteo::setIcon(const QString &newIcon)
 {
