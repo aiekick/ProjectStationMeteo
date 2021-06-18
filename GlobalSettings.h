@@ -26,7 +26,7 @@ public:
         QString m_Ville = "Paris";
         QString m_FontFamily = "Arial";
         QString m_ApiKey = "58e08b52cadfc9c96fc8354666cec712";
-        QString m_IP = "82.65.244.166";
+        QString m_IP = "78.199.78.207";
         QString m_Port = "48001";
         QString m_Language = "fr";
         QString m_Style = "Default";
