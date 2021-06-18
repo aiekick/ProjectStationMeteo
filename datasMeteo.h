@@ -1,6 +1,7 @@
 #ifndef DATASMETEO_HPP
 #define DATASMETEO_HPP
 
+#include <QPixmap>
 #include <QString>
 #include "GlobalSettings.h"
 
@@ -14,12 +15,14 @@ private :
     QString date;                       // date de la mesure
     QString description;                // description du temps
     QString icon;                       // icone pour les données
-
+    QPixmap imagetemp;
 public:
 	DatasMeteo();
     DatasMeteo(QString, double, double, double);
 	~DatasMeteo();
 
+
+    QPixmap getImage()const;
     QString getDate()const;
     QString getDescription() const;
     QString getVille() const;
@@ -31,7 +34,7 @@ public:
     const QString &getIcon() const;
 
     QString getTemperatureToStringFromSettings();
-
+ void setImage(const QPixmap& vimage);
     void setDate(const QString& vdate);
     void setDescription(const QString& vPicto);
     void setVille(const QString& vNewVille);

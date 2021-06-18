@@ -3,6 +3,7 @@
 
 #include "balise.h"
 #include "datasMeteo.h"
+#include <QPixmap>
 
 #include <QString>
 
@@ -14,6 +15,9 @@ private:
     DatasMeteo datas3;
     DatasMeteo datas4;
     DatasMeteo datas5;
+    int i=0;
+    int j= 1;
+
 
 public:
     BaliseVille();
@@ -25,10 +29,15 @@ public:
     int getDatas_Humidity();
     int getDatas_Pressure();
     void RecuperationApi();
+    DatasMeteo recupimage(DatasMeteo);
     void setDatas(DatasMeteo);
     DatasMeteo &getDatas() ;
 
 
+    DatasMeteo &getDatas2() ;
+    DatasMeteo &getDatas3() ;
+    DatasMeteo &getDatas4() ;
+    DatasMeteo &getDatas5() ;
 };
 
 #endif

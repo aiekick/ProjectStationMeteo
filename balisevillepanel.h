@@ -23,7 +23,13 @@ private slots:
 private:
     Ui::BaliseVillePanel *ui;
     BaliseVille objville;
-    widgetville * jouractu;
+   /* widgetville * jouractu;
+    widgetville * jour2;
+    widgetville * jour3;
+    widgetville * jour4;
+    widgetville * jour5;*/
+
+
     widgetville widget;
 
 };

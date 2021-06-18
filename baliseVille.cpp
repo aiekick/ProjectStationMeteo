@@ -12,6 +12,8 @@
 
 #include "datasMeteo.h"
 
+
+
 BaliseVille::BaliseVille() : Balise()
 {
 }
@@ -57,6 +59,27 @@ DatasMeteo &BaliseVille::getDatas()
     return datas;
 }
 
+
+DatasMeteo &BaliseVille::getDatas2()
+{
+    return datas2;
+}
+
+DatasMeteo &BaliseVille::getDatas3()
+{
+    return datas3;
+}
+
+DatasMeteo &BaliseVille::getDatas4()
+{
+    return datas4;
+}
+
+DatasMeteo &BaliseVille::getDatas5()
+{
+    return datas5;
+}
+
 void BaliseVille::setDatas(DatasMeteo v_DatasMeteo)
 {
     this->datas = v_DatasMeteo;
@@ -64,6 +87,38 @@ void BaliseVille::setDatas(DatasMeteo v_DatasMeteo)
 
 void BaliseVille::RecuperationApi()
 {
+    double tempcumul1=0;
+    double tempmoy1=0;
+ int pression1cumul=0;
+ int pression1moyenne=0;
+ int humidite1cumul=0;
+ int humidite1moyenne=0;
+ double tempcumul2=0;
+ double tempmoy2=0;
+int pression2cumul=0;
+int pression2moyenne=0;
+int humidite2cumul=0;
+int humidite2moyenne=0;
+double tempcumul3=0;
+double tempmoy3=0;
+int pression3cumul=0;
+int pression3moyenne=0;
+int humidite3cumul=0;
+int humidite3moyenne=0;
+double tempcumul4=0;
+double tempmoy4=0;
+int pression4cumul=0;
+int pression4moyenne=0;
+int humidite4cumul=0;
+int humidite4moyenne=0;
+double tempcumul5=0;
+double tempmoy5=0;
+int pression5cumul=0;
+int pression5moyenne=0;
+int humidite5cumul=0;
+int humidite5moyenne=0;
+
+
     qDebug() << "SSL ? " << QSslSocket::supportsSsl();
 
     QNetworkRequest request(QUrl("http://api.openweathermap.org/data/2.5/forecast/?q="+datas.getVille()+"&appid=58e08b52cadfc9c96fc8354666cec712"));
@@ -136,15 +191,23 @@ void BaliseVille::RecuperationApi()
     foreach(const QJsonValue &value, jsonArray)
 
         {
-        //if (i=0)Datesansheurecompare=datesansheure;
+
+
     QJsonObject obj = value.toObject();
 
     QString dates1=obj["dt_txt"].toString();
     QStringList datesdecompose=dates1.split(QRegularExpression("\\s+"));
      datesansheure= datesdecompose[0];
 
-    // if(datesansheure!=Datesansheurecompare)
-      //   i++;
+    if(datesansheure!=Datesansheurecompare){
+        i++;
+    j=1;
+    }
+
+    if(datesansheure==Datesansheurecompare)
+        j++;
+
+
     qDebug() <<"datesansheure: "<<datesansheure;
 
     qDebug() << "date: " << obj["dt_txt"].toString();
@@ -160,126 +223,196 @@ void BaliseVille::RecuperationApi()
 
     QJsonArray weatherArray = obj["weather"].toArray();
     foreach(const QJsonValue &value1, weatherArray)
-    {
+    {  /*if(datesansheure!=Datesansheurecompare)
+           i++;*/
         QJsonObject obj1 = value1.toObject();
 
         qDebug() << "description: " << obj1["description"].toString();
         //icon
         qDebug() << "icone: " << obj1["icon"].toString();
          //icon
- //if (i=0)
-        //{
+ if (i==1)
+        {
         datas.setIcon(obj1["icon"].toString());
         //Picto
         datas.setDescription(obj1["description"].toString());
-        // }
-/* if (i=1)
- * {
+
+
+
+
+
+
+         }
+ if (i==2)
+  {
         datas2.setIcon(obj1["icon"].toString());
         //Picto
-        datas2.setPicto( obj1["description"].toString());
+        datas2.setDescription( obj1["description"].toString());
+
         }
-// if (i=2)
+ if (i==3)
         {
         datas3.setIcon(obj1["icon"].toString());
         //Picto
-        datas3.setPicto( obj1["description"].toString());
+        datas3.setDescription( obj1["description"].toString());
         }
- // if (i=3)
+  if (i==4)
         {
         datas4.setIcon(obj1["icon"].toString());
         //Picto
-        datas4.setPicto( obj1["description"].toString());
+        datas4.setDescription( obj1["description"].toString());
         }
-// if (i=4)
+ if (i==5)
         {
         datas5.setIcon(obj1["icon"].toString());
         //Picto
-        datas5.setPicto( obj1["description"].toString());
-        } */
+        datas5.setDescription( obj1["description"].toString());
+        }
 
 }
 
 
-//if (i=0)
- // {
+if (i==1)
+  {
    //date
      datas.setDate(datesansheure);
 
     // Temperature
-    datas.setTemperatureKelvin(mainObject["temp"].toDouble());
-
+     tempcumul1+=(mainObject["temp"].toDouble());
+     tempmoy1=(tempcumul1/j);
+    datas.setTemperatureKelvin(tempmoy1);
     // Pressure
-    datas.setPressure(mainObject["pressure"].toDouble());
-
+    pression1cumul+=mainObject["pressure"].toDouble();
+    pression1moyenne=pression1cumul/j;
+    datas.setPressure(pression1moyenne);
     //Humidity
-    datas.setHumidity(mainObject["humidity"].toDouble());
-   //}
+    humidite1cumul+=mainObject["humidity"].toDouble();
+      humidite1moyenne=humidite1cumul/j;
+    datas.setHumidity(humidite1moyenne);
+   }
 
-  /* if (i=1)
+   if (i==2)
    {
    //date
      datas2.setDate(datesansheure);
 
     // Temperature
-    datas2.setTemperatureKelvin(mainObject["temp"].toDouble());
+     tempcumul2+=(mainObject["temp"].toDouble());
+     tempmoy2=(tempcumul2/j);
+    datas2.setTemperatureKelvin(tempmoy2);
 
     // Pressure
-    datas2.setPressure(mainObject["pressure"].toDouble());
+    pression2cumul+=mainObject["pressure"].toDouble();
+    pression2moyenne=pression2cumul/j;
+    datas2.setPressure(pression2moyenne);
 
     //Humidity
-    datas2.setHumidity(mainObject["humidity"].toDouble());
+    humidite2cumul+=mainObject["humidity"].toDouble();
+      humidite2moyenne=humidite2cumul/j;
+    datas2.setHumidity(humidite2moyenne);
    }
 
- if (i=2)
+ if (i==3)
    {
    //date
      datas3.setDate(datesansheure);
 
     // Temperature
-    datas3.setTemperatureKelvin(mainObject["temp"].toDouble());
+     tempcumul3+=(mainObject["temp"].toDouble());
+     tempmoy3=(tempcumul3/j);
+    datas3.setTemperatureKelvin(tempmoy3);
 
     // Pressure
-    data3s.setPressure(mainObject["pressure"].toDouble());
+    pression3cumul+=mainObject["pressure"].toDouble();
+    pression3moyenne=pression3cumul/j;
+    datas3.setPressure(pression3moyenne);
 
     //Humidity
-    datas3.setHumidity(mainObject["humidity"].toDouble());
+    humidite3cumul+=mainObject["humidity"].toDouble();
+      humidite3moyenne=humidite3cumul/j;
+    datas3.setHumidity(humidite3moyenne);
    }
 
- if (i=3)
+ if (i==4)
    {
    //date
      datas4.setDate(datesansheure);
 
     // Temperature
-    datas4.setTemperatureKelvin(mainObject["temp"].toDouble());
+     tempcumul4+=(mainObject["temp"].toDouble());
+     tempmoy4=(tempcumul4/j);
+    datas4.setTemperatureKelvin(tempmoy4);
 
     // Pressure
-    datas4.setPressure(mainObject["pressure"].toDouble());
+    pression4cumul+=mainObject["pressure"].toDouble();
+    pression4moyenne=pression4cumul/j;
+    datas4.setPressure(pression4moyenne);
 
     //Humidity
-    datas4.setHumidity(mainObject["humidity"].toDouble());
+    humidite4cumul+=mainObject["humidity"].toDouble();
+      humidite4moyenne=humidite4cumul/j;
+    datas4.setHumidity(humidite4moyenne);
    }
- if (i=4)
+ if (i==5)
    {
    //date
      datas5.setDate(datesansheure);
 
     // Temperature
-    datas5.setTemperatureKelvin(mainObject["temp"].toDouble());
+     tempcumul5+=(mainObject["temp"].toDouble());
+     tempmoy5=(tempcumul5/j);
+    datas5.setTemperatureKelvin(tempmoy5);
 
     // Pressure
-    datas5.setPressure(mainObject["pressure"].toDouble());
+    pression5cumul+=mainObject["pressure"].toDouble();
+    pression5moyenne=pression5cumul/j;
+    datas5.setPressure(pression5moyenne);
 
     //Humidity
-    datas5.setHumidity(mainObject["humidity"].toDouble());
+    humidite5cumul+=mainObject["humidity"].toDouble();
+      humidite5moyenne=humidite5cumul/j;
+    datas5.setHumidity(humidite5moyenne);
    }
 
 
    Datesansheurecompare=datesansheure;
 
-  */
 
-break;
+
+
+    }
 }
+
+DatasMeteo BaliseVille::recupimage(DatasMeteo dataimage)
+{
+
+
+    QPixmap image;
+    QPixmap imageScaled;
+
+
+        image.load(":/new/Default/icons/"+dataimage.getIcon()+".png");
+        imageScaled = image.scaledToHeight(90);
+        dataimage.setImage(imageScaled);
+
+
+
+
+
+
+return dataimage;
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
