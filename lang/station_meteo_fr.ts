@@ -11,48 +11,48 @@
     <message>
         <location filename="../aboutdialog.ui" line="46"/>
         <source>Station Meteo v1.0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="78"/>
         <source>dans le cadre du Reskilling par AJC</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="94"/>
         <source> pour AKKA technologies</source>
         <oldsource> pour AKKA technologie</oldsource>
-        <translation type="unfinished">pour AKKA Technologies</translation>
+        <translation>pour AKKA Technologies</translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="126"/>
         <source>Equipe :</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="142"/>
         <source>Lucas Saner</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="158"/>
         <source>Mickael Antheaume</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="174"/>
         <source>Stephane Cuillerdier</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="209"/>
         <source>Depot Github :</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../aboutdialog.ui" line="225"/>
         <source>&lt;a href=&quot;https://github.com/aiekick/ProjectStationMeteo&quot;&gt;ProjectStationMeteo&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -60,22 +60,22 @@
     <message>
         <location filename="../balisevillepanel.ui" line="14"/>
         <source>MainWindow</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../balisevillepanel.ui" line="25"/>
         <source>Ville:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../balisevillepanel.ui" line="32"/>
         <source>paris</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../balisevillepanel.ui" line="41"/>
         <source>api meteo</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -83,27 +83,27 @@
     <message>
         <location filename="../mainwindow.ui" line="14"/>
         <source>MainWindow</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="48"/>
         <source>toolBar</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="80"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Parametres</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="89"/>
         <source>Refresh</source>
-        <translation type="unfinished">Rafraichir</translation>
+        <translation>Rafraichir</translation>
     </message>
     <message>
         <location filename="../mainwindow.ui" line="98"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>A propos</translation>
     </message>
 </context>
 <context>
@@ -121,7 +121,7 @@
     <message>
         <location filename="../settingsdlg.ui" line="147"/>
         <source>Unité de Temperature</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdlg.ui" line="95"/>
@@ -141,7 +141,7 @@
     <message>
         <location filename="../settingsdlg.ui" line="224"/>
         <source>Police</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdlg.ui" line="177"/>
@@ -156,7 +156,7 @@
     <message>
         <location filename="../settingsdlg.ui" line="137"/>
         <source>Styles</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdlg.ui" line="235"/>
@@ -172,22 +172,22 @@
     <message>
         <location filename="../settingsdlg.ui" line="65"/>
         <source>Langue</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdlg.ui" line="55"/>
         <source>Delai de mise à jour (Min)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdlg.ui" line="213"/>
         <source>Français</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdlg.ui" line="268"/>
         <source>Balise Mer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdlg.ui" line="276"/>
@@ -202,12 +202,12 @@
     <message>
         <location filename="../settingsdlg.ui" line="289"/>
         <source>IP</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdlg.ui" line="299"/>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdlg.ui" line="309"/>
@@ -222,7 +222,7 @@
     <message>
         <location filename="../settingsdlg.ui" line="324"/>
         <source>Balise Ville</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdlg.ui" line="342"/>
@@ -232,12 +232,12 @@
     <message>
         <location filename="../settingsdlg.ui" line="332"/>
         <source>Ville</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../settingsdlg.ui" line="352"/>
         <source>Paris</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Apply</source>
@@ -279,17 +279,17 @@
         <location filename="../baliseMerPanel.ui" line="133"/>
         <location filename="../baliseMerPanel.ui" line="149"/>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../baliseMerPanel.ui" line="81"/>
         <source>Pression : </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../baliseMerPanel.ui" line="29"/>
         <source>Humidité :</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../baliseMerPanel.ui" line="94"/>
@@ -317,12 +317,12 @@
     <message>
         <location filename="../widgetville.ui" line="67"/>
         <source>Humidite :</source>
-        <translation type="unfinished">Humidité :</translation>
+        <translation>Humidité :</translation>
     </message>
     <message>
         <location filename="../widgetville.ui" line="99"/>
         <source>Temperature :</source>
-        <translation type="unfinished">Température :</translation>
+        <translation>Température :</translation>
     </message>
     <message>
         <location filename="../widgetville.ui" line="74"/>
