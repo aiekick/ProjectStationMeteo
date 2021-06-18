@@ -34,7 +34,7 @@ void BaliseMerPanel::updateData()
     baliseMer.requestMeanData();
    
     // Temperature
-    QString temperature = baliseMer.getDatas().displayCorrectUnit();
+    QString temperature = baliseMer.getDatas().getTemperatureToStringFromSettings();
     this->ui->label_Temperature_Mer->setText(temperature);
 
     // Pressure
@@ -46,7 +46,7 @@ void BaliseMerPanel::updateData()
     this->ui->label_Humidity_Mer->setText(humidity + " %");
 
     // Mean Temperature
-    QString meanTemperature = baliseMer.getSummary().displayCorrectUnit();
+    QString meanTemperature = baliseMer.getSummary().getTemperatureToStringFromSettings();
     this->ui->label_Mean_Temperature_Mer->setText(meanTemperature);
    
     // Display weather icon depending on the pressure

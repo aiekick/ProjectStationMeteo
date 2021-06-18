@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui
@@ -10,7 +11,6 @@ namespace Ui
 }
 QT_END_NAMESPACE
 
-class QTimer;
 class QFrame;
 class QVBoxLayout;
 class BaliseMerPanel;
@@ -36,11 +36,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui = nullptr;
-    BaliseVillePanel *m_BaliseVillePanel = nullptr;
-    BaliseMerPanel *m_BaliseMerPanel = nullptr;
-    QVBoxLayout *m_MainLayout = nullptr;
-    QFrame *m_Separator = nullptr;
-    QTimer *m_Timer = nullptr;
+    QTimer m_Timer;
 };
 
 #endif // MAINWINDOW_H
