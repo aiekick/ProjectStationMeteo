@@ -1,6 +1,7 @@
 #include "GlobalSettings.h"
 #include <QSettings>
 #include <QFileInfo>
+#include <QApplication>
 
 /////////////////////////////////////////////
 /////////////////////////////////////////////
@@ -40,7 +41,7 @@ void GlobalSettings::SettingsStruct::Load(const QString& vFilePathName)
     m_IP = config.value("IP", _default.m_IP).toString();
     m_Port = config.value("Port", _default.m_Port).toString();
     m_Language = config.value("Language", _default.m_Language).toString();
-    m_Style = config.value("Style", _default.m_Style).toString();
+    m_Style = (StyleEnum)config.value("Style", (int)_default.m_Style).toInt();
     m_RefreshDelayInMinutes = config.value("RefreshDelayInMinutes", _default.m_RefreshDelayInMinutes).toUInt();
 }
 
@@ -56,7 +57,7 @@ void GlobalSettings::SettingsStruct::Save(const QString& vFilePathName)
     config.setValue("IP", m_IP);
     config.setValue("Port", m_Port);
     config.setValue("Language", m_Language);
-    config.setValue("Style", m_Style);
+    config.setValue("Style", (int)m_Style);
     config.setValue("RefreshDelayInMinutes", m_RefreshDelayInMinutes);
 
     config.sync();
@@ -72,6 +73,8 @@ void GlobalSettings::LoadConfigFile()
     {
         m_SettingsStruct.Load(CONFIG_FILE_PATH_NAME);
     }
+
+    ApplyStyle(m_SettingsStruct.m_Style);
 }
 
 void GlobalSettings::SaveConfigFile()
@@ -98,7 +101,7 @@ const QString& GlobalSettings::getFontFamily() const
     return m_SettingsStruct.m_FontFamily;
 }
 
-const QString& GlobalSettings::getStyle() const
+const StyleEnum& GlobalSettings::getStyle() const
 {
     return m_SettingsStruct.m_Style;
 }
@@ -157,7 +160,7 @@ void GlobalSettings::setFontFamily(const QString& vFontFamily)
     m_SettingsStruct.m_FontFamily = vFontFamily;
 }
 
-void GlobalSettings::setStyle(const QString& vStyle)
+void GlobalSettings::setStyle(const StyleEnum& vStyle)
 {
     m_SettingsStruct.m_Style = vStyle;
 }
@@ -197,3 +200,34 @@ void GlobalSettings::setSettingsStruct(const SettingsStruct& vSettingsStruct)
     m_SettingsStruct = vSettingsStruct;
 }
 
+/////////////////////////////////////////////
+/// APPLY
+/////////////////////////////////////////////
+
+void GlobalSettings::ApplyStyle(const StyleEnum& vStyleToApply)
+{
+    QString filePathStr;
+    if (vStyleToApply == StyleEnum::STYLE_DAY)
+    {
+        filePathStr = "";//":/styles/baseDay.qss";
+    }
+    else if (vStyleToApply == StyleEnum::STYLE_NIGHT)
+    {
+        filePathStr = ":/styles/baseNight.qss";
+    }
+
+    if (!filePathStr.isEmpty())
+    {
+        QFile fp(filePathStr);
+        if (fp.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            const auto& fc = fp.readAll();
+            qApp->setStyleSheet(fc);
+            fp.close();
+        }
+    }
+    else
+    {
+       qApp->setStyleSheet("");
+    }
+}

@@ -493,7 +493,7 @@ QChartView* BaliseMer::temperatureChart()
     // Define the background color
     QLinearGradient backgroundColor;
     backgroundColor.setStart(serie->at(0));
-    backgroundColor.setFinalStop(serie->at(getHistory()->size() - 1));
+    backgroundColor.setFinalStop(serie->at(getHistory()->size() - 1U));
     backgroundColor.setColorAt(0.0, QColor(45, 46, 48));
 
     QChart* chart = new QChart();

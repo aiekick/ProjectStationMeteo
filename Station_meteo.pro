@@ -11,7 +11,6 @@ CONFIG += c++11
 SOURCES += \
     GlobalSettings.cpp \
     LangManager.cpp \
-    StyleManager.cpp \
     aboutdialog.cpp \
     balise.cpp \
     baliseMer.cpp \
@@ -27,7 +26,6 @@ SOURCES += \
 HEADERS += \
     GlobalSettings.h \
     LangManager.h \
-    StyleManager.h \
     aboutdialog.h \
     balise.h \
     baliseMer.h \
@@ -57,5 +55,7 @@ TRANSLATIONS += \
     station_meteo_fr.ts
 
 RESOURCES += \
-    res.qrc
+    langs.qrc \
+    res.qrc \
+    styles.qrc
 

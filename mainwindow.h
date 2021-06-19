@@ -27,6 +27,8 @@ private:
     void UpdateMainWindow();
     void UpdateTimer();
 
+    void changeEvent(QEvent *e) override;
+
 private slots:
     void on_actionSettings_triggered();
     void on_actionAbout_triggered();

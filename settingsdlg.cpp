@@ -2,7 +2,6 @@
 #include "ui_settingsdlg.h"
 
 #include "GlobalSettings.h"
-#include "StyleManager.h"
 #include "LangManager.h"
 
 static GlobalSettings::SettingsStruct s_SettingsStruct;
@@ -46,6 +45,23 @@ void SettingsDlg::on_applyBtn_clicked()
     ApplyConfig();
 }
 
+////////////////////////////////////////
+/// EVENTS
+////////////////////////////////////////
+
+void SettingsDlg::changeEvent(QEvent *e)
+{
+    QWidget::changeEvent(e);
+    switch (e->type())
+    {
+    case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        break;
+    default:
+        break;
+   }
+}
+
 //////////////////////////////////////
 /// PRIVATE
 //////////////////////////////////////
@@ -74,14 +90,10 @@ bool SettingsDlg::Init()
     ui->cbFontFamily->setFont(QFont(s_SettingsStruct.m_FontFamily));
 
     // Styles
-    auto styles = StyleManager::Instance()->getStyles();
-    ui->cbStyle->clear();
-    ui->cbStyle->addItem(tr("Default"));
-    for(const auto& key : styles)
-    {
-        ui->cbStyle->addItem(key.first);
-    }
-    ui->cbStyle->setCurrentText(s_SettingsStruct.m_Style);
+    if (s_SettingsStruct.m_Style == StyleEnum::STYLE_DAY)
+        ui->rbStyleDay->setChecked(true);
+    else
+        ui->rbStyleNight->setChecked(true);
 
     // Languages
     auto langs = LangManager::Instance()->getTranslations();
@@ -114,7 +126,7 @@ void SettingsDlg::Unit()
 void SettingsDlg::ApplyConfig()
 {
     GlobalSettings::Instance()->setSettingsStruct(s_SettingsStruct);
-    StyleManager::Instance()->ApplyStyle(s_SettingsStruct.m_Style);
+    GlobalSettings::Instance()->ApplyStyle(s_SettingsStruct.m_Style);
     LangManager::Instance()->ApplyLang(s_SettingsStruct.m_Language);
     CheckIfSomethingWasChanged();
     emit(SettingsDlg::ApplySettingsChange());
@@ -162,12 +174,6 @@ void SettingsDlg::on_cbFontFamily_currentFontChanged(const QFont &vFont)
     CheckIfSomethingWasChanged();
 }
 
-void SettingsDlg::on_cbStyle_activated(const QString &vStyle)
-{
-    s_SettingsStruct.m_Style = vStyle;
-    CheckIfSomethingWasChanged();
-}
-
 void SettingsDlg::on_cbLanguage_activated(const QString &vLanguage)
 {
     s_SettingsStruct.m_Language = vLanguage;
@@ -204,4 +210,14 @@ void SettingsDlg::on_edCity_textChanged(const QString &vVille)
     CheckIfSomethingWasChanged();
 }
 
+void SettingsDlg::on_rbStyleDay_clicked()
+{
+    s_SettingsStruct.m_Style = StyleEnum::STYLE_DAY;
+    CheckIfSomethingWasChanged();
+}
 
+void SettingsDlg::on_rbStyleNight_clicked()
+{
+    s_SettingsStruct.m_Style = StyleEnum::STYLE_NIGHT;
+    CheckIfSomethingWasChanged();
+}
