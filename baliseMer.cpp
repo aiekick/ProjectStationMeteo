@@ -240,7 +240,7 @@ QChartView* BaliseMer::displayDetailedChart()
     QValueAxis* axisY_Humi = new QValueAxis;
     QValueAxis* axisX = new QValueAxis;
 
-    axisY_Temps->setRange(minTemp - 0.1, maxTemp + 0.1);
+    axisY_Temps->setRange(minTemp - 0.3, maxTemp + 0.3);
     axisY_Press->setRange(minPress - 1, maxPress + 1);
     axisY_Humi->setRange(minHumi - 10, maxHumi + 10);
 
@@ -286,23 +286,23 @@ QChartView* BaliseMer::displayDetailedChart()
 
 QChartView* BaliseMer::humidityChart()
 {
-    QSplineSeries* serieHumi = new QSplineSeries();
+    QSplineSeries* serie = new QSplineSeries();
  
-    int minHumi = 100;
-    int maxHumi = 0;
+    int min = 100;
+    int max = 0;
     for (int i = 0; i < getHistory()->size(); i++)
     {
-        serieHumi->append(i, getHistory()->at(i).getHumidity());
-        if (getHistory()->at(i).getHumidity() < minHumi)
+        serie->append(i, getHistory()->at(i).getHumidity());
+        if (getHistory()->at(i).getHumidity() < min)
         {
-            minHumi = getHistory()->at(i).getHumidity();
+            min = getHistory()->at(i).getHumidity();
         }
-        if (getHistory()->at(i).getHumidity() > maxHumi)
+        if (getHistory()->at(i).getHumidity() > max)
         {
-            maxHumi = getHistory()->at(i).getHumidity();
+            max = getHistory()->at(i).getHumidity();
         }
         qDebug() << "humi: " << getHistory()->at(i).getHumidity();
-        qDebug() << "humi:" << serieHumi->at(i);
+        qDebug() << "humi:" << serie->at(i);
     }
 
     /*
@@ -334,24 +334,26 @@ QChartView* BaliseMer::humidityChart()
 
 
     // Define the color and thickness of the curve
-    QPen pen(QColor(8, 107, 142));
+    QPen pen(QColor(8,207,217));
     pen.setWidth(3);
-    serieHumi->setPen(pen);
+    serie->setPen(pen);
     
     // Define the background color
     QLinearGradient backgroundColor;
-    backgroundColor.setStart(serieHumi->at(0));
-    backgroundColor.setFinalStop(serieHumi->at(getHistory()->size() - 1));
+    backgroundColor.setStart(serie->at(0));
+    backgroundColor.setFinalStop(serie->at(getHistory()->size() - 1));
     backgroundColor.setColorAt(0.0, QColor(45, 46, 48));
 
     QChart* chart = new QChart();
-    chart->addSeries(serieHumi);
+    chart->addSeries(serie);
     chart->legend()->hide();
     chart->createDefaultAxes();
     chart->axisX()->hide();
     chart->axisY()->hide();
-    chart->axes(Qt::Vertical).first()->setRange(minHumi - 1, maxHumi + 1);
+    chart->axes(Qt::Vertical).first()->setRange(min - 1, max + 1);
     chart->setBackgroundBrush(backgroundColor);
+    chart->layout()->setContentsMargins(0, 0, 0, 0);
+    chart->setBackgroundRoundness(0);
 
     QChartView* chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
@@ -361,95 +363,21 @@ QChartView* BaliseMer::humidityChart()
 
 QChartView* BaliseMer::pressureChart()
 {
-    QSplineSeries* seriePress = new QSplineSeries();
-    int minHumi = 2000;
-    int maxHumi = 0;
-    for (int i = 0; i < getHistory()->size(); i++)
-    {
-        seriePress->append(i, getHistory()->at(i).getPressure());
-        if (getHistory()->at(i).getPressure() < minHumi)
-        {
-            minHumi = getHistory()->at(i).getPressure();
-        }
-        if (getHistory()->at(i).getPressure() > maxHumi)
-        {
-            maxHumi = getHistory()->at(i).getPressure();
-        }
-        qDebug() << "humi: " << getHistory()->at(i).getPressure();
-        qDebug() << "humi:" << seriePress->at(i);
-    }
-
-    /*
-    ///// OK mais moche /////
-    QAreaSeries* series = new QAreaSeries(serieHumi);
-    QPen pen(QColor(8, 107, 142));
-    pen.setWidth(3);
-    series->setPen(pen);
-
-    QLinearGradient plotBackground;
-    plotBackground.setStart(serieHumi->at(0));
-    plotBackground.setFinalStop(serieHumi->at(getHistory()->size() - 1));
-    plotBackground.setColorAt(0.0, QColor(38,57,65));
-    series->setBrush(plotBackground);
-
-    QLinearGradient backgroundGradient;
-    backgroundGradient.setStart(serieHumi->at(0));
-    backgroundGradient.setFinalStop(serieHumi->at(getHistory()->size() - 1));
-    backgroundGradient.setColorAt(0.0, QColor(45, 46, 48));
-
-    QChart* chart = new QChart();
-    chart->addSeries(series);
-    chart->legend()->hide();
-    chart->createDefaultAxes();
-    chart->axisX()->hide();
-    chart->axisY()->hide();
-    chart->axes(Qt::Vertical).first()->setRange(minHumi - 1, maxHumi + 1);
-    chart->setBackgroundBrush(backgroundGradient);*/
-
-
-    // Define the color and thickness of the curve
-    QPen pen(QColor(8, 107, 142));
-    pen.setWidth(3);
-    seriePress->setPen(pen);
-
-    // Define the background color
-    QLinearGradient backgroundColor;
-    backgroundColor.setStart(seriePress->at(0));
-    backgroundColor.setFinalStop(seriePress->at(getHistory()->size() - 1));
-    backgroundColor.setColorAt(0.0, QColor(45, 46, 48));
-
-    QChart* chart = new QChart();
-    chart->addSeries(seriePress);
-    chart->legend()->hide();
-    chart->createDefaultAxes();
-    chart->axisX()->hide();
-    chart->axisY()->hide();
-    chart->axes(Qt::Vertical).first()->setRange(minHumi - 1, maxHumi + 1);
-    chart->setBackgroundBrush(backgroundColor);
-
-    QChartView* chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing);
-
-    return chartView;
-}
-
-QChartView* BaliseMer::temperatureChart()
-{
     QSplineSeries* serie = new QSplineSeries();
-    int min = 1000;
-    int max = -1000;
+    int min = 2000;
+    int max = 0;
     for (int i = 0; i < getHistory()->size(); i++)
     {
-        serie->append(i, getHistory()->at(i).getTemperatureCelsius());
+        serie->append(i, getHistory()->at(i).getPressure());
         if (getHistory()->at(i).getPressure() < min)
         {
-            min = getHistory()->at(i).getTemperatureCelsius();
+            min = getHistory()->at(i).getPressure();
         }
-        if (getHistory()->at(i).getTemperatureCelsius() > max)
+        if (getHistory()->at(i).getPressure() > max)
         {
-            max = getHistory()->at(i).getTemperatureCelsius();
+            max = getHistory()->at(i).getPressure();
         }
-        qDebug() << "humi: " << getHistory()->at(i).getTemperatureCelsius();
+        qDebug() << "humi: " << getHistory()->at(i).getPressure();
         qDebug() << "humi:" << serie->at(i);
     }
 
@@ -482,7 +410,7 @@ QChartView* BaliseMer::temperatureChart()
 
 
     // Define the color and thickness of the curve
-    QPen pen(QColor(8, 107, 142));
+    QPen pen(QColor(206,4,234));
     pen.setWidth(3);
     serie->setPen(pen);
 
@@ -500,6 +428,86 @@ QChartView* BaliseMer::temperatureChart()
     chart->axisY()->hide();
     chart->axes(Qt::Vertical).first()->setRange(min - 1, max + 1);
     chart->setBackgroundBrush(backgroundColor);
+    chart->layout()->setContentsMargins(0, 0, 0, 0);
+    chart->setBackgroundRoundness(0);
+
+    QChartView* chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    
+
+    return chartView;
+}
+
+QChartView* BaliseMer::temperatureChart()
+{
+    QSplineSeries* serie = new QSplineSeries();
+    double min = 1000;
+    double max = -1000;
+    for (int i = 0; i < getHistory()->size(); i++)
+    {
+        serie->append(i, getHistory()->at(i).getTemperatureCelsius());
+        if (getHistory()->at(i).getTemperatureCelsius() < min)
+        {
+            min = getHistory()->at(i).getTemperatureCelsius();
+        }
+        if (getHistory()->at(i).getTemperatureCelsius() > max)
+        {
+            max = getHistory()->at(i).getTemperatureCelsius();
+        }
+        qDebug() << "min" << min << "max" << max;
+    }
+
+    /*
+    ///// OK mais moche /////
+    QAreaSeries* series = new QAreaSeries(serieHumi);
+    QPen pen(QColor(8, 107, 142));
+    pen.setWidth(3);
+    series->setPen(pen);
+
+    QLinearGradient plotBackground;
+    plotBackground.setStart(serieHumi->at(0));
+    plotBackground.setFinalStop(serieHumi->at(getHistory()->size() - 1));
+    plotBackground.setColorAt(0.0, QColor(38,57,65));
+    series->setBrush(plotBackground);
+
+    QLinearGradient backgroundGradient;
+    backgroundGradient.setStart(serieHumi->at(0));
+    backgroundGradient.setFinalStop(serieHumi->at(getHistory()->size() - 1));
+    backgroundGradient.setColorAt(0.0, QColor(45, 46, 48));
+
+    QChart* chart = new QChart();
+    chart->addSeries(series);
+    chart->legend()->hide();
+    chart->createDefaultAxes();
+    chart->axisX()->hide();
+    chart->axisY()->hide();
+    chart->axes(Qt::Vertical).first()->setRange(minHumi - 1, maxHumi + 1);
+    chart->setBackgroundBrush(backgroundGradient);*/
+
+
+    // Define the color and thickness of the curve
+    QPen pen(QColor(53, 190, 7));
+    pen.setWidth(3);
+    serie->setPen(pen);
+
+    // Define the background color
+    QLinearGradient backgroundColor;
+    backgroundColor.setStart(serie->at(0));
+    backgroundColor.setFinalStop(serie->at(getHistory()->size() - 1));
+    backgroundColor.setColorAt(0.0, QColor(45, 46, 48));
+
+    QChart* chart = new QChart();
+    chart->addSeries(serie);
+    chart->legend()->hide();
+    chart->createDefaultAxes();
+    //chart->axisX()->hide();
+    //chart->axisY()->hide();
+    chart->axisY()->setGridLineVisible(false);
+    chart->axisX()->setGridLineVisible(false);
+    chart->axes(Qt::Vertical).first()->setRange(min - 0.2, max + 0.2);
+    chart->setBackgroundBrush(backgroundColor);
+    chart->layout()->setContentsMargins(0, 0, 0, 0);
+    chart->setBackgroundRoundness(0);
 
     QChartView* chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
