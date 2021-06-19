@@ -7,7 +7,6 @@
 #include "GlobalSettings.h"
 #include "balisevillepanel.h"
 #include "baliseMerPanel.h"
-#include "StyleManager.h"
 #include "settingsdlg.h"
 #include "aboutdialog.h"
 
@@ -16,9 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    StyleManager::Instance()->Init();
     GlobalSettings::Instance()->LoadConfigFile();
-    StyleManager::Instance()->ApplyStyle(GlobalSettings::Instance()->getStyle());
 
     m_Timer.setParent(this);
     connect(&m_Timer, SIGNAL(timeout()), this, SLOT(on_timeout()));
@@ -30,9 +27,25 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     GlobalSettings::Instance()->SaveConfigFile();
-    StyleManager::Instance()->Unit();
 
     delete ui;
+}
+
+////////////////////////////////////////
+/// EVENTS
+////////////////////////////////////////
+
+void MainWindow::changeEvent(QEvent *e)
+{
+    QWidget::changeEvent(e);
+    switch (e->type())
+    {
+    case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        break;
+    default:
+        break;
+   }
 }
 
 ////////////////////////////////////////

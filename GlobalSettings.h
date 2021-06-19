@@ -16,6 +16,12 @@ enum class TemperatureUnitEnum
     UNIT_KELVIN
 };
 
+enum class StyleEnum
+{
+    STYLE_DAY = 0,
+    STYLE_NIGHT
+};
+
 class GlobalSettings
 {
 public:
@@ -29,7 +35,7 @@ public:
         QString m_IP = "78.199.78.207";
         QString m_Port = "48001";
         QString m_Language = "FR";
-        QString m_Style = "Default";
+        StyleEnum m_Style = StyleEnum::STYLE_DAY;
         int m_RefreshDelayInMinutes = 10;
 
         bool isDifferent(const SettingsStruct& vSettingsStruct) const;
@@ -47,7 +53,7 @@ public:
     const FormatHourEnum& getFormatHourEnum() const;
     const TemperatureUnitEnum& getTemperatureUnit() const;
     const QString& getFontFamily() const;
-    const QString& getStyle() const;
+    const StyleEnum& getStyle() const;
     const QString& getLanguage() const;
     const QString& getApiKey() const;
     const QString& getVille() const;
@@ -59,7 +65,7 @@ public:
     void setFormatHourEnum(const FormatHourEnum& vFormatHourEnum);
     void setTemperatureUnit(const TemperatureUnitEnum& vTemperatureUnit);
     void setFontFamily(const QString &vFontFamily);
-    void setStyle(const QString &vStyle);
+    void setStyle(const StyleEnum &vStyle);
     void setLanguage(const QString &vLanguage);
     void setApiKey(const QString &vApiKey);
     void setVille(const QString &vVille);
@@ -67,6 +73,8 @@ public:
     void setPort(const QString &vPort);
     void setRefreshDelayInMinutes(const uint32_t vRefreshDelayInSeconds);
     void setSettingsStruct(const SettingsStruct& vSettingsStruct);
+
+    void ApplyStyle(const StyleEnum& vStyleToApply);
 
 public:
     static GlobalSettings* Instance()
