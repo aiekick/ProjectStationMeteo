@@ -40,6 +40,7 @@ void BaliseMerPanel::updateData()
     // Pressure
     QString pressure = QString::number(baliseMer.getDatas().getPressure());
     this->ui->label_Pressure_Mer->setText(pressure + " hPa");
+    qDebug() <<"_______________" << pressure;
 
     //Humidity
     QString humidity = QString::number(baliseMer.getDatas().getHumidity());
@@ -52,11 +53,27 @@ void BaliseMerPanel::updateData()
     // Display weather icon depending on the pressure
     this->ui->label_2->setPixmap(baliseMer.displayWeatherIcon());
 
-    // Display detailed chart
-    this->ui->gridLayout->addWidget(baliseMer.displayDetailedChart(), 0, 0); // Integrated to the main window
 
     // Clear history
     //baliseMer.getHistory()->clear(); // A deplacer ailleurs
+
+
+
+    /////////////////////////////////////////////////////////////////////
+    // Humidity chart
+    this->ui->verticalLayout_Graph_Humidity->addWidget(baliseMer.humidityChart(), 0, 0);
+
+    // Pressure chart
+    this->ui->verticalLayout_Graph_Pressure->addWidget(baliseMer.pressureChart(), 0, 0);
+
+    // Temperature chart
+    this->ui->verticalLayout_Graph_Temperature->addWidget(baliseMer.temperatureChart(), 0, 0);
+   
+    
+
+
+
+
 }
 
 void BaliseMerPanel::on_pushButton_See_Graph_Details_clicked()

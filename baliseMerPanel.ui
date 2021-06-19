@@ -16,115 +16,24 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>600</x>
-     <y>120</y>
-     <width>47</width>
-     <height>13</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Humidité :</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>340</x>
-     <y>120</y>
-     <width>81</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Temperature</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_Humidity_Mer">
-   <property name="geometry">
-    <rect>
-     <x>590</x>
-     <y>70</y>
-     <width>111</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Humidity_value</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>480</x>
-     <y>120</y>
-     <width>47</width>
-     <height>13</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Pression : </string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>400</x>
-     <y>160</y>
+     <x>270</x>
+     <y>70</y>
      <width>101</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>Mean temperature &lt;br&gt;over last 12 hours</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_Mean_Temperature_Mer">
-   <property name="geometry">
-    <rect>
-     <x>520</x>
-     <y>170</y>
-     <width>47</width>
-     <height>13</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>TextLabel</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_Pressure_Mer">
-   <property name="geometry">
-    <rect>
-     <x>450</x>
-     <y>70</y>
-     <width>101</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Pressure_value</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_Temperature_Mer">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>70</y>
-     <width>111</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Temperature_value</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Temperature&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>20</y>
+     <x>250</x>
+     <y>10</y>
      <width>121</width>
      <height>121</height>
     </rect>
@@ -136,30 +45,228 @@
     <string>Weather_Icon</string>
    </property>
   </widget>
-  <widget class="QWidget" name="gridLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>650</x>
-     <y>50</y>
-     <width>301</width>
-     <height>191</height>
-    </rect>
-   </property>
-   <layout class="QGridLayout" name="gridLayout"/>
-  </widget>
   <widget class="QPushButton" name="pushButton_See_Graph_Details">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>200</y>
-     <width>121</width>
-     <height>31</height>
+     <x>20</x>
+     <y>20</y>
+     <width>101</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
     <string>See Graph Details</string>
    </property>
   </widget>
+  <widget class="QWidget" name="verticalLayoutWidget_5">
+   <property name="geometry">
+    <rect>
+     <x>760</x>
+     <y>10</y>
+     <width>141</width>
+     <height>211</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="BlocHumidite">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Humidité actuelle</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_Humidity_Mer">
+          <property name="text">
+           <string>Humidity_value</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_Graph_Humidity"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget_8">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>10</y>
+     <width>141</width>
+     <height>211</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_3">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Pression actuelle </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_Pressure_Mer">
+          <property name="text">
+           <string>Pressure_value</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_Graph_Pressure"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>10</y>
+     <width>141</width>
+     <height>211</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_4">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
+      <item>
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_Temp">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Moyenne (12h)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_Mean_Temperature_Mer">
+          <property name="text">
+           <string>Meant Temp &lt;br&gt;Value</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_6">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_Graph_Temperature"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_Temperature_Mer">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>140</y>
+     <width>94</width>
+     <height>46</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Temperature_value</string>
+   </property>
+  </widget>
+  <zorder>label_2</zorder>
+  <zorder>pushButton_See_Graph_Details</zorder>
+  <zorder>verticalLayoutWidget_5</zorder>
+  <zorder>verticalLayoutWidget_8</zorder>
+  <zorder>verticalLayoutWidget_2</zorder>
+  <zorder>label_Temperature_Mer</zorder>
+  <zorder>label_3</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
