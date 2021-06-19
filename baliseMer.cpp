@@ -341,7 +341,7 @@ QChartView* BaliseMer::humidityChart()
     // Define the background color
     QLinearGradient backgroundColor;
     backgroundColor.setStart(serieHumi->at(0));
-    backgroundColor.setFinalStop(serieHumi->at(getHistory()->size() - 1));
+    backgroundColor.setFinalStop(serieHumi->at(getHistory()->size() - 1U));
     backgroundColor.setColorAt(0.0, QColor(45, 46, 48));
 
     QChart* chart = new QChart();
@@ -415,7 +415,7 @@ QChartView* BaliseMer::pressureChart()
     // Define the background color
     QLinearGradient backgroundColor;
     backgroundColor.setStart(seriePress->at(0));
-    backgroundColor.setFinalStop(seriePress->at(getHistory()->size() - 1));
+    backgroundColor.setFinalStop(seriePress->at(getHistory()->size() - 1U));
     backgroundColor.setColorAt(0.0, QColor(45, 46, 48));
 
     QChart* chart = new QChart();
@@ -489,7 +489,7 @@ QChartView* BaliseMer::temperatureChart()
     // Define the background color
     QLinearGradient backgroundColor;
     backgroundColor.setStart(serie->at(0));
-    backgroundColor.setFinalStop(serie->at(getHistory()->size() - 1));
+    backgroundColor.setFinalStop(serie->at(getHistory()->size() - 1U));
     backgroundColor.setColorAt(0.0, QColor(45, 46, 48));
 
     QChart* chart = new QChart();
