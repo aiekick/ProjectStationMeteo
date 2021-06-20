@@ -137,12 +137,12 @@ void CustomGraph::SetBackgroundColor(const QColor& vBackgroundColor)
 
 QSize CustomGraph::minimumSizeHint() const
 {
-    return QSize(200, 100);
+    return QSize(0, 0);
 }
 
 QSize CustomGraph::sizeHint() const
 {
-    return QSize(400, 200);
+    return QSize(100, 100);
 }
 
 void CustomGraph::setFont(const QFont& vFont)
