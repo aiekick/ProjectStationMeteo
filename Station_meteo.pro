@@ -17,6 +17,7 @@ SOURCES += \
     baliseMerPanel.cpp \
     baliseVille.cpp \
     balisevillepanel.cpp \
+    customgraph.cpp \
     datasMeteo.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -32,6 +33,7 @@ HEADERS += \
     baliseMerPanel.h \
     baliseVille.h \
     balisevillepanel.h \
+    customgraph.h \
     datasMeteo.h \
     mainwindow.h \
     settingsdlg.h \

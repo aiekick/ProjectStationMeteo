@@ -11,6 +11,7 @@ SettingsDlg::SettingsDlg(QWidget *parent) :
     ui(new Ui::SettingsDlg)
 {
     ui->setupUi(this);
+    ui->retranslateUi(this);
 
     Init();
 }

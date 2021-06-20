@@ -6,6 +6,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
     ui(new Ui::AboutDialog)
 {
     ui->setupUi(this);
+    ui->retranslateUi(this);
 }
 
 AboutDialog::~AboutDialog()
@@ -18,3 +19,19 @@ void AboutDialog::on_closeBtn_clicked()
     close();
 }
 
+////////////////////////////////////////
+/// EVENTS
+////////////////////////////////////////
+
+void AboutDialog::changeEvent(QEvent *e)
+{
+    QWidget::changeEvent(e);
+    switch (e->type())
+    {
+    case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        break;
+    default:
+        break;
+   }
+}

@@ -18,6 +18,7 @@ public:
     ~BaliseVillePanel();
 
     void updatedataville();
+    void changeEvent(QEvent *e) override;
 
 private:
     Ui::BaliseVillePanel *ui;

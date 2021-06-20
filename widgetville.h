@@ -18,6 +18,7 @@ public:
     ~WidgetVille();
 
     void remplissage(DatasMeteo);
+    void changeEvent(QEvent *e) override;
 
 private:
     Ui::WidgetVille *ui;

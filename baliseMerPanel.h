@@ -17,6 +17,7 @@ public:
     ~BaliseMerPanel();
 
 	void updateData(); //Print data to the panel
+    void changeEvent(QEvent *e) override;
 
 private slots:
     void on_pushButton_See_Graph_Details_clicked();

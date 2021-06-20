@@ -28,5 +28,6 @@
         <file>icons/13n.png</file>
         <file>icons/50d.png</file>
         <file>icons/50n.png</file>
+        <file>icons/ChartCurve.png</file>
     </qresource>
 </RCC>

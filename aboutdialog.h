@@ -15,6 +15,8 @@ public:
     explicit AboutDialog(QWidget *parent = nullptr);
     ~AboutDialog();
 
+    void changeEvent(QEvent *e) override;
+
 private slots:
     void on_closeBtn_clicked();
 

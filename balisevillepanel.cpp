@@ -15,6 +15,7 @@ BaliseVillePanel::BaliseVillePanel(QWidget *parent) :
     ui(new Ui::BaliseVillePanel)
 {
     ui->setupUi(this);
+    ui->retranslateUi(this);
 }
 
 BaliseVillePanel::~BaliseVillePanel()
@@ -30,4 +31,21 @@ void BaliseVillePanel::updatedataville()
     ui->jour3->remplissage(objville.recupimage(objville.getDatas3()));
     ui->jour4->remplissage(objville.recupimage(objville.getDatas4()));
     ui->jour5->remplissage(objville.recupimage(objville.getDatas5()));
+}
+
+////////////////////////////////////////
+/// EVENTS
+////////////////////////////////////////
+
+void BaliseVillePanel::changeEvent(QEvent *e)
+{
+    QWidget::changeEvent(e);
+    switch (e->type())
+    {
+    case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        break;
+    default:
+        break;
+   }
 }

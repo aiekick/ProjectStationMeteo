@@ -14,6 +14,7 @@
 
 #include <QtCharts>
 #include <QSplineSeries>
+#include <QVector>
 
 //#include <qgridlayout.h>
 
@@ -21,6 +22,7 @@ BaliseMerPanel::BaliseMerPanel(QWidget *parent)
     : QWidget(parent), ui(new Ui::baliseMerPanel)
 {
 	ui->setupUi(this);
+    ui->retranslateUi(this);
 }
 
 BaliseMerPanel::~BaliseMerPanel()
@@ -68,17 +70,38 @@ void BaliseMerPanel::updateData()
 
     // Temperature chart
     this->ui->verticalLayout_Graph_Temperature->addWidget(baliseMer.temperatureChart(), 0, 0);
-   
-    
 
 
-
-
+    /*const auto history = baliseMer.getHistory();
+    QVector<double> serie;
+    for(size_t i = 0; i < history->size(); i++)
+    {
+        const auto& dm = history->at(i);
+        serie.push_back(dm.getTemperatureCelsius());
+    }
+    this->ui->widgetGraph->SetSerie(serie);*/
 }
 
 void BaliseMerPanel::on_pushButton_See_Graph_Details_clicked()
 {
     QChartView* view = baliseMer.displayDetailedChart();
     view->show();
+}
+
+////////////////////////////////////////
+/// EVENTS
+////////////////////////////////////////
+
+void BaliseMerPanel::changeEvent(QEvent *e)
+{
+    QWidget::changeEvent(e);
+    switch (e->type())
+    {
+    case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        break;
+    default:
+        break;
+   }
 }
 

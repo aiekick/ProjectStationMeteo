@@ -6,6 +6,7 @@ WidgetVille::WidgetVille(QWidget *parent) :
     ui(new Ui::WidgetVille)
 {
     ui->setupUi(this);
+    ui->retranslateUi(this);
 }
 
 WidgetVille::~WidgetVille()
@@ -21,4 +22,21 @@ void WidgetVille::remplissage(DatasMeteo vDatas)
     ui->textdateville->setText(vDatas.getDate());
     ui->textdescville->setText(vDatas.getDescription());
     ui->labelicone->setPixmap(vDatas.getImage());
+}
+
+////////////////////////////////////////
+/// EVENTS
+////////////////////////////////////////
+
+void WidgetVille::changeEvent(QEvent *e)
+{
+    QWidget::changeEvent(e);
+    switch (e->type())
+    {
+    case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        break;
+    default:
+        break;
+   }
 }
