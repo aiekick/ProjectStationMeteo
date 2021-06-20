@@ -16,6 +16,7 @@ private :
     QString description;                // description du temps
     QString icon;                       // icone pour les données
     QPixmap imagetemp;
+
 public:
 	DatasMeteo();
     DatasMeteo(QString, double, double, double);
@@ -34,7 +35,7 @@ public:
     const QString &getIcon() const;
 
     QString getTemperatureToStringFromSettings();
- void setImage(const QPixmap& vimage);
+    void setImage(const QPixmap& vimage);
     void setDate(const QString& vdate);
     void setDescription(const QString& vPicto);
     void setVille(const QString& vNewVille);

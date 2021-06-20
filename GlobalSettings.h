@@ -76,6 +76,8 @@ public:
 
     void ApplyStyle(const StyleEnum& vStyleToApply);
 
+    QString GetThemeIconPath(const QString& vIcon);
+
 public:
     static GlobalSettings* Instance()
     {

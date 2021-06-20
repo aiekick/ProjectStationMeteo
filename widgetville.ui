@@ -107,16 +107,25 @@
      </item>
      <item row="3" column="1">
       <widget class="QLabel" name="labelicone">
+       <property name="font">
+        <font>
+         <stylestrategy>PreferAntialias</stylestrategy>
+        </font>
+       </property>
        <property name="autoFillBackground">
         <bool>false</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true">QWidget{
-background: rgb(255, 255,255);
-}</string>
+        <string notr="true"/>
        </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="theme.qrc">:/theme/icons/White_bg/03d.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -156,6 +165,8 @@ background: rgb(255, 255,255);
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="theme.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -30,14 +30,17 @@ QString DatasMeteo::getDate() const
     return this-> date;
 
 }
+
 QString DatasMeteo::getDescription() const
 {
     return this->description;
 }
+
 double DatasMeteo::getTemperatureCelsius() const
 {
     return TruncDoubleToPrecision(this->temperatureCelsius, TRUNC_PRECISION);
 }
+
 double DatasMeteo::getTemperatureKelvin() const
 {
     // https://fr.wikipedia.org/wiki/Kelvin
@@ -54,6 +57,7 @@ int DatasMeteo::getHumidity() const
 {
     return this->humidity;
 }
+
 int DatasMeteo::getPressure() const
 {
     return this->pressure;
@@ -85,13 +89,10 @@ QString DatasMeteo::getVille() const
 /// SETTERS
 ////////////////////////////////////////////////////
 
-
-
 void DatasMeteo::setImage(const QPixmap &vimage)
 {
-    imagetemp=vimage;
+    imagetemp = vimage;
 }
-
 
 void DatasMeteo::setIcon(const QString &newIcon)
 {

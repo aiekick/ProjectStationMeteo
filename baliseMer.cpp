@@ -113,15 +113,15 @@ QPixmap BaliseMer::displayWeatherIcon()
     const auto _pressure = datas.getPressure();
     if (_pressure <= 1000)
     {
-        picture.load(":/icons/rain.png");
+        picture.load(GlobalSettings::Instance()->GetThemeIconPath("10d")); // ou 010n si on est le soir
     }
     else if ((_pressure > 1000) && (_pressure <= 1020))
     {
-        picture.load(":/icons/clouds.png");
+        picture.load(GlobalSettings::Instance()->GetThemeIconPath("04d")); // ou 04n si on est le soir
     }
     else
     {
-        picture.load(":/icons/sun.png");
+        picture.load(GlobalSettings::Instance()->GetThemeIconPath("01d")); // ou 01n si on est le soir
     }
 
     return picture.scaledToHeight(90);

@@ -16,8 +16,6 @@
 #include <QSplineSeries>
 #include <QVector>
 
-//#include <qgridlayout.h>
-
 BaliseMerPanel::BaliseMerPanel(QWidget *parent)
     : QWidget(parent), ui(new Ui::baliseMerPanel)
 {
@@ -55,11 +53,8 @@ void BaliseMerPanel::updateData()
     // Display weather icon depending on the pressure
     this->ui->label_2->setPixmap(baliseMer.displayWeatherIcon());
 
-
     // Clear history
     //baliseMer.getHistory()->clear(); // A deplacer ailleurs
-
-
 
     /////////////////////////////////////////////////////////////////////
     // Humidity chart
@@ -70,16 +65,6 @@ void BaliseMerPanel::updateData()
 
     // Temperature chart
     this->ui->verticalLayout_Graph_Temperature->addWidget(baliseMer.temperatureChart(), 0, 0);
-
-
-    /*const auto history = baliseMer.getHistory();
-    QVector<double> serie;
-    for(size_t i = 0; i < history->size(); i++)
-    {
-        const auto& dm = history->at(i);
-        serie.push_back(dm.getTemperatureCelsius());
-    }
-    this->ui->widgetGraph->SetSerie(serie);*/
 }
 
 void BaliseMerPanel::on_pushButton_See_Graph_Details_clicked()

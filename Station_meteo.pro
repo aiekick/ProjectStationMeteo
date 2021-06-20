@@ -59,5 +59,6 @@ TRANSLATIONS += \
 RESOURCES += \
     langs.qrc \
     res.qrc \
-    styles.qrc
+    styles.qrc \
+    theme.qrc
 

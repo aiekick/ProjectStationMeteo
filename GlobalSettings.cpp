@@ -231,3 +231,26 @@ void GlobalSettings::ApplyStyle(const StyleEnum& vStyleToApply)
        qApp->setStyleSheet("");
     }
 }
+
+/////////////////////////////////////////////
+/// THEME
+/////////////////////////////////////////////
+
+QString GlobalSettings::GetThemeIconPath(const QString& vIconName)
+{
+    QString res = ":/theme/icons/";
+
+    switch (m_SettingsStruct.m_Style)
+    {
+    case StyleEnum::STYLE_DAY:
+        res += "White_bg";
+        break;
+    case StyleEnum::STYLE_NIGHT:
+        res += "Black_bg";
+        break;
+    }
+
+    res += "/" + vIconName + ".png";
+
+    return res;
+}

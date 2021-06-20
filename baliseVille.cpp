@@ -332,7 +332,7 @@ void BaliseVille::RecuperationApi()
 DatasMeteo BaliseVille::recupimage(DatasMeteo dataimage)
 {
     QPixmap image;
-    image.load(":/icons/"+dataimage.getIcon()+".png");
+    image.load(GlobalSettings::Instance()->GetThemeIconPath(dataimage.getIcon()));
     dataimage.setImage(image.scaledToHeight(90));
     return dataimage;
 }
