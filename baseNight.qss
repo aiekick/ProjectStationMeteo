@@ -83,6 +83,11 @@ QWidget#widgetMerMain
 	background-color: #1E2F43;
 	border-radius:5px;
 }
+QWidget#widgetVille
+{
+	background-color: #1E2F43;
+	border-radius:5px;
+}
 QComboBox 
 {
 	color: #000000;
@@ -114,6 +119,11 @@ QPlainTextEdit
 QScrollBar 
 {
 	background-color: #A9DBF6;
+}
+QWidget#jouractu
+{
+	background-color: #1E2F43;
+	border-radius:5px;
 }
 QWidget#jour1
 {

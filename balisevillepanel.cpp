@@ -26,7 +26,8 @@ BaliseVillePanel::~BaliseVillePanel()
 
 void BaliseVillePanel::updatedataville()
 {
-    objville.RecuperationApi();
+    objville.Recuperation_Api_Current();
+    objville.Recuperation_Api_ForeCast();
 
     ApplyStyle();
 }

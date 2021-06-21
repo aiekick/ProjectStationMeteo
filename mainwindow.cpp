@@ -127,6 +127,8 @@ void MainWindow::on_ApplySettingsChange()
 ///
 void MainWindow::UpdateMainWindow()
 {
+    //ui->labelIP->setText(tr("Meteo sur balise ") + GlobalSettings::Instance()->getIP());
+    //ui->labelVille->setText(tr("Meteo pour ") + GlobalSettings::Instance()->getVille());
     ui->baliseMerPanel->updateData();
     ui->baliseVillePanel->updatedataville();
 }

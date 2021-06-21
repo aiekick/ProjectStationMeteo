@@ -24,7 +24,8 @@ public:
     double getDatas_Temperature();
     int getDatas_Humidity();
     int getDatas_Pressure();
-    void RecuperationApi();
+    void Recuperation_Api_Current();
+    void Recuperation_Api_ForeCast();
     DatasMeteo recupimage(DatasMeteo);
 
     void setDatasJourActu(DatasMeteo);

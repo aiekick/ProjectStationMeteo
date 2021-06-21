@@ -57,7 +57,54 @@ void BaliseVille::setDatasJourActu(DatasMeteo v_DatasMeteo)
     this->datasJourActu = v_DatasMeteo;
 }
 
-void BaliseVille::RecuperationApi()
+void BaliseVille::Recuperation_Api_Current()
+{
+    /////////// send api request ///////////////////////
+
+    QNetworkRequest request(getWeatherDayUrl());
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    /////////// wait response //////////////////////////
+
+    QNetworkAccessManager nam;
+    QNetworkReply *reply = nam.get(request);
+    while(!reply->isFinished())
+    {
+        qApp->processEvents();
+    }
+    reply->deleteLater();
+
+    /////////// response received //////////////////////
+
+    QByteArray response_data = reply->readAll();
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
+    QJsonObject jo_response = jsonResponse.object();
+    if (!jo_response.isEmpty())
+    {
+        QJsonArray ja_weather = jo_response["weather"].toArray();
+        if (!ja_weather.isEmpty())
+        {
+            QJsonObject jo_weather = ja_weather[0].toObject();
+            if (!jo_weather.isEmpty())
+            {
+                datasJourActu.setIcon(jo_weather["icon"].toString());
+                datasJourActu.setDescription( jo_weather["description"].toString());
+            }
+        }
+
+        QJsonObject jo_main = jo_response["main"].toObject();
+        if (!jo_main.isEmpty())
+        {
+            datasJourActu.setTemperatureKelvin(jo_main["temp"].toDouble());
+            datasJourActu.setPressure(jo_main["pressure"].toInt());
+            datasJourActu.setHumidity(jo_main["humidity"].toInt());
+        }
+
+        datasJourActu.setVille(jo_response["name"].toString());
+    }
+}
+
+void BaliseVille::Recuperation_Api_ForeCast()
 {
     int i=0;
     int j=1;

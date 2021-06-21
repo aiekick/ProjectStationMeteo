@@ -43,7 +43,7 @@ void WidgetVilleCurrent::remplissage(DatasMeteo vDatas)
     ui->texttempville->setText(vDatas.getTemperatureToStringFromSettings());
     ui->textpressville->setText(QString::number((vDatas.getPressure())) + " hpa");
     ui->texthumiville->setText(QString::number((vDatas.getHumidity())) + " %");
-    ui->textdateville->setText(vDatas.getDate());
+    ui->textdateville->setText(vDatas.getVille());
     ui->textdescville->setText(vDatas.getDescription());
     ui->labelicone->setPixmap(vDatas.getImage());
 }
