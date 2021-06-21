@@ -86,6 +86,7 @@ void BaliseMerPanel::on_pushButton_See_Graph_Details_clicked()
     QChartView* view = baliseMer.displayDetailedChart();
     view->show();
 }
+
 void BaliseMerPanel::changeEvent(QEvent *e)
 {
     QWidget::changeEvent(e);
