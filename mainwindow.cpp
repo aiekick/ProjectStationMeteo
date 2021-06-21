@@ -150,6 +150,12 @@ void MainWindow::UpdateDateTime()
     }
 }
 
+////////////////////////////////////////
+/// STYLE DOCK PANE
+////////////////////////////////////////
+
+#ifdef USE_STYLE_DOCK_PANE
+
 void MainWindow::on_openDayStyle_clicked()
 {
     QString filePathStr = "baseDay.qss";
@@ -171,16 +177,18 @@ void MainWindow::on_openDayStyle_clicked()
 
 void MainWindow::on_saveDayStyle_clicked()
 {
-    QString filePathStr = "baseDay.qss";
-
-    if (!filePathStr.isEmpty())
+    const auto& fc = ui->plainTextEditStyle->toPlainText();
+    if (!fc.isEmpty())
     {
-        QFile fp(filePathStr);
-        if (fp.open(QIODevice::WriteOnly | QIODevice::Text))
+        QString filePathStr = "baseDay.qss";
+        if (!filePathStr.isEmpty())
         {
-            const auto& fc = ui->plainTextEditStyle->toPlainText();
-            fp.write(fc.toLatin1());
-            fp.close();
+            QFile fp(filePathStr);
+            if (fp.open(QIODevice::WriteOnly | QIODevice::Text))
+            {
+                fp.write(fc.toLatin1());
+                fp.close();
+            }
         }
     }
 }
@@ -206,16 +214,19 @@ void MainWindow::on_openNightStyle_clicked()
 
 void MainWindow::on_saveNightStyle_clicked()
 {
-    QString filePathStr = "baseNight.qss";
-
-    if (!filePathStr.isEmpty())
+    const auto& fc = ui->plainTextEditStyle->toPlainText();
+    if (!fc.isEmpty())
     {
-        QFile fp(filePathStr);
-        if (fp.open(QIODevice::WriteOnly | QIODevice::Text))
+        QString filePathStr = "baseNight.qss";
+        if (!filePathStr.isEmpty())
         {
-            const auto& fc = ui->plainTextEditStyle->toPlainText();
-            fp.write(fc.toLatin1());
-            fp.close();
+            QFile fp(filePathStr);
+            if (fp.open(QIODevice::WriteOnly | QIODevice::Text))
+            {
+                const auto& fc = ui->plainTextEditStyle->toPlainText();
+                fp.write(fc.toLatin1());
+                fp.close();
+            }
         }
     }
 }
@@ -225,4 +236,6 @@ void MainWindow::on_applyBtn_clicked()
     auto plainText = ui->plainTextEditStyle->toPlainText();
     qApp->setStyleSheet(plainText);
 }
+
+#endif
 

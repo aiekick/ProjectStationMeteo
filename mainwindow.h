@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QTimer>
 
+#define USE_STYLE_DOCK_PANE
+
 QT_BEGIN_NAMESPACE
 namespace Ui
 {
@@ -38,11 +40,14 @@ private slots:
     void on_DateTimer_Timeout();
     void on_RefreshTimer_Timeout();
     void on_ApplySettingsChange();
+
+#ifdef USE_STYLE_DOCK_PANE
     void on_openDayStyle_clicked();
     void on_saveDayStyle_clicked();
     void on_openNightStyle_clicked();
     void on_saveNightStyle_clicked();
     void on_applyBtn_clicked();
+#endif
 
 private:
     Ui::MainWindow *ui = nullptr;

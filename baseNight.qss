@@ -103,3 +103,15 @@ QSpinBox
 	color: #000000;
 	background-color: #97CEED;
 }
+QDockWidget
+{
+	background-color:#0B1320;
+}
+QPlainTextEdit
+{
+	background-color: #A9DBF6;
+}
+QScrollBar 
+{
+	background-color: #A9DBF6;
+}

@@ -95,13 +95,13 @@ private:
     Qt::AnchorPoint m_SerieNameAnchorPoint = Qt::AnchorPoint::AnchorTop;
     bool m_DrawSerieName = true;
 
-    int m_CountStepsX = 0;
+    int m_CountStepsX = -1;
     bool m_ShowLinesX = false;
     bool m_ShowValuesX = false;
     double m_RangeInfX = 0.0;
     double m_RangeSupX = 0.0;
 
-    int m_CountStepsY = 0;
+    int m_CountStepsY = -1;
     bool m_ShowLinesY = false;
     bool m_IntersectLinesY = false;
     bool m_ShowValuesY = false;

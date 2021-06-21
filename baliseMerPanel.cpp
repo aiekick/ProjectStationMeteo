@@ -22,7 +22,8 @@ BaliseMerPanel::BaliseMerPanel(QWidget *parent)
     ui->setupUi(this);
     ui->retranslateUi(this);
 
-    ui->customGraphTemperature->SetPadding(40,10,10,20);
+    ui->customGraphTemperature->SetPadding(40,15,10,20);
+    //ui->customGraphTemperature->SetXAxis(11, false, true, 0, 12);
     ui->customGraphTemperature->SetYAxis(1, true, true, 1);
     ui->customGraphTemperature->SetDrawRect(false);
 
@@ -71,7 +72,7 @@ void BaliseMerPanel::updateData()
         serieHumi.push_back(dm.getHumidity());
     }
     ui->customGraphTemperature->SetSerie(serieTemp);
-    ui->customGraphTemperature->SetSerieName(QObject::tr("Temperature moyennes des 12 dernieres heures : ") + meanTemperature);
+    ui->customGraphTemperature->SetSerieName(QObject::tr("Temperature moyenne des 12 dernieres heures : ") + meanTemperature);
     ui->customGraphPressure->SetSerie(seriePres);
     ui->customGraphPressure->SetSerieName(QObject::tr("Pression ") + pressure + " hPa");
     ui->customGraphHumidity->SetSerie(serieHumi);

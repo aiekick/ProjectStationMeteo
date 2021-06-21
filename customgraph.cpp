@@ -235,7 +235,7 @@ void CustomGraph::paintEvent(QPaintEvent* /*event*/)
         painter.save();
         painter.setPen(QPen(QBrush(m_LinesColor), 1.0, Qt::DashLine));
 
-        if (m_CountStepsX)
+        if (m_CountStepsX != -1)
         {
             QFontMetrics fmvx(m_ValuesFont);
             double x = x_left;
@@ -271,7 +271,7 @@ void CustomGraph::paintEvent(QPaintEvent* /*event*/)
             }
         }
 
-        if (m_CountStepsY)
+        if (m_CountStepsY != -1)
         {
             QFontMetrics fmvy(m_ValuesFont);
             double y = y_top;
