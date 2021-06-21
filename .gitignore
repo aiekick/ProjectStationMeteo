@@ -41,9 +41,6 @@ Station_meteo.pro.user
 Station_meteo.sln
 debug/
 release/
-ui_mainwindow.h
-
-/ui_settingsdlg.h
 /.vs
 /debug
 /release
@@ -52,11 +49,14 @@ ui_mainwindow.h
 /Station_meteo.vcxproj
 /Station_meteo.vcxproj.filters
 /Station_meteo.vcxproj.user
+/ui_settingsdlg.h
 /ui_baliseMerPanel.h
 /ui_balisevillepanel.h
 /ui_mainwindow.h
 /ui_widgetville.h
 /ui_aboutdialog.h
+/ui_widgetvillecurrent.h
+/ui_widgetvilleforecast.h
 
 # C++ objects and libs
 *.slo
