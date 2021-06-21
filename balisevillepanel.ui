@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>919</width>
-    <height>392</height>
+    <width>414</width>
+    <height>388</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="WidgetVille" name="jouractu" native="true"/>
+      <widget class="WidgetVilleCurrent" name="jouractu" native="true"/>
      </item>
      <item>
       <spacer name="horizontalSpacer_2">
@@ -65,16 +65,16 @@
         </spacer>
        </item>
        <item>
-        <widget class="WidgetVille" name="jour2" native="true"/>
+        <widget class="WidgetVilleForecast" name="jour1" native="true"/>
        </item>
        <item>
-        <widget class="WidgetVille" name="jour3" native="true"/>
+        <widget class="WidgetVilleForecast" name="jour2" native="true"/>
        </item>
        <item>
-        <widget class="WidgetVille" name="jour4" native="true"/>
+        <widget class="WidgetVilleForecast" name="jour3" native="true"/>
        </item>
        <item>
-        <widget class="WidgetVille" name="jour5" native="true">
+        <widget class="WidgetVilleForecast" name="jour4" native="true">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -82,6 +82,9 @@
           </size>
          </property>
         </widget>
+       </item>
+       <item>
+        <widget class="WidgetVilleForecast" name="jour5" native="true"/>
        </item>
        <item>
         <spacer name="horizontalSpacer_4">
@@ -104,9 +107,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>WidgetVille</class>
+   <class>WidgetVilleForecast</class>
    <extends>QWidget</extends>
-   <header>widgetville.h</header>
+   <header>widgetvilleforecast.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WidgetVilleCurrent</class>
+   <extends>QWidget</extends>
+   <header>widgetvillecurrent.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

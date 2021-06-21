@@ -115,3 +115,28 @@ QScrollBar
 {
 	background-color: #A9DBF6;
 }
+QWidget#jour1
+{
+	background-color: #1E2F43;
+	border-radius:5px;
+}
+QWidget#jour2
+{
+	background-color: #1E2F43;
+	border-radius:5px;
+}
+QWidget#jour3
+{
+	background-color: #1E2F43;
+	border-radius:5px;
+}
+QWidget#jour4
+{
+	background-color: #1E2F43;
+	border-radius:5px;
+}
+QWidget#jour5
+{
+	background-color: #1E2F43;
+	border-radius:5px;
+}

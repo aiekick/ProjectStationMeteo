@@ -8,7 +8,8 @@
 #include <QNetworkRequest>
 #include <QDebug>
 #include <QSettings>
-#include "widgetville.h"
+#include "widgetvillecurrent.h"
+#include "widgetvilleforecast.h"
 
 BaliseVillePanel::BaliseVillePanel(QWidget *parent) :
     QWidget(parent),
@@ -26,11 +27,8 @@ BaliseVillePanel::~BaliseVillePanel()
 void BaliseVillePanel::updatedataville()
 {
     objville.RecuperationApi();
-    ui->jouractu->remplissage(objville.recupimage(objville.getDatas()));
-    ui->jour2->remplissage(objville.recupimage(objville.getDatas2()));
-    ui->jour3->remplissage(objville.recupimage(objville.getDatas3()));
-    ui->jour4->remplissage(objville.recupimage(objville.getDatas4()));
-    ui->jour5->remplissage(objville.recupimage(objville.getDatas5()));
+
+    ApplyStyle();
 }
 
 void BaliseVillePanel::changeEvent(QEvent *e)
@@ -56,4 +54,19 @@ void BaliseVillePanel::ApplyStyle()
     {
 
     }
+
+    // for reload pictures according to style
+    ui->jouractu->remplissage(objville.recupimage(objville.getDatasJourActu()));
+    ui->jour1->remplissage(objville.recupimage(objville.getDatasForeCast1()));
+    ui->jour2->remplissage(objville.recupimage(objville.getDatasForeCast2()));
+    ui->jour3->remplissage(objville.recupimage(objville.getDatasForeCast3()));
+    ui->jour4->remplissage(objville.recupimage(objville.getDatasForeCast4()));
+    ui->jour5->remplissage(objville.recupimage(objville.getDatasForeCast5()));
+
+    ui->jouractu->ApplyStyle();
+    ui->jour1->ApplyStyle();
+    ui->jour2->ApplyStyle();
+    ui->jour3->ApplyStyle();
+    ui->jour4->ApplyStyle();
+    ui->jour5->ApplyStyle();
 }

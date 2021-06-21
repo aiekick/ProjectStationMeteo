@@ -22,34 +22,39 @@ BaliseVille::~BaliseVille()
 {
 }
 
-DatasMeteo &BaliseVille::getDatas()
+DatasMeteo &BaliseVille::getDatasJourActu()
 {
-    return datas;
+    return datasJourActu;
 }
 
-DatasMeteo &BaliseVille::getDatas2()
+DatasMeteo &BaliseVille::getDatasForeCast1()
 {
-    return datas2;
+    return datasForeCast1;
 }
 
-DatasMeteo &BaliseVille::getDatas3()
+DatasMeteo &BaliseVille::getDatasForeCast2()
 {
-    return datas3;
+    return datasForeCast2;
 }
 
-DatasMeteo &BaliseVille::getDatas4()
+DatasMeteo &BaliseVille::getDatasForeCast3()
 {
-    return datas4;
+    return datasForeCast3;
 }
 
-DatasMeteo &BaliseVille::getDatas5()
+DatasMeteo &BaliseVille::getDatasForeCast4()
 {
-    return datas5;
+    return datasForeCast4;
 }
 
-void BaliseVille::setDatas(DatasMeteo v_DatasMeteo)
+DatasMeteo &BaliseVille::getDatasForeCast5()
 {
-    this->datas = v_DatasMeteo;
+    return datasForeCast5;
+}
+
+void BaliseVille::setDatasJourActu(DatasMeteo v_DatasMeteo)
+{
+    this->datasJourActu = v_DatasMeteo;
 }
 
 void BaliseVille::RecuperationApi()
@@ -193,136 +198,136 @@ void BaliseVille::RecuperationApi()
             //icon
             if (i==1)
             {
-                datas.setIcon(obj1["icon"].toString());
+                datasForeCast1.setIcon(obj1["icon"].toString());
                 //Picto
-                datas.setDescription(obj1["description"].toString());
+                datasForeCast1.setDescription(obj1["description"].toString());
             }
             else if (i==2)
             {
-                datas2.setIcon(obj1["icon"].toString());
+                datasForeCast2.setIcon(obj1["icon"].toString());
                 //Picto
-                datas2.setDescription( obj1["description"].toString());
+                datasForeCast2.setDescription( obj1["description"].toString());
             }
             else if (i==3)
             {
-                datas3.setIcon(obj1["icon"].toString());
+                datasForeCast3.setIcon(obj1["icon"].toString());
                 //Picto
-                datas3.setDescription( obj1["description"].toString());
+                datasForeCast3.setDescription( obj1["description"].toString());
             }
             else if (i==4)
             {
-                datas4.setIcon(obj1["icon"].toString());
+                datasForeCast4.setIcon(obj1["icon"].toString());
                 //Picto
-                datas4.setDescription( obj1["description"].toString());
+                datasForeCast4.setDescription( obj1["description"].toString());
             }
             else if (i==5)
             {
-                datas5.setIcon(obj1["icon"].toString());
+                datasForeCast5.setIcon(obj1["icon"].toString());
                 //Picto
-                datas5.setDescription( obj1["description"].toString());
+                datasForeCast5.setDescription( obj1["description"].toString());
             }
         }
 
         if (i==1)
         {
             //date
-            datas.setDate(datesansheure);
+            datasForeCast1.setDate(datesansheure);
 
             // Temperature
             tempcumul1+=(mainObject["temp"].toDouble());
             tempmoy1=(tempcumul1/j);
-            datas.setTemperatureKelvin(tempmoy1);
+            datasForeCast1.setTemperatureKelvin(tempmoy1);
             // Pressure
             pression1cumul+=mainObject["pressure"].toDouble();
             pression1moyenne=pression1cumul/j;
-            datas.setPressure(pression1moyenne);
+            datasForeCast1.setPressure(pression1moyenne);
             //Humidity
             humidite1cumul+=mainObject["humidity"].toDouble();
             humidite1moyenne=humidite1cumul/j;
-            datas.setHumidity(humidite1moyenne);
+            datasForeCast1.setHumidity(humidite1moyenne);
         }
 
         if (i==2)
         {
             //date
-            datas2.setDate(datesansheure);
+            datasForeCast2.setDate(datesansheure);
 
             // Temperature
             tempcumul2+=(mainObject["temp"].toDouble());
             tempmoy2=(tempcumul2/j);
-            datas2.setTemperatureKelvin(tempmoy2);
+            datasForeCast2.setTemperatureKelvin(tempmoy2);
 
             // Pressure
             pression2cumul+=mainObject["pressure"].toDouble();
             pression2moyenne=pression2cumul/j;
-            datas2.setPressure(pression2moyenne);
+            datasForeCast2.setPressure(pression2moyenne);
 
             //Humidity
             humidite2cumul+=mainObject["humidity"].toDouble();
             humidite2moyenne=humidite2cumul/j;
-            datas2.setHumidity(humidite2moyenne);
+            datasForeCast2.setHumidity(humidite2moyenne);
         }
 
         if (i==3)
         {
             //date
-            datas3.setDate(datesansheure);
+            datasForeCast3.setDate(datesansheure);
 
             // Temperature
             tempcumul3+=(mainObject["temp"].toDouble());
             tempmoy3=(tempcumul3/j);
-            datas3.setTemperatureKelvin(tempmoy3);
+            datasForeCast3.setTemperatureKelvin(tempmoy3);
 
             // Pressure
             pression3cumul+=mainObject["pressure"].toDouble();
             pression3moyenne=pression3cumul/j;
-            datas3.setPressure(pression3moyenne);
+            datasForeCast3.setPressure(pression3moyenne);
 
             //Humidity
             humidite3cumul+=mainObject["humidity"].toDouble();
             humidite3moyenne=humidite3cumul/j;
-            datas3.setHumidity(humidite3moyenne);
+            datasForeCast3.setHumidity(humidite3moyenne);
         }
 
         if (i==4)
         {
             //date
-            datas4.setDate(datesansheure);
+            datasForeCast4.setDate(datesansheure);
 
             // Temperature
             tempcumul4+=(mainObject["temp"].toDouble());
             tempmoy4=(tempcumul4/j);
-            datas4.setTemperatureKelvin(tempmoy4);
+            datasForeCast4.setTemperatureKelvin(tempmoy4);
 
             // Pressure
             pression4cumul+=mainObject["pressure"].toDouble();
             pression4moyenne=pression4cumul/j;
-            datas4.setPressure(pression4moyenne);
+            datasForeCast4.setPressure(pression4moyenne);
 
             //Humidity
             humidite4cumul+=mainObject["humidity"].toDouble();
             humidite4moyenne=humidite4cumul/j;
-            datas4.setHumidity(humidite4moyenne);
+            datasForeCast4.setHumidity(humidite4moyenne);
         }
         if (i==5)
         {
             //date
-            datas5.setDate(datesansheure);
+            datasForeCast5.setDate(datesansheure);
 
             // Temperature
             tempcumul5+=(mainObject["temp"].toDouble());
             tempmoy5=(tempcumul5/j);
-            datas5.setTemperatureKelvin(tempmoy5);
+            datasForeCast5.setTemperatureKelvin(tempmoy5);
 
             // Pressure
             pression5cumul+=mainObject["pressure"].toDouble();
             pression5moyenne=pression5cumul/j;
-            datas5.setPressure(pression5moyenne);
+            datasForeCast5.setPressure(pression5moyenne);
 
             //Humidity
             humidite5cumul+=mainObject["humidity"].toDouble();
             humidite5moyenne=humidite5cumul/j;
-            datas5.setHumidity(humidite5moyenne);
+            datasForeCast5.setHumidity(humidite5moyenne);
         }
 
         Datesansheurecompare=datesansheure;

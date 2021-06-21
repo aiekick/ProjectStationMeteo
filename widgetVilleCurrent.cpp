@@ -1,20 +1,32 @@
-#include "widgetville.h"
-#include "ui_widgetville.h"
+#include "widgetvillecurrent.h"
+#include "ui_widgetvillecurrent.h"
 
-WidgetVille::WidgetVille(QWidget *parent) :
+#include <QPainter>
+#include <QStyleOption>
+
+WidgetVilleCurrent::WidgetVilleCurrent(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::WidgetVille)
+    ui(new Ui::WidgetVilleCurrent)
 {
     ui->setupUi(this);
     ui->retranslateUi(this);
 }
 
-WidgetVille::~WidgetVille()
+WidgetVilleCurrent::~WidgetVilleCurrent()
 {
     delete ui;
 }
 
-void WidgetVille::ApplyStyle()
+// for permit the apply of stylesheet
+void WidgetVilleCurrent::paintEvent(QPaintEvent *)
+{
+    QStyleOption opt;
+    opt.init(this);
+    QPainter p(this);
+    style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+}
+
+void WidgetVilleCurrent::ApplyStyle()
 {
     if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_DAY)
     {
@@ -26,7 +38,7 @@ void WidgetVille::ApplyStyle()
     }
 }
 
-void WidgetVille::remplissage(DatasMeteo vDatas)
+void WidgetVilleCurrent::remplissage(DatasMeteo vDatas)
 {
     ui->texttempville->setText(vDatas.getTemperatureToStringFromSettings());
     ui->textpressville->setText(QString::number((vDatas.getPressure())) + " hpa");
@@ -40,7 +52,7 @@ void WidgetVille::remplissage(DatasMeteo vDatas)
 /// EVENTS
 ////////////////////////////////////////
 
-void WidgetVille::changeEvent(QEvent *e)
+void WidgetVilleCurrent::changeEvent(QEvent *e)
 {
     QWidget::changeEvent(e);
     switch (e->type())

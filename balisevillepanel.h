@@ -3,8 +3,6 @@
 #include "baliseVille.h"
 #include <QWidget>
 
-#include "widgetville.h"
-
 namespace Ui {
 class BaliseVillePanel;
 }

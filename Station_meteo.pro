@@ -22,7 +22,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     settingsdlg.cpp \
-    widgetville.cpp
+    widgetvillecurrent.cpp \
+    widgetvilleforecast.cpp
 
 HEADERS += \
     GlobalSettings.h \
@@ -37,7 +38,8 @@ HEADERS += \
     datasMeteo.h \
     mainwindow.h \
     settingsdlg.h \
-    widgetville.h
+    widgetvillecurrent.h \
+    widgetvilleforecast.h
 
 FORMS += \
     aboutdialog.ui \
@@ -45,7 +47,8 @@ FORMS += \
     balisevillepanel.ui \
     mainwindow.ui \
     settingsdlg.ui \
-    widgetville.ui
+    widgetvillecurrent.ui \
+    widgetvilleforecast.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

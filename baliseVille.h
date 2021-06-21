@@ -9,11 +9,12 @@
 class BaliseVille : public Balise
 {
 private:
-    DatasMeteo datas;
-    DatasMeteo datas2;
-    DatasMeteo datas3;
-    DatasMeteo datas4;
-    DatasMeteo datas5;
+    DatasMeteo datasJourActu;
+    DatasMeteo datasForeCast1;
+    DatasMeteo datasForeCast2;
+    DatasMeteo datasForeCast3;
+    DatasMeteo datasForeCast4;
+    DatasMeteo datasForeCast5;
 
 public:
     BaliseVille();
@@ -26,13 +27,13 @@ public:
     void RecuperationApi();
     DatasMeteo recupimage(DatasMeteo);
 
-    void setDatas(DatasMeteo);
-    DatasMeteo &getDatas();
-
-    DatasMeteo &getDatas2();
-    DatasMeteo &getDatas3();
-    DatasMeteo &getDatas4();
-    DatasMeteo &getDatas5();
+    void setDatasJourActu(DatasMeteo);
+    DatasMeteo &getDatasJourActu();
+    DatasMeteo &getDatasForeCast1();
+    DatasMeteo &getDatasForeCast2();
+    DatasMeteo &getDatasForeCast3();
+    DatasMeteo &getDatasForeCast4();
+    DatasMeteo &getDatasForeCast5();
 
 private:
     QUrl getWeatherDayUrl();

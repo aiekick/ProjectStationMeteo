@@ -24,3 +24,28 @@ QWidget#widgetMerMain
 	background-color: #EFEFEF;
 	border-radius:5px;
 }
+QWidget#jour1
+{
+	background-color: #EFEFEF;
+	border-radius:5px;
+}
+QWidget#jour2
+{
+	background-color: #EFEFEF;
+	border-radius:5px;
+}
+QWidget#jour3
+{
+	background-color: #EFEFEF;
+	border-radius:5px;
+}
+QWidget#jour4
+{
+	background-color: #EFEFEF;
+	border-radius:5px;
+}
+QWidget#jour5
+{
+	background-color: #EFEFEF;
+	border-radius:5px;
+}
