@@ -2,7 +2,7 @@
 #define BALISEMER_HPP
 #include "balise.h"
 #include "datasMeteo.h"
-#include <vector>
+#include <QVector>
 #include <QPixmap>
 #include <QtCharts>
 #include <QSplineSeries>
@@ -13,14 +13,14 @@ class BaliseMer : public Balise
 private:
 	DatasMeteo datas;
 	DatasMeteo summary;					// Average values
-	vector<DatasMeteo> history;
+    QVector<DatasMeteo> history;
 
 public:
 	BaliseMer();
     ~BaliseMer();
 
 	DatasMeteo getDatas();
-	vector<DatasMeteo>* getHistory();
+    QVector<DatasMeteo>* getHistory();
 	DatasMeteo getSummary();
 	QPixmap displayWeatherIcon();
 	QChartView* displayDetailedChart();

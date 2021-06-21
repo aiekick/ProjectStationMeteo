@@ -17,6 +17,8 @@ public:
 
     void changeEvent(QEvent *e) override;
 
+    void ApplyStyle();
+
 signals:
     void ApplySettingsChange();
 

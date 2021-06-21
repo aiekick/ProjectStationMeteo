@@ -22,32 +22,19 @@ BaliseMerPanel::BaliseMerPanel(QWidget *parent)
     ui->setupUi(this);
     ui->retranslateUi(this);
 
-    //ui->customGraphTemperature->SetBackgroundColor(QColor(31,48,68));
-    ui->customGraphTemperature->SetPadding(40,20,10,10);
-    ui->customGraphTemperature->SetLinesColor(QColor(0,0,0));
-    ui->customGraphTemperature->SetValuesColor(QColor(0,0,0));
-    //ui->customGraphTemperature->SetXAxis(11, true, true, 0, 12);
+    ui->customGraphTemperature->SetPadding(40,10,10,20);
     ui->customGraphTemperature->SetYAxis(1, true, true, 1);
     ui->customGraphTemperature->SetDrawRect(false);
-    ui->customGraphTemperature->SetVerticalGradient(QColor(0,100,0,100), QColor(0,100,0,10));
 
-    //ui->customGraphHumidity->SetBackgroundColor(QColor(31,48,68));
     ui->customGraphHumidity->SetPadding(40,10,10,20);
-    ui->customGraphHumidity->SetLinesColor(QColor(0,0,0));
-    ui->customGraphHumidity->SetValuesColor(QColor(0,0,0));
-    //ui->customGraphTemperature->SetXAxis(11, true, true, 0, 12);
     ui->customGraphHumidity->SetYAxis(1, true, true, 1);
     ui->customGraphHumidity->SetDrawRect(false);
-    ui->customGraphHumidity->SetVerticalGradient(QColor(0,100,0,100), QColor(0,100,0,10));
 
-    //ui->customGraphPressure->SetBackgroundColor(QColor(31,48,68));
     ui->customGraphPressure->SetPadding(40,10,10,20);
-    ui->customGraphPressure->SetLinesColor(QColor(0,0,0));
-    ui->customGraphPressure->SetValuesColor(QColor(0,0,0));
-    //ui->customGraphPressure->SetXAxis(11, true, true, 0, 12);
     ui->customGraphPressure->SetYAxis(1, true, true, 1);
     ui->customGraphPressure->SetDrawRect(false);
-    ui->customGraphPressure->SetVerticalGradient(QColor(0,100,0,100), QColor(0,100,0,10));
+
+    ApplyStyle();
 }
 
 BaliseMerPanel::~BaliseMerPanel()
@@ -57,8 +44,6 @@ BaliseMerPanel::~BaliseMerPanel()
 
 void BaliseMerPanel::updateData()
 {
-    baliseMer.getHistory()->clear();
-
     baliseMer.requestData();
     baliseMer.requestMeanData();
 
@@ -69,7 +54,9 @@ void BaliseMerPanel::updateData()
     QString pressure = QString::number(baliseMer.getDatas().getPressure());
     QString humidity = QString::number(baliseMer.getDatas().getHumidity());
     QString meanTemperature = baliseMer.getSummary().getTemperatureToStringFromSettings();
-    this->ui->label_2->setPixmap(baliseMer.displayWeatherIcon());
+
+    // on fait ca dans applystyle maintenant vu qu'on doit mettre l'icone en fonction du style
+    //this->ui->labelIcon->setPixmap(baliseMer.displayWeatherIcon());
 
     /////////////////////////////////////////////////////////////////////
     const auto history = baliseMer.getHistory();
@@ -78,17 +65,19 @@ void BaliseMerPanel::updateData()
     QVector<double> serieHumi;
     for(size_t i = 0; i < history->size(); i++)
     {
-        const auto& dm = history->at(i);
-        serieTemp.push_front(dm.getTemperatureCelsius());
-        seriePres.push_front(dm.getPressure());
-        serieHumi.push_front(dm.getHumidity());
+        const auto& dm = history->at((int)i);
+        serieTemp.push_back(dm.getTemperatureCelsius());
+        seriePres.push_back(dm.getPressure());
+        serieHumi.push_back(dm.getHumidity());
     }
-    ui->customGraphTemperature->SetSerie(serieTemp, QColor(100,150,200), 5.0);
-    ui->customGraphTemperature->SetSerieName(QObject::tr("Temperature moyennes des 12 dernieres heures : ") + meanTemperature, QFont("Arial", 10), QColor(100,150,200), Qt::AnchorPoint::AnchorBottom);
-    ui->customGraphPressure->SetSerie(seriePres, QColor(200,150,100), 5.0);
-    ui->customGraphPressure->SetSerieName(QObject::tr("Pression ") + pressure + " hPa", QFont("Arial", 10), QColor(200,150,100));
-    ui->customGraphHumidity->SetSerie(serieHumi, QColor(150,200,150), 5.0);
-    ui->customGraphHumidity->SetSerieName(QObject::tr("Humidité ") + humidity + " %", QFont("Arial", 10), QColor(150,200,150));
+    ui->customGraphTemperature->SetSerie(serieTemp);
+    ui->customGraphTemperature->SetSerieName(QObject::tr("Temperature moyennes des 12 dernieres heures : ") + meanTemperature);
+    ui->customGraphPressure->SetSerie(seriePres);
+    ui->customGraphPressure->SetSerieName(QObject::tr("Pression ") + pressure + " hPa");
+    ui->customGraphHumidity->SetSerie(serieHumi);
+    ui->customGraphHumidity->SetSerieName(QObject::tr("Humidité ") + humidity + " %");
+
+    ApplyStyle();
 }
 
 void BaliseMerPanel::on_pushButton_See_Graph_Details_clicked()
@@ -96,11 +85,6 @@ void BaliseMerPanel::on_pushButton_See_Graph_Details_clicked()
     QChartView* view = baliseMer.displayDetailedChart();
     view->show();
 }
-
-////////////////////////////////////////
-/// EVENTS
-////////////////////////////////////////
-
 void BaliseMerPanel::changeEvent(QEvent *e)
 {
     QWidget::changeEvent(e);
@@ -113,4 +97,67 @@ void BaliseMerPanel::changeEvent(QEvent *e)
         break;
     }
 }
+
+void BaliseMerPanel::ApplyStyle()
+{
+    if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_DAY)
+    {
+        // vert
+        ui->customGraphTemperature->SetSerieCurveStyle(QColor(50,200,50), 5.0);
+        ui->customGraphTemperature->SetVerticalGradient(QColor(0,150,0,100), QColor(0,150,0,10));
+        ui->customGraphTemperature->SetBackgroundColor(QColor(239,239,239,255));
+        ui->customGraphTemperature->SetLinesColor(QColor(30,47,67,255));
+        ui->customGraphTemperature->SetValuesColor(QColor(30,47,67,255));
+        ui->customGraphTemperature->SetSerieNameStyle(QFont("Arial", 10), QColor(30,47,67,255));
+
+        // orange
+        ui->customGraphPressure->SetSerieCurveStyle(QColor(250,150,50), 5.0);
+        ui->customGraphPressure->SetVerticalGradient(QColor(200,100,0,100), QColor(200,100,0,10));
+        ui->customGraphPressure->SetBackgroundColor(QColor(239,239,239,255));
+        ui->customGraphPressure->SetLinesColor(QColor(30,47,67,255));
+        ui->customGraphPressure->SetValuesColor(QColor(30,47,67,255));
+        ui->customGraphPressure->SetSerieNameStyle(QFont("Arial", 10), QColor(30,47,67,255));
+
+        // bleu
+        ui->customGraphHumidity->SetSerieCurveStyle(QColor(50,50,200), 5.0);
+        ui->customGraphHumidity->SetVerticalGradient(QColor(0,0,150,100), QColor(0,0,150,10));
+        ui->customGraphHumidity->SetBackgroundColor(QColor(239,239,239,255));
+        ui->customGraphHumidity->SetLinesColor(QColor(30,47,67,255));
+        ui->customGraphHumidity->SetValuesColor(QColor(30,47,67,255));
+        ui->customGraphHumidity->SetSerieNameStyle(QFont("Arial", 10), QColor(30,47,67,255));
+    }
+    else if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_NIGHT)
+    {
+        // vert
+        ui->customGraphTemperature->SetSerieCurveStyle(QColor(50,200,50), 5.0);
+        ui->customGraphTemperature->SetVerticalGradient(QColor(0,150,0,150), QColor(0,150,0,50));
+        ui->customGraphTemperature->SetBackgroundColor(QColor(30,47,67,255));
+        ui->customGraphTemperature->SetLinesColor(QColor(125,180,218,255));
+        ui->customGraphTemperature->SetValuesColor(QColor(125,180,218,255));
+        ui->customGraphTemperature->SetSerieNameStyle(QFont("Arial", 10), QColor(125,180,218,255));
+
+        // orange
+        ui->customGraphPressure->SetSerieCurveStyle(QColor(250,150,50), 5.0);
+        ui->customGraphPressure->SetVerticalGradient(QColor(200,100,0,150), QColor(200,100,0,50));
+        ui->customGraphPressure->SetBackgroundColor(QColor(30,47,67,255));
+        ui->customGraphPressure->SetLinesColor(QColor(125,180,218,255));
+        ui->customGraphPressure->SetValuesColor(QColor(125,180,218,255));
+        ui->customGraphPressure->SetSerieNameStyle(QFont("Arial", 10), QColor(125,180,218,255));
+
+        // bleu
+        ui->customGraphHumidity->SetSerieCurveStyle(QColor(00,100,250), 5.0);
+        ui->customGraphHumidity->SetVerticalGradient(QColor(0,50,200,150), QColor(0,50,200,50));
+        ui->customGraphHumidity->SetBackgroundColor(QColor(30,47,67,255));
+        ui->customGraphHumidity->SetLinesColor(QColor(125,180,218,255));
+        ui->customGraphHumidity->SetValuesColor(QColor(125,180,218,255));
+        ui->customGraphHumidity->SetSerieNameStyle(QFont("Arial", 10), QColor(125,180,218,255));
+    }
+
+    ui->customGraphTemperature->update();
+    ui->customGraphPressure->update();
+    ui->customGraphHumidity->update();
+
+    this->ui->labelIcon->setPixmap(baliseMer.displayWeatherIcon());
+}
+
 

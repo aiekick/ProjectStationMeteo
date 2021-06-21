@@ -20,6 +20,8 @@ public:
     void updatedataville();
     void changeEvent(QEvent *e) override;
 
+    void ApplyStyle();
+
 private:
     Ui::BaliseVillePanel *ui;
     BaliseVille objville;

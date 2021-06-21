@@ -3,6 +3,7 @@
 #include <QPainter>
 #include <QPainterPath>
 #include <QPainterPathStroker>
+#include <QStyleOption>
 #include <QtMath>
 
 CustomGraph::CustomGraph(QWidget *parent) : QWidget(parent)
@@ -19,6 +20,22 @@ void CustomGraph::Clear()
     m_MinValue = 0.0;
     m_MaxValue = 0.0;
     m_Serie.clear();
+}
+
+void CustomGraph::SetSerie(QVector<double> vSerie)
+{
+    m_Serie = vSerie;
+
+    if (!m_Serie.isEmpty())
+    {
+        m_MinValue = 1e5;
+        m_MaxValue = -1e5;
+        foreach(auto s, m_Serie)
+        {
+            m_MinValue = qMin(m_MinValue, s);
+            m_MaxValue = qMax(m_MaxValue, s);
+        }
+    }
 }
 
 void CustomGraph::SetSerie(
@@ -65,7 +82,6 @@ void CustomGraph::SetVerticalGradient(
 
 void CustomGraph::SetLinesColor(const QColor& vLinesColor)
 {
-
     m_LinesColor = vLinesColor;
 }
 
@@ -77,6 +93,27 @@ void CustomGraph::SetValuesColor(const QColor& vValuesColor)
 void CustomGraph::SetValuesFont(const QFont& vValuesFont)
 {
     m_ValuesFont = vValuesFont;
+}
+
+void CustomGraph::SetSerieName(const QString& vSerieName)
+{
+    m_SerieName = vSerieName;
+}
+
+void CustomGraph::SetSerieCurveStyle(
+        const QColor& vSerieColor,
+        const double& vLineThickness)
+{
+    m_SerieColor = vSerieColor;
+    m_LineThickness = vLineThickness;
+}
+
+void CustomGraph::SetSerieNameStyle(
+        const QFont& vSerieNameFont,
+        const QColor& vSerieNameColor)
+{
+    m_SerieNameColor = vSerieNameColor;
+    m_SerieNameFont = vSerieNameFont;
 }
 
 void CustomGraph::SetSerieName(

@@ -14,6 +14,18 @@ WidgetVille::~WidgetVille()
     delete ui;
 }
 
+void WidgetVille::ApplyStyle()
+{
+    if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_DAY)
+    {
+
+    }
+    else if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_NIGHT)
+    {
+
+    }
+}
+
 void WidgetVille::remplissage(DatasMeteo vDatas)
 {
     ui->texttempville->setText(vDatas.getTemperatureToStringFromSettings());

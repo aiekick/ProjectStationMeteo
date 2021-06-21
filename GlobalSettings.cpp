@@ -2,6 +2,8 @@
 #include <QSettings>
 #include <QFileInfo>
 #include <QApplication>
+#include <QPalette>
+#include <QStyleFactory>
 
 /////////////////////////////////////////////
 /////////////////////////////////////////////
@@ -209,7 +211,7 @@ void GlobalSettings::ApplyStyle(const StyleEnum& vStyleToApply)
     QString filePathStr;
     if (vStyleToApply == StyleEnum::STYLE_DAY)
     {
-        filePathStr = "";//":/styles/baseDay.qss";
+        filePathStr = ":/styles/baseDay.qss";
     }
     else if (vStyleToApply == StyleEnum::STYLE_NIGHT)
     {
@@ -222,13 +224,14 @@ void GlobalSettings::ApplyStyle(const StyleEnum& vStyleToApply)
         if (fp.open(QIODevice::ReadOnly | QIODevice::Text))
         {
             const auto& fc = fp.readAll();
+            QApplication::setStyle(QStyleFactory::create("Fusion"));
             qApp->setStyleSheet(fc);
             fp.close();
         }
     }
     else
     {
-       qApp->setStyleSheet("");
+        qApp->setStyleSheet("");
     }
 }
 

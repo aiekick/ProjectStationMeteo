@@ -46,6 +46,18 @@ void SettingsDlg::on_applyBtn_clicked()
     ApplyConfig();
 }
 
+void SettingsDlg::ApplyStyle()
+{
+    if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_DAY)
+    {
+
+    }
+    else if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_NIGHT)
+    {
+
+    }
+}
+
 ////////////////////////////////////////
 /// EVENTS
 ////////////////////////////////////////

@@ -53,12 +53,12 @@ double DatasMeteo::getTemperatureFahrenheit() const
     return TruncDoubleToPrecision(this->temperatureCelsius * 9.0 / 5.0 + 32.0, TRUNC_PRECISION);
 }
 
-int DatasMeteo::getHumidity() const
+double DatasMeteo::getHumidity() const
 {
     return this->humidity;
 }
 
-int DatasMeteo::getPressure() const
+double DatasMeteo::getPressure() const
 {
     return this->pressure;
 }
@@ -127,14 +127,14 @@ void DatasMeteo::setTemperatureFahrenheit(const double& vTemperature)
     this->temperatureCelsius = TruncDoubleToPrecision((vTemperature - 32.0) * 5.0 / 9.0, TRUNC_PRECISION);
 }
 
-void DatasMeteo::setHumidity(const int& vHumidity)
+void DatasMeteo::setHumidity(const double& vHumidity)
 {
-    this->humidity = vHumidity;
+    this->humidity = TruncDoubleToPrecision(vHumidity, TRUNC_PRECISION);
 }
 
-void DatasMeteo::setPressure(const int& vPressure)
+void DatasMeteo::setPressure(const double& vPressure)
 {
-    this->pressure = vPressure;
+    this->pressure = TruncDoubleToPrecision(vPressure, TRUNC_PRECISION);
 }
 
 void DatasMeteo::setVille(const QString& vNewVille)

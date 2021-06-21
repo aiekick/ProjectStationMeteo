@@ -26,19 +26,28 @@ public:
 private:
     void UpdateMainWindow();
     void UpdateTimer();
+    void UpdateDateTime();
 
     void changeEvent(QEvent *e) override;
+    void ApplyStyle();
 
 private slots:
     void on_actionSettings_triggered();
     void on_actionAbout_triggered();
     void on_actionRefresh_triggered();
-    void on_timeout();
+    void on_DateTimer_Timeout();
+    void on_RefreshTimer_Timeout();
     void on_ApplySettingsChange();
+    void on_openDayStyle_clicked();
+    void on_saveDayStyle_clicked();
+    void on_openNightStyle_clicked();
+    void on_saveNightStyle_clicked();
+    void on_applyBtn_clicked();
 
 private:
     Ui::MainWindow *ui = nullptr;
-    QTimer m_Timer;
+    QTimer m_DateTimer;
+    QTimer m_RefreshTimer;
 };
 
 #endif // MAINWINDOW_H

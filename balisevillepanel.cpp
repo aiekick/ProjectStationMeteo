@@ -33,10 +33,6 @@ void BaliseVillePanel::updatedataville()
     ui->jour5->remplissage(objville.recupimage(objville.getDatas5()));
 }
 
-////////////////////////////////////////
-/// EVENTS
-////////////////////////////////////////
-
 void BaliseVillePanel::changeEvent(QEvent *e)
 {
     QWidget::changeEvent(e);
@@ -48,4 +44,16 @@ void BaliseVillePanel::changeEvent(QEvent *e)
     default:
         break;
    }
+}
+
+void BaliseVillePanel::ApplyStyle()
+{
+    if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_DAY)
+    {
+
+    }
+    else if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_NIGHT)
+    {
+
+    }
 }

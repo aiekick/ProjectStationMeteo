@@ -26,7 +26,7 @@ DatasMeteo BaliseMer::getDatas()
     return datas;
 }
 
-vector<DatasMeteo>* BaliseMer::getHistory()
+QVector<DatasMeteo>* BaliseMer::getHistory()
 {
     return &history;
 }
@@ -44,14 +44,12 @@ void BaliseMer::requestData()
     QNetworkAccessManager nam;
     QNetworkReply* reply = nam.get(request);
     
-    
     while (!reply->isFinished())
     {
         qApp->processEvents();
     }
     reply->deleteLater();
     
-
     QByteArray response_data = reply->readAll();
     QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
     QJsonObject jsonObject = jsonResponse.object();
@@ -73,19 +71,20 @@ void BaliseMer::requestMeanData()
     QNetworkAccessManager nam;
     QNetworkReply* reply = nam.get(request);
 
-
     while (!reply->isFinished())
     {
         qApp->processEvents();
     }
     reply->deleteLater();
 
-
     QByteArray response_data = reply->readAll();
     QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
     QJsonObject jsonObject = jsonResponse.object();
     QJsonArray jsonArray = jsonObject["history"].toArray();
 
+    // Mean Temperature
+    history.clear();
+    double sumTemp = 0.0;
     foreach(const QJsonValue &value, jsonArray)
     {
         QJsonObject obj = value.toObject();
@@ -93,15 +92,9 @@ void BaliseMer::requestMeanData()
         ptrDM->setTemperatureCelsius(obj["temp"].toDouble());
         ptrDM->setHumidity(obj["humi"].toDouble());
         ptrDM->setPressure(obj["pres"].toDouble());
-        qDebug() << "temp:" << ptrDM->getTemperatureCelsius() << " humi: " << ptrDM->getHumidity() << "  pres: " << ptrDM->getPressure();
-        this->history.push_back(*ptrDM);
-    }
-
-    // Mean Temperature
-    double sumTemp = 0.0;
-    for (int a = 0; a < history.size(); a++)
-    {
-        sumTemp += history.at(a).getTemperatureCelsius();   
+        //qDebug() << "temp:" << ptrDM->getTemperatureCelsius() << " humi: " << ptrDM->getHumidity() << "  pres: " << ptrDM->getPressure();
+        history.push_front(*ptrDM);
+        sumTemp += ptrDM->getTemperatureCelsius();
     }
     this->summary.setTemperatureCelsius(sumTemp / history.size());
 }

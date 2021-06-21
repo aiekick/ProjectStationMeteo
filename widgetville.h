@@ -20,6 +20,8 @@ public:
     void remplissage(DatasMeteo);
     void changeEvent(QEvent *e) override;
 
+    void ApplyStyle();
+
 private:
     Ui::WidgetVille *ui;
 };

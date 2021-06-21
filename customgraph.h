@@ -15,6 +15,7 @@ public:
     explicit CustomGraph(QWidget *parent = nullptr);
 
     void Clear();
+    void SetSerie(QVector<double> vSerie);
     void SetSerie(
             QVector<double> vSerie,
             const QColor& vSerieColor,
@@ -35,6 +36,13 @@ public:
             const QFont& vSerieNameFont,
             const QColor& vSerieNameColor,
             const Qt::AnchorPoint& vSerieNameAnchorPoint = Qt::AnchorPoint::AnchorTop);
+    void SetSerieName(const QString& vSerieName);
+    void SetSerieCurveStyle(
+            const QColor& vSerieColor,
+            const double& vLineThickness);
+    void SetSerieNameStyle(
+            const QFont& vSerieNameFont,
+            const QColor& vSerieNameColor);
     void SetDrawSerieName(const bool& vDrawSerieName);
     void SetDrawRect(const bool& vDrawRect);
     void SetXAxis(

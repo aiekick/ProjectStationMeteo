@@ -17,6 +17,8 @@ public:
 
     void changeEvent(QEvent *e) override;
 
+    void ApplyStyle();
+
 private slots:
     void on_closeBtn_clicked();
 
