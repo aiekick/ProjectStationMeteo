@@ -8,6 +8,7 @@ class LangManager
 {
 private:
     std::map<QString, QString> m_Translations;
+    QTranslator appTranslator;
 
 public:
     void Init();

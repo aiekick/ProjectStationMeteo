@@ -36,7 +36,6 @@ void LangManager::ApplyLang(const QString& vLang)
 {
     if (m_Translations.find(vLang) != m_Translations.end())
     {
-        QTranslator appTranslator;
         if (appTranslator.load(m_Translations[vLang]))
         {
             if (!qApp->installTranslator(&appTranslator))
