@@ -9,7 +9,8 @@ class DatasMeteo
 {
 private :
     QString ville;                      // la ville associée aux donnée tempérées
-    double temperatureCelsius = 0.0;    // temperature en celsius
+    double temperatureCelsius = 0.0;   //temperature  max o simple en celsius
+    double temperatureMinCelsius = 0.0;// temperature min en celsius
     double humidity = 0.0;              // humitidty en %
     double pressure = 0.0;              // pressure en hPa
     QString date;                       // date de la mesure
@@ -30,11 +31,15 @@ public:
     double getTemperatureCelsius() const;
     double getTemperatureKelvin() const;
     double getTemperatureFahrenheit() const;
+    double getTemperatureMinCelsius() const;
+    double getTemperatureMinKelvin() const;
+    double getTemperatureMinFahrenheit() const;
     double getHumidity() const;
     double getPressure() const;
     const QString &getIcon() const;
 
     QString getTemperatureToStringFromSettings();
+     QString getTemperatureMinToStringFromSettings();
     void setImage(const QPixmap& vimage);
     void setDate(const QString& vdate);
     void setDescription(const QString& vPicto);
@@ -42,6 +47,9 @@ public:
     void setTemperatureCelsius(const double& vTemperature);
     void setTemperatureKelvin(const double& vTemperature);
     void setTemperatureFahrenheit(const double& vTemperature);
+    void setTemperatureMinCelsius(const double& vTemperature);
+    void setTemperatureMinKelvin(const double& vTemperature);
+    void setTemperatureMinFahrenheit(const double& vTemperature);
     void setHumidity(const double& vHumidity);
     void setPressure(const double& vPressure);
     void setIcon(const QString &newIcon);

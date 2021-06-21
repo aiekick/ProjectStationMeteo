@@ -53,6 +53,23 @@ double DatasMeteo::getTemperatureFahrenheit() const
     return TruncDoubleToPrecision(this->temperatureCelsius * 9.0 / 5.0 + 32.0, TRUNC_PRECISION);
 }
 
+double DatasMeteo::getTemperatureMinCelsius() const
+{
+    return TruncDoubleToPrecision(this->temperatureMinCelsius, TRUNC_PRECISION);
+}
+
+double DatasMeteo::getTemperatureMinKelvin() const
+{
+    // https://fr.wikipedia.org/wiki/Kelvin
+    return TruncDoubleToPrecision(this->temperatureMinCelsius + 273.15, TRUNC_PRECISION);
+}
+
+double DatasMeteo::getTemperatureMinFahrenheit() const
+{
+    // https://fr.wikipedia.org/wiki/Degr%C3%A9_Fahrenheit
+    return TruncDoubleToPrecision(this->temperatureMinCelsius * 9.0 / 5.0 + 32.0, TRUNC_PRECISION);
+}
+
 double DatasMeteo::getHumidity() const
 {
     return this->humidity;
@@ -78,6 +95,21 @@ QString DatasMeteo::getTemperatureToStringFromSettings()
     return "";
 }
 
+
+QString DatasMeteo::getTemperatureMinToStringFromSettings()
+{
+    switch (GlobalSettings::Instance()->getTemperatureUnit())
+    {
+    case TemperatureUnitEnum::UNIT_CELSIUS:
+        return QString::number(getTemperatureMinCelsius()) + QString::fromUtf8(u8"\u00B0""C");
+    case TemperatureUnitEnum::UNIT_FAHRENHEIT:
+        return QString::number(getTemperatureMinFahrenheit()) + QString::fromUtf8(u8"\u00B0""F");
+    case TemperatureUnitEnum::UNIT_KELVIN:
+        return QString::number(getTemperatureMinKelvin()) + QString::fromUtf8(" K");
+    }
+
+    return "";
+}
 
 
 QString DatasMeteo::getVille() const
@@ -125,6 +157,23 @@ void DatasMeteo::setTemperatureFahrenheit(const double& vTemperature)
 {
     // https://fr.wikipedia.org/wiki/Degr%C3%A9_Fahrenheit
     this->temperatureCelsius = TruncDoubleToPrecision((vTemperature - 32.0) * 5.0 / 9.0, TRUNC_PRECISION);
+
+}
+void DatasMeteo::setTemperatureMinCelsius(const double& vTemperature)
+{
+    this->temperatureMinCelsius = TruncDoubleToPrecision(vTemperature, TRUNC_PRECISION);
+}
+
+void DatasMeteo::setTemperatureMinKelvin(const double& vTemperature)
+{
+    // https://fr.wikipedia.org/wiki/Kelvin
+    this->temperatureMinCelsius = TruncDoubleToPrecision(vTemperature - 273.15, TRUNC_PRECISION);
+}
+
+void DatasMeteo::setTemperatureMinFahrenheit(const double& vTemperature)
+{
+    // https://fr.wikipedia.org/wiki/Degr%C3%A9_Fahrenheit
+    this->temperatureMinCelsius = TruncDoubleToPrecision((vTemperature - 32.0) * 5.0 / 9.0, TRUNC_PRECISION);
 }
 
 void DatasMeteo::setHumidity(const double& vHumidity)
