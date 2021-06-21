@@ -244,7 +244,7 @@ double heureseuleprevision=stringheureseuleprevision.toDouble();
 
            // QString heure=QTime::currentTime().toString("hh");
             //qDebug() << heure;
-            if (i==1 && heurediff>-2 && heurediff<2)
+            if (i==1 && heurediff<3 &&heurediff >-3)
             {
 qDebug()<<"difference : "<<heurediff<<"heure actu: "<< heureactuelle <<"heureeseuleprevisiondecomp : "<<heureseuleprevision;
                 datasForeCast1.setIcon(obj1["icon"].toString());
