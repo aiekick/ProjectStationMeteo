@@ -15,7 +15,7 @@ private:
     DatasMeteo datasForeCast3;
     DatasMeteo datasForeCast4;
     DatasMeteo datasForeCast5;
-
+QVector<DatasMeteo> historique;
 public:
     BaliseVille();
     ~BaliseVille();
@@ -35,7 +35,7 @@ public:
     DatasMeteo &getDatasForeCast3();
     DatasMeteo &getDatasForeCast4();
     DatasMeteo &getDatasForeCast5();
-
+QVector<DatasMeteo>* getHistorique();
 private:
     QUrl getWeatherDayUrl();
     QUrl getForeCastDayUrl();

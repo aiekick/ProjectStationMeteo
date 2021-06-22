@@ -41,6 +41,7 @@ void WidgetVilleForecast::ApplyStyle()
 
 void WidgetVilleForecast::remplissage(DatasMeteo vDatas)
 {
+    ui->texttempvillemin->setText(vDatas.getTemperatureMinToStringFromSettings());
     ui->texttempville->setText(vDatas.getTemperatureToStringFromSettings());
     ui->textpressville->setText(QString::number((vDatas.getPressure())) + " hpa");
     ui->texthumiville->setText(QString::number((vDatas.getHumidity())) + " %");

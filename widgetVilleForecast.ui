@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>120</width>
-    <height>252</height>
+    <width>124</width>
+    <height>281</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,6 +33,22 @@
       </widget>
      </item>
      <item>
+      <widget class="QLabel" name="texttempvillemin">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>temp-</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="texttempville">
        <property name="font">
         <font>
@@ -41,7 +57,7 @@
         </font>
        </property>
        <property name="text">
-        <string>temp</string>
+        <string>temp+</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
