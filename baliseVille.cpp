@@ -422,7 +422,10 @@ DatasMeteo BaliseVille::recupimage(DatasMeteo dataimage)
 {
     QPixmap image;
     image.load(GlobalSettings::Instance()->GetThemeIconPath(dataimage.getIcon()));
-    dataimage.setImage(image.scaledToHeight(90));
+    if (!image.isNull())
+    {
+        dataimage.setImage(image.scaledToHeight(90));
+    }
     return dataimage;
 }
 

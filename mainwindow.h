@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QTimer>
 
-#define USE_STYLE_DOCK_PANE
+//#define USE_STYLE_DOCK_PANE
 
 QT_BEGIN_NAMESPACE
 namespace Ui

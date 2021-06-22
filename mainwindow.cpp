@@ -15,16 +15,22 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+#ifdef USE_STYLE_DOCK_PANE
+    ui->dwStyleEditor->setVisible(true);
+#else
+    ui->dwStyleEditor->setVisible(false);
+#endif
+
     GlobalSettings::Instance()->LoadConfigFile();
 
     ui->retranslateUi(this);
 
     m_DateTimer.setParent(this);
-    connect(&m_DateTimer, SIGNAL(timeout()), this, SLOT(on_DateTimer_Timeout()));
+    MainWindow::connect(&m_DateTimer, &QTimer::timeout, this, &MainWindow::on_DateTimer_Timeout);
     m_DateTimer.start(1000); // on refresh per sec
 
     m_RefreshTimer.setParent(this);
-    connect(&m_RefreshTimer, SIGNAL(timeout()), this, SLOT(on_RefreshTimer_Timeout()));
+    MainWindow::connect(&m_RefreshTimer,  &QTimer::timeout, this, &MainWindow::on_RefreshTimer_Timeout);
 
     ApplyStyle();
     UpdateTimer();
@@ -80,19 +86,17 @@ void MainWindow::ApplyStyle()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    auto _SettingsDlg = new SettingsDlg();
-    _SettingsDlg->ApplyStyle();
-    connect(_SettingsDlg, SIGNAL(ApplySettingsChange()), this, SLOT(on_ApplySettingsChange()));
-    _SettingsDlg->open();
-    //_SettingsDlg->deleteLater();
+    SettingsDlg _SettingsDlg(this);
+    _SettingsDlg.ApplyStyle();
+    connect(&_SettingsDlg, SIGNAL(ApplySettingsChange()), this, SLOT(on_ApplySettingsChange()));
+    _SettingsDlg.exec();
 }
 
 void MainWindow::on_actionAbout_triggered()
 {
-    auto _AboutDialog = new AboutDialog();
-    _AboutDialog->ApplyStyle();
-    _AboutDialog->open();
-    //_AboutDialog->deleteLater();
+    AboutDialog _AboutDialog(this);
+    _AboutDialog.ApplyStyle();
+    _AboutDialog.exec();
 }
 
 void MainWindow::on_actionRefresh_triggered()
