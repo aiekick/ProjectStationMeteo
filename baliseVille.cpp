@@ -69,6 +69,7 @@ void BaliseVille::Recuperation_Api_Current()
 
     QNetworkRequest request(getWeatherDayUrl());
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setTransferTimeout(2000); // 2s
 
     /////////// wait response //////////////////////////
 
@@ -154,7 +155,7 @@ void BaliseVille::Recuperation_Api_ForeCast()
 
     QNetworkRequest request(getForeCastDayUrl());
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-
+    request.setTransferTimeout(2000); // 2s
 
     QNetworkAccessManager nam;
     QNetworkReply *reply = nam.get(request);

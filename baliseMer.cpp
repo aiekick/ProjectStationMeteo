@@ -40,6 +40,7 @@ void BaliseMer::requestData()
 {
     const auto& url = QUrl("http://" + GlobalSettings::Instance()->getIP() + ":" + GlobalSettings::Instance()->getPort() + "/sensor");
     QNetworkRequest request(url);
+    request.setTransferTimeout(2000); // 2s
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QNetworkAccessManager nam;
     QNetworkReply* reply = nam.get(request);
