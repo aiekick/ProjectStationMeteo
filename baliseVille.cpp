@@ -193,7 +193,7 @@ void BaliseVille::Recuperation_Api_ForeCast()
 
     QString datesansheure=0;
     QString Datesansheurecompare=0;
-QString heuresansdate=0;
+    QString heuresansdate=0;
 
 
 
@@ -204,14 +204,14 @@ QString heuresansdate=0;
         QString dates1=obj["dt_txt"].toString();
         QStringList datesdecompose=dates1.split(QRegularExpression("\\s+"));
         datesansheure= datesdecompose[0];
-heuresansdate=datesdecompose[1];
-QStringList heureliste=heuresansdate.split(QLatin1Char(':'));
-//qDebug() <<heureliste[0];
-QString stringheureseuleprevision=heureliste[0];
-double heureseuleprevision=stringheureseuleprevision.toDouble();
- QString heureactuelstring= QTime::currentTime().toString("hh");
- double heureactuelle=heureactuelstring.toDouble();
- double heurediff=heureactuelle-heureseuleprevision;
+        heuresansdate=datesdecompose[1];
+        QStringList heureliste=heuresansdate.split(QLatin1Char(':'));
+        //qDebug() <<heureliste[0];
+        QString stringheureseuleprevision=heureliste[0];
+        double heureseuleprevision=stringheureseuleprevision.toDouble();
+        QString heureactuelstring= QTime::currentTime().toString("hh");
+        double heureactuelle=heureactuelstring.toDouble();
+        double heurediff=heureactuelle-heureseuleprevision;
         if(datesansheure!=Datesansheurecompare)
         {
             i++;
@@ -221,7 +221,7 @@ double heureseuleprevision=stringheureseuleprevision.toDouble();
         if(datesansheure==Datesansheurecompare)
             j++;
 
- //qDebug() <<datesdecompose[1];
+        //qDebug() <<datesdecompose[1];
         // qDebug() <<"datesansheure: "<<datesansheure;
         //qDebug() << "date: " << obj["dt_txt"].toString();
         //qDebug() << "dt: " << obj["dt"].toInt();
@@ -242,11 +242,11 @@ double heureseuleprevision=stringheureseuleprevision.toDouble();
             //   qDebug() << "icone: " << obj1["icon"].toString();
             //icon
 
-           // QString heure=QTime::currentTime().toString("hh");
+            // QString heure=QTime::currentTime().toString("hh");
             //qDebug() << heure;
             if (i==1 && heurediff<3 &&heurediff >-3)
             {
-qDebug()<<"difference : "<<heurediff<<"heure actu: "<< heureactuelle <<"heureeseuleprevisiondecomp : "<<heureseuleprevision;
+               // qDebug()<<"difference : "<<heurediff<<"heure actu: "<< heureactuelle <<"heureeseuleprevisiondecomp : "<<heureseuleprevision;
                 datasForeCast1.setIcon(obj1["icon"].toString());
                 //Picto
                 datasForeCast1.setDescription(obj1["description"].toString());
@@ -294,8 +294,8 @@ qDebug()<<"difference : "<<heurediff<<"heure actu: "<< heureactuelle <<"heureese
             // Temperature max
             if(temp1>tempmax1)
                 tempmax1=temp1;
-                        datasForeCast1.setTemperatureMinKelvin(tempmin1);
-                        datasForeCast1.setTemperatureKelvin(tempmax1);
+            datasForeCast1.setTemperatureMinKelvin(tempmin1);
+            datasForeCast1.setTemperatureKelvin(tempmax1);
 
             // Pressure
             pression1cumul+=mainObject["pressure"].toDouble();
@@ -319,8 +319,8 @@ qDebug()<<"difference : "<<heurediff<<"heure actu: "<< heureactuelle <<"heureese
             // Temperature max
             if(temp2>tempmax2)
                 tempmax2=temp2;
-                        datasForeCast2.setTemperatureMinKelvin(tempmin2);
-                        datasForeCast2.setTemperatureKelvin(tempmax2);
+            datasForeCast2.setTemperatureMinKelvin(tempmin2);
+            datasForeCast2.setTemperatureKelvin(tempmax2);
 
 
             // Pressure
@@ -347,8 +347,8 @@ qDebug()<<"difference : "<<heurediff<<"heure actu: "<< heureactuelle <<"heureese
             // Temperature max
             if(temp3>tempmax3)
                 tempmax3=temp3;
-                        datasForeCast3.setTemperatureMinKelvin(tempmin3);
-                        datasForeCast3.setTemperatureKelvin(tempmax3);
+            datasForeCast3.setTemperatureMinKelvin(tempmin3);
+            datasForeCast3.setTemperatureKelvin(tempmax3);
             // Pressure
             pression3cumul+=mainObject["pressure"].toDouble();
             pression3moyenne=pression3cumul/j;
@@ -373,8 +373,8 @@ qDebug()<<"difference : "<<heurediff<<"heure actu: "<< heureactuelle <<"heureese
             // Temperature max
             if(temp4>tempmax4)
                 tempmax4=temp4;
-                        datasForeCast4.setTemperatureMinKelvin(tempmin4);
-                        datasForeCast4.setTemperatureKelvin(tempmax4);
+            datasForeCast4.setTemperatureMinKelvin(tempmin4);
+            datasForeCast4.setTemperatureKelvin(tempmax4);
 
             // Pressure
             pression4cumul+=mainObject["pressure"].toDouble();
@@ -399,8 +399,8 @@ qDebug()<<"difference : "<<heurediff<<"heure actu: "<< heureactuelle <<"heureese
             // Temperature max
             if(temp5>tempmax5)
                 tempmax5=temp5;
-                        datasForeCast5.setTemperatureMinKelvin(tempmin5);
-                        datasForeCast5.setTemperatureKelvin(tempmax5);
+            datasForeCast5.setTemperatureMinKelvin(tempmin5);
+            datasForeCast5.setTemperatureKelvin(tempmax5);
 
             // Pressure
             pression5cumul+=mainObject["pressure"].toDouble();
