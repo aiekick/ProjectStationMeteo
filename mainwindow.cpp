@@ -7,6 +7,7 @@
 #include "GlobalSettings.h"
 #include "balisevillepanel.h"
 #include "baliseMerPanel.h"
+#include "LangManager.h"
 
 MainWindow::MainWindow(QWidget *parent)
  : QMainWindow(parent), ui(new Ui::MainWindow)

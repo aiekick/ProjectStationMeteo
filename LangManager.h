@@ -15,6 +15,7 @@ public:
     void Unit();
 
     void ApplyLang(const QString& vLang);
+    void ReApplyCurrent();
     std::map<QString, QString> getTranslations();
 
 public:

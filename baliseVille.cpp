@@ -151,7 +151,7 @@ void BaliseVille::Recuperation_Api_ForeCast()
     int humidite5cumul=0;
     int humidite5moyenne=0;
 
-    qDebug() << "SSL ? " << QSslSocket::supportsSsl();
+    //qDebug() << "SSL ? " << QSslSocket::supportsSsl();
 
     QNetworkRequest request(getForeCastDayUrl());
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");

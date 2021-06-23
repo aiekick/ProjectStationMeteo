@@ -50,6 +50,14 @@ void LangManager::ApplyLang(const QString& vLang)
     }
 }
 
+void LangManager::ReApplyCurrent()
+{
+    if (!qApp->installTranslator(&appTranslator))
+    {
+        qDebug() << "Fail to install translation";
+    }
+}
+
 std::map<QString, QString> LangManager::getTranslations()
 {
     return m_Translations;

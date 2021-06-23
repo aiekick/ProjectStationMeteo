@@ -273,7 +273,7 @@
        <item>
         <widget class="QPushButton" name="saveDayStyle">
          <property name="text">
-          <string>Save Day</string>
+          <string notr="true">Save Day</string>
          </property>
         </widget>
        </item>
@@ -284,14 +284,14 @@
        <item>
         <widget class="QPushButton" name="openNightStyle">
          <property name="text">
-          <string>Open Night</string>
+          <string notr="true">Open Night</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="saveNightStyle">
          <property name="text">
-          <string>Save Night</string>
+          <string notr="true">Save Night</string>
          </property>
         </widget>
        </item>
@@ -300,7 +300,7 @@
      <item>
       <widget class="QPushButton" name="applyBtn">
        <property name="text">
-        <string>Apply</string>
+        <string notr="true">Apply</string>
        </property>
       </widget>
      </item>

@@ -85,26 +85,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="276"/>
-        <source>Save Day</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="287"/>
-        <source>Open Night</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="294"/>
-        <source>Save Night</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="mainwindow.ui" line="303"/>
-        <source>Apply</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="mainwindow.ui" line="326"/>
         <source>Settings</source>
         <translation></translation>
@@ -129,62 +109,62 @@
     <message>
         <location filename="baliseMer.cpp" line="129"/>
         <source>Temp�rature</source>
-        <translation type="unfinished"></translation>
+        <translation>Temperature</translation>
     </message>
     <message>
         <location filename="baliseMer.cpp" line="174"/>
         <source>Temp�rature moyenne</source>
-        <translation type="unfinished"></translation>
+        <translation>Average Temperature</translation>
     </message>
     <message>
         <location filename="baliseMer.cpp" line="193"/>
         <source>Pression</source>
-        <translation type="unfinished"></translation>
+        <translation>Pressure</translation>
     </message>
     <message>
         <location filename="baliseMer.cpp" line="244"/>
         <source>Temp�rature (�C)</source>
-        <translation type="unfinished"></translation>
+        <translation>Temperature (°C)</translation>
     </message>
     <message>
         <location filename="baliseMer.cpp" line="248"/>
         <source>Temp�rature (�F)</source>
-        <translation type="unfinished"></translation>
+        <translation>Temperature (°F)</translation>
     </message>
     <message>
         <location filename="baliseMer.cpp" line="252"/>
         <source>Temp�rature (K)</source>
-        <translation type="unfinished"></translation>
+        <translation>Temperature (°K)</translation>
     </message>
     <message>
         <location filename="baliseMer.cpp" line="254"/>
         <source>Pression (hPa)</source>
-        <translation type="unfinished"></translation>
+        <translation>Pressure  (hPa)</translation>
     </message>
     <message>
         <location filename="baliseMer.cpp" line="255"/>
         <source>Humidit� (%)</source>
-        <translation type="unfinished"></translation>
+        <translation>Humidity (%)</translation>
     </message>
     <message>
         <location filename="baliseMer.cpp" line="271"/>
         <source>Historique des 12 derni�res heures</source>
-        <translation type="unfinished"></translation>
+        <translation>Historic of last 12 hours</translation>
     </message>
     <message>
         <location filename="baliseMerPanel.cpp" line="75"/>
         <source>Temperature moyenne des 12 dernieres heures : </source>
-        <translation type="unfinished"></translation>
+        <translation>Average temperature of last 12 hours : </translation>
     </message>
     <message>
         <location filename="baliseMerPanel.cpp" line="77"/>
         <source>Pression </source>
-        <translation type="unfinished"></translation>
+        <translation>Pressure </translation>
     </message>
     <message>
         <location filename="baliseMerPanel.cpp" line="79"/>
         <source>Humidité </source>
-        <translation type="unfinished"></translation>
+        <translation>Humidity </translation>
     </message>
 </context>
 <context>
@@ -346,32 +326,26 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="widgetvillecurrent.ui" line="64"/>
-        <source>26°C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="widgetvillecurrent.ui" line="84"/>
+        <location filename="widgetvillecurrent.ui" line="81"/>
         <source>Ville : </source>
         <translation>City : </translation>
     </message>
     <message>
-        <location filename="widgetvillecurrent.ui" line="106"/>
         <source>Paris</source>
-        <translation type="unfinished">Paris</translation>
+        <translation type="obsolete">Paris</translation>
     </message>
     <message>
-        <location filename="widgetvillecurrent.ui" line="119"/>
+        <location filename="widgetvillecurrent.ui" line="116"/>
         <source>Pression : </source>
         <translation>Pressure : </translation>
     </message>
     <message>
-        <location filename="widgetvillecurrent.ui" line="135"/>
+        <location filename="widgetvillecurrent.ui" line="132"/>
         <source>Humidite : </source>
         <translation>Humidity : </translation>
     </message>
     <message>
-        <location filename="widgetvillecurrent.ui" line="151"/>
+        <location filename="widgetvillecurrent.ui" line="148"/>
         <source>Description : </source>
         <translation>Description : </translation>
     </message>
@@ -383,37 +357,6 @@
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="widgetvilleforecast.ui" line="28"/>
-        <source>date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="widgetvilleforecast.ui" line="44"/>
-        <source>temp-</source>
-        <oldsource>temp</oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="widgetvilleforecast.ui" line="60"/>
-        <source>temp+</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="widgetvilleforecast.ui" line="112"/>
-        <source>desc</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="widgetvilleforecast.ui" line="131"/>
-        <source>humi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="widgetvilleforecast.ui" line="147"/>
-        <source>pression</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>baliseMerPanel</name>
@@ -421,16 +364,6 @@
         <location filename="baliseMerPanel.ui" line="14"/>
         <source>baliseMerPanel</source>
         <translation></translation>
-    </message>
-    <message>
-        <location filename="baliseMerPanel.ui" line="72"/>
-        <source>IP : 78.199.78.207</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="baliseMerPanel.ui" line="109"/>
-        <source>26°C</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Humidité :</source>
