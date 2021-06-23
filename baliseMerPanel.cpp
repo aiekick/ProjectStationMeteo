@@ -174,6 +174,9 @@ void BaliseMerPanel::ApplyStyle()
     ui->customGraphHumidity->update();
 
     this->ui->labelIcon->setPixmap(baliseMer.displayWeatherIcon());
+    int m = qMax(ui->labelIcon->width(), ui->labelIcon->height());
+    ui->labelIcon->setMaximumSize(QSize(m, m));
+    ui->labelIcon->setMinimumSize(QSize(m, m));
 }
 
 

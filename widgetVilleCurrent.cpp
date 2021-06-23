@@ -66,6 +66,9 @@ void WidgetVilleCurrent::remplissage(DatasMeteo vDatas)
     ui->textdateville->setText(vDatas.getVille());
     ui->textdescville->setText(vDatas.getDescription());
     ui->labelicone->setPixmap(vDatas.getImage());
+    int m = qMax(ui->labelicone->width(), ui->labelicone->height());
+    ui->labelicone->setMaximumSize(QSize(m, m));
+    ui->labelicone->setMinimumSize(QSize(m, m));
 }
 
 ////////////////////////////////////////

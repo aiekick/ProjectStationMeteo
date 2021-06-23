@@ -58,6 +58,9 @@ void WidgetVilleForecast::remplissage(DatasMeteo vDatas)
     ui->textpressville->setText(QString::number((vDatas.getPressure())) + " hpa");
     ui->texthumiville->setText(QString::number((vDatas.getHumidity())) + " %");
     ui->labelicone->setPixmap(vDatas.getImage());
+    int m = qMax(ui->labelicone->width(), ui->labelicone->height());
+    ui->labelicone->setMaximumSize(QSize(m, m));
+    ui->labelicone->setMinimumSize(QSize(m, m));
 
     // on va inserer un retour a la ligne dans les espaces
     ui->textdescville->setText(vDatas.getDescription());
