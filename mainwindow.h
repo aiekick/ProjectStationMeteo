@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include "settingsdlg.h"
+#include "aboutdialog.h"
 
 //#define USE_STYLE_DOCK_PANE
 

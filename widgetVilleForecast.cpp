@@ -50,9 +50,16 @@ void WidgetVilleForecast::remplissage(DatasMeteo vDatas)
     // on va inserer un retour a la ligne dans les espaces
     ui->textdescville->setText(vDatas.getDescription());
 
-    // on affiche juste le jour
+    // on affiche juste le jour traduit dans la bonne langue
     const auto& date = QDate::fromString(vDatas.getDate(), "yyyy-MM-dd");
-    ui->textdateville->setText(date.toString("ddd"));
+    if (GlobalSettings::Instance()->getLanguage() == "FR")
+    {
+        ui->textdateville->setText(QLocale("fr_FR").toString(date, "ddd"));
+    }
+    else if (GlobalSettings::Instance()->getLanguage() == "EN")
+    {
+        ui->textdateville->setText(QLocale("en_EN").toString(date, "ddd"));
+    }
 }
 
 ////////////////////////////////////////

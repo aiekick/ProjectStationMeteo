@@ -7,8 +7,6 @@
 #include "GlobalSettings.h"
 #include "balisevillepanel.h"
 #include "baliseMerPanel.h"
-#include "settingsdlg.h"
-#include "aboutdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
  : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -26,11 +24,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->retranslateUi(this);
 
     m_DateTimer.setParent(this);
-    MainWindow::connect(&m_DateTimer, &QTimer::timeout, this, &MainWindow::on_DateTimer_Timeout);
+    connect(&m_DateTimer, &QTimer::timeout, this, &MainWindow::on_DateTimer_Timeout);
     m_DateTimer.start(1000); // on refresh per sec
 
     m_RefreshTimer.setParent(this);
-    MainWindow::connect(&m_RefreshTimer,  &QTimer::timeout, this, &MainWindow::on_RefreshTimer_Timeout);
+    connect(&m_RefreshTimer,  &QTimer::timeout, this, &MainWindow::on_RefreshTimer_Timeout);
 
     ApplyStyle();
     UpdateTimer();
@@ -86,17 +84,20 @@ void MainWindow::ApplyStyle()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    SettingsDlg _SettingsDlg(this);
-    _SettingsDlg.ApplyStyle();
-    connect(&_SettingsDlg, SIGNAL(ApplySettingsChange()), this, SLOT(on_ApplySettingsChange()));
-    _SettingsDlg.exec();
+    SettingsDlg m_SettingsDlg(this);
+    connect(&m_SettingsDlg, SIGNAL(ApplySettingsChange()), this, SLOT(on_ApplySettingsChange()));
+
+    m_SettingsDlg.ApplyStyle();
+    m_SettingsDlg.setModal(true);
+    m_SettingsDlg.exec();
 }
 
 void MainWindow::on_actionAbout_triggered()
 {
-    AboutDialog _AboutDialog(this);
-    _AboutDialog.ApplyStyle();
-    _AboutDialog.exec();
+    AboutDialog m_AboutDlg(this);
+    m_AboutDlg.setModal(true);
+    m_AboutDlg.ApplyStyle();
+    m_AboutDlg.exec();
 }
 
 void MainWindow::on_actionRefresh_triggered()
@@ -116,10 +117,10 @@ void MainWindow::on_RefreshTimer_Timeout()
 
 void MainWindow::on_ApplySettingsChange()
 {
+    ApplyStyle();
     UpdateDateTime();
     UpdateTimer();
     UpdateMainWindow();
-    ApplyStyle();
 }
 
 ////////////////////////////////////////

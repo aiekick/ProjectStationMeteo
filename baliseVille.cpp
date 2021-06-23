@@ -168,7 +168,7 @@ void BaliseVille::Recuperation_Api_ForeCast()
 
     QByteArray response_data = reply->readAll();
 
-    qDebug() << "Size: " << response_data.size();
+    //qDebug() << "Size: " << response_data.size();
 
     //Conversion du ByteArray en Json
     QJsonDocument jsonResponse = QJsonDocument::fromJson(response_data);
@@ -177,14 +177,14 @@ void BaliseVille::Recuperation_Api_ForeCast()
     QJsonObject jsonObject = jsonResponse.object();
 
 
-    qDebug() <<"cod : "<< jsonObject["cod"].toString();
-    qDebug() <<"message :"<< jsonObject["message"].toInt();
-    qDebug() <<"cnt :"<< jsonObject["cnt"].toInt();
+    //qDebug() <<"cod : "<< jsonObject["cod"].toString();
+    //qDebug() <<"message :"<< jsonObject["message"].toInt();
+    //qDebug() <<"cnt :"<< jsonObject["cnt"].toInt();
 
 
 
     QJsonArray jsonArray = jsonObject["list"].toArray();
-    qDebug() << "nb:" << jsonArray.count();
+    //qDebug() << "nb:" << jsonArray.count();
 
 
 

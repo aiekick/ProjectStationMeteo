@@ -17,7 +17,7 @@ AboutDialog::~AboutDialog()
 
 void AboutDialog::on_closeBtn_clicked()
 {
-    close();
+    accept();
 }
 
 void AboutDialog::changeEvent(QEvent *e)

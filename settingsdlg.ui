@@ -207,10 +207,18 @@
          </layout>
         </item>
         <item row="4" column="1">
-         <widget class="QComboBox" name="cbLanguage"/>
+         <widget class="QComboBox" name="cbLanguage">
+          <property name="currentText">
+           <string notr="true"/>
+          </property>
+         </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QFontComboBox" name="cbFontFamily"/>
+         <widget class="QFontComboBox" name="cbFontFamily">
+          <property name="currentText">
+           <string notr="true">MS Shell Dlg 2</string>
+          </property>
+         </widget>
         </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_7">
@@ -306,7 +314,7 @@
         <item row="0" column="1">
          <widget class="QLineEdit" name="edIP">
           <property name="inputMask">
-           <string>000.000.000.000</string>
+           <string notr="true">000.000.000.000</string>
           </property>
           <property name="text">
            <string notr="true">...</string>
@@ -339,10 +347,13 @@
         <item row="1" column="1">
          <widget class="QLineEdit" name="edPort">
           <property name="inputMask">
-           <string>00000</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string notr="true"/>
+          </property>
+          <property name="maxLength">
+           <number>5</number>
           </property>
          </widget>
         </item>
@@ -381,6 +392,9 @@
         </item>
         <item row="1" column="1">
          <widget class="QLineEdit" name="edCity">
+          <property name="inputMask">
+           <string notr="true"/>
+          </property>
           <property name="text">
            <string notr="true"/>
           </property>
@@ -388,6 +402,9 @@
         </item>
         <item row="0" column="1">
          <widget class="QLineEdit" name="edApiKey">
+          <property name="inputMask">
+           <string notr="true"/>
+          </property>
           <property name="text">
            <string notr="true"/>
           </property>

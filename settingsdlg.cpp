@@ -31,13 +31,13 @@ SettingsDlg::~SettingsDlg()
 void SettingsDlg::on_okBtn_clicked()
 {
     ApplyConfig();
-    close();
+    accept();
 }
 
 /// will wloce dialog without applying config
 void SettingsDlg::on_cancelBtn_clicked()
 {
-    close();
+    reject();
 }
 
 /// will apply config but not closing dialog

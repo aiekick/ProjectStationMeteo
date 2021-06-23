@@ -68,6 +68,7 @@ void BaliseMer::requestData()
 void BaliseMer::requestMeanData()
 {
     QNetworkRequest request(QUrl("http://" + GlobalSettings::Instance()->getIP() + ":" + GlobalSettings::Instance()->getPort() + "/history:12"));
+    request.setTransferTimeout(2000); // 2s
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QNetworkAccessManager nam;
     QNetworkReply* reply = nam.get(request);
