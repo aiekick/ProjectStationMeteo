@@ -58,6 +58,12 @@ void MainWindow::changeEvent(QEvent *e)
 
 void MainWindow::ApplyStyle()
 {
+    const auto& fontFamily = GlobalSettings::Instance()->getFontFamily();
+
+    auto labelDateFont = ui->labelDate->font();
+    labelDateFont.setFamily(fontFamily);
+    ui->labelDate->setFont(labelDateFont);
+
     if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_DAY)
     {
 

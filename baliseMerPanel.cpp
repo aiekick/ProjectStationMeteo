@@ -105,6 +105,17 @@ void BaliseMerPanel::changeEvent(QEvent *e)
 
 void BaliseMerPanel::ApplyStyle()
 {
+    const auto& fontFamily = GlobalSettings::Instance()->getFontFamily();
+
+    auto labelIPFont = ui->labelIP->font();
+    labelIPFont.setFamily(fontFamily);
+    ui->labelIP->setFont(labelIPFont);
+
+    auto labelTemperatureMerFont = ui->label_Temperature_Mer->font();
+    labelTemperatureMerFont.setFamily(fontFamily);
+    labelTemperatureMerFont.setPointSize(28);
+    ui->label_Temperature_Mer->setFont(labelTemperatureMerFont);
+
     if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_DAY)
     {
         // vert
@@ -113,7 +124,7 @@ void BaliseMerPanel::ApplyStyle()
         ui->customGraphTemperature->SetBackgroundColor(QColor(239,239,239,255));
         ui->customGraphTemperature->SetLinesColor(QColor(30,47,67,255));
         ui->customGraphTemperature->SetValuesColor(QColor(30,47,67,255));
-        ui->customGraphTemperature->SetSerieNameStyle(QFont("Arial", 10), QColor(30,47,67,255));
+        ui->customGraphTemperature->SetSerieNameStyle(QFont(fontFamily, 10), QColor(30,47,67,255));
 
         // orange
         ui->customGraphPressure->SetSerieCurveStyle(QColor(250,150,50), 5.0);
@@ -121,7 +132,7 @@ void BaliseMerPanel::ApplyStyle()
         ui->customGraphPressure->SetBackgroundColor(QColor(239,239,239,255));
         ui->customGraphPressure->SetLinesColor(QColor(30,47,67,255));
         ui->customGraphPressure->SetValuesColor(QColor(30,47,67,255));
-        ui->customGraphPressure->SetSerieNameStyle(QFont("Arial", 10), QColor(30,47,67,255));
+        ui->customGraphPressure->SetSerieNameStyle(QFont(fontFamily, 10), QColor(30,47,67,255));
 
         // bleu
         ui->customGraphHumidity->SetSerieCurveStyle(QColor(50,50,200), 5.0);
@@ -129,7 +140,7 @@ void BaliseMerPanel::ApplyStyle()
         ui->customGraphHumidity->SetBackgroundColor(QColor(239,239,239,255));
         ui->customGraphHumidity->SetLinesColor(QColor(30,47,67,255));
         ui->customGraphHumidity->SetValuesColor(QColor(30,47,67,255));
-        ui->customGraphHumidity->SetSerieNameStyle(QFont("Arial", 10), QColor(30,47,67,255));
+        ui->customGraphHumidity->SetSerieNameStyle(QFont(fontFamily, 10), QColor(30,47,67,255));
     }
     else if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_NIGHT)
     {
@@ -139,7 +150,7 @@ void BaliseMerPanel::ApplyStyle()
         ui->customGraphTemperature->SetBackgroundColor(QColor(30,47,67,255));
         ui->customGraphTemperature->SetLinesColor(QColor(125,180,218,255));
         ui->customGraphTemperature->SetValuesColor(QColor(125,180,218,255));
-        ui->customGraphTemperature->SetSerieNameStyle(QFont("Arial", 10), QColor(125,180,218,255));
+        ui->customGraphTemperature->SetSerieNameStyle(QFont(fontFamily, 10), QColor(125,180,218,255));
 
         // orange
         ui->customGraphPressure->SetSerieCurveStyle(QColor(250,150,50), 5.0);
@@ -147,7 +158,7 @@ void BaliseMerPanel::ApplyStyle()
         ui->customGraphPressure->SetBackgroundColor(QColor(30,47,67,255));
         ui->customGraphPressure->SetLinesColor(QColor(125,180,218,255));
         ui->customGraphPressure->SetValuesColor(QColor(125,180,218,255));
-        ui->customGraphPressure->SetSerieNameStyle(QFont("Arial", 10), QColor(125,180,218,255));
+        ui->customGraphPressure->SetSerieNameStyle(QFont(fontFamily, 10), QColor(125,180,218,255));
 
         // bleu
         ui->customGraphHumidity->SetSerieCurveStyle(QColor(00,100,250), 5.0);
@@ -155,7 +166,7 @@ void BaliseMerPanel::ApplyStyle()
         ui->customGraphHumidity->SetBackgroundColor(QColor(30,47,67,255));
         ui->customGraphHumidity->SetLinesColor(QColor(125,180,218,255));
         ui->customGraphHumidity->SetValuesColor(QColor(125,180,218,255));
-        ui->customGraphHumidity->SetSerieNameStyle(QFont("Arial", 10), QColor(125,180,218,255));
+        ui->customGraphHumidity->SetSerieNameStyle(QFont(fontFamily, 10), QColor(125,180,218,255));
     }
 
     ui->customGraphTemperature->update();

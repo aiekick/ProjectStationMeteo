@@ -28,6 +28,26 @@ void WidgetVilleCurrent::paintEvent(QPaintEvent *)
 
 void WidgetVilleCurrent::ApplyStyle()
 {
+    const auto& fontFamily = GlobalSettings::Instance()->getFontFamily();
+
+    // regroupé par taille de font
+    auto labelFont = ui->label_2->font();
+    labelFont.setFamily(fontFamily);
+    ui->label_2->setFont(labelFont);
+    ui->label_3->setFont(labelFont);
+    ui->label_4->setFont(labelFont);
+    ui->label_5->setFont(labelFont);
+    ui->textdateville->setFont(labelFont);
+    ui->textdescville->setFont(labelFont);
+    ui->texthumiville->setFont(labelFont);
+    ui->textpressville->setFont(labelFont);
+
+    // ici  c'est une taille differente
+    auto texttempvilleFont = ui->texttempville->font();
+    texttempvilleFont.setFamily(fontFamily);
+    texttempvilleFont.setPointSize(28);
+    ui->texttempville->setFont(texttempvilleFont);
+
     if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_DAY)
     {
 

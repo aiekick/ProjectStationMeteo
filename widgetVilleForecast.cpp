@@ -29,6 +29,18 @@ void WidgetVilleForecast::paintEvent(QPaintEvent *)
 
 void WidgetVilleForecast::ApplyStyle()
 {
+    const auto& fontFamily = GlobalSettings::Instance()->getFontFamily();
+
+    // regroupé par taille de font
+    auto labelFont = ui->textdateville->font();
+    labelFont.setFamily(fontFamily);
+    ui->textdateville->setFont(labelFont);
+    ui->textdescville->setFont(labelFont);
+    ui->texthumiville->setFont(labelFont);
+    ui->textpressville->setFont(labelFont);
+    ui->texttempville->setFont(labelFont);
+    ui->texttempvillemin->setFont(labelFont);
+
     if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_DAY)
     {
 

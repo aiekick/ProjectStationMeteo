@@ -100,7 +100,7 @@ bool SettingsDlg::Init()
         ui->rbUnitKelvin->setChecked(true);
 
     // Font Family
-    ui->cbFontFamily->setFont(QFont(s_SettingsStruct.m_FontFamily));
+    ui->cbFontFamily->setCurrentFont(QFont(s_SettingsStruct.m_FontFamily));
 
     // Styles
     if (s_SettingsStruct.m_Style == StyleEnum::STYLE_DAY)
