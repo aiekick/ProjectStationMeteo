@@ -66,7 +66,6 @@ void MainWindow::ApplyStyle()
 
     if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_DAY)
     {
-
         //filePathStr = "";//":/styles/baseDay.qss";
     }
     else if (GlobalSettings::Instance()->getStyle() == StyleEnum::STYLE_NIGHT)
@@ -156,7 +155,7 @@ void MainWindow::UpdateDateTime()
     switch(GlobalSettings::Instance()->getFormatHourEnum())
     {
     case FormatHourEnum::FORMAT_12H:
-        ui->labelDate->setText(QLocale("en_EN").toString(QDateTime::currentDateTime(), "dd.MM.yyyy - HH:mm:ss a"));
+        ui->labelDate->setText(QLocale("en_EN").toString(QDateTime::currentDateTime(), "dd.MM.yyyy - hh:mm:ss a"));
         break;
     case FormatHourEnum::FORMAT_24H:
         ui->labelDate->setText(QDateTime::currentDateTime().toString("dd.MM.yyyy - HH:mm:ss"));
