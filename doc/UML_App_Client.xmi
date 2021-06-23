@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI verified="false" xmi.version="1.2" timestamp="2021-06-10T13:19:46" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
+<XMI verified="false" xmi.version="1.2" timestamp="2021-06-22T05:05:39" xmlns:UML="http://schema.omg.org/spec/UML/1.4">
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://umbrello.kde.org</XMI.exporter>
@@ -174,7 +174,7 @@
         <messages/>
         <associations/>
        </diagram>
-       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="0" showpackage="1" showpubliconly="0" showstereotype="1" name="sequence diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="0" canvaswidth="0" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#d3d3d3" backgroundcolor="#ffffff" autoincrementsequence="0" usefillcolor="1" fillcolor="#ffff00" zoom="100" xmi.id="uB9A7dJBf2hib" documentation="" showscope="1" snapgrid="0" showatts="1" type="3">
+       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="sequence diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="0" canvaswidth="0" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#d3d3d3" backgroundcolor="#ffffff" autoincrementsequence="0" usefillcolor="1" fillcolor="#ffff00" zoom="100" xmi.id="uB9A7dJBf2hib" documentation="" showscope="1" snapgrid="0" showatts="1" type="3">
         <widgets/>
         <messages/>
         <associations/>
@@ -400,7 +400,7 @@
      </UML:Namespace.ownedElement>
      <XMI.extension xmi.extender="umbrello">
       <diagrams resolution="96">
-       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="Client_Use_Case_Diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="448.616" canvaswidth="754.065" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#d3d3d3" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffff00" zoom="248" xmi.id="ubhzB7jSbSnMM" documentation="" showscope="1" snapgrid="0" showatts="1" type="2">
+       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="Client_Use_Case_Diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="448.616" canvaswidth="754.065" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#d3d3d3" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffff00" zoom="142" xmi.id="ubhzB7jSbSnMM" documentation="" showscope="1" snapgrid="0" showatts="1" type="2">
         <widgets>
          <actorwidget width="35.5786" showstereotype="1" x="-3746.14" usesdiagramusefillcolor="0" y="-1706.07" usesdiagramfillcolor="0" isinstance="0" localid="uNAUQVzs2t1Zx" fillcolor="#ffff00" height="35.5786" linecolor="#ff0000" xmi.id="u4BNjXb6IhTvZ" autoresize="0" textcolor="#000000" usefillcolor="1" linewidth="0" font="Sans Serif,9,-1,0,50,0,0,0,0,0"/>
          <usecasewidget width="70" showstereotype="1" x="-3552.37" usesdiagramusefillcolor="0" y="-1721.17" usesdiagramfillcolor="0" isinstance="0" localid="uwiv1Rrp1Ip9B" fillcolor="#ffff00" height="50" linecolor="#ff0000" xmi.id="um6ZZwe759FwT" autoresize="1" textcolor="#000000" usefillcolor="1" linewidth="0" font="Sans Serif,9,-1,0,50,0,0,0,0,0"/>
@@ -483,7 +483,7 @@
          </assocwidget>
         </associations>
        </diagram>
-       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="Server_Use_Case_Diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="390.734" canvaswidth="614.104" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#d3d3d3" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffff00" zoom="10" xmi.id="uVZi37t1PHmaA" documentation="" showscope="1" snapgrid="0" showatts="1" type="2">
+       <diagram showopsig="1" linecolor="#ff0000" snapx="25" showattribassocs="1" snapy="25" linewidth="0" showattsig="1" textcolor="#000000" isopen="1" showpackage="1" showpubliconly="0" showstereotype="1" name="Server_Use_Case_Diagram" font="Sans Serif,9,-1,0,50,0,0,0,0,0" canvasheight="390.734" canvaswidth="614.104" localid="-1" snapcsgrid="0" showgrid="0" showops="1" griddotcolor="#d3d3d3" backgroundcolor="#ffffff" usefillcolor="1" fillcolor="#ffff00" zoom="163,665373929461" xmi.id="uVZi37t1PHmaA" documentation="" showscope="1" snapgrid="0" showatts="1" type="2">
         <widgets>
          <usecasewidget width="70" showstereotype="1" x="-38406.5" usesdiagramusefillcolor="0" y="-4178.85" usesdiagramfillcolor="0" isinstance="0" localid="udnl25CG06LrG" fillcolor="#ffff00" height="50" linecolor="#ff0000" xmi.id="uUKsL5XUEYynA" autoresize="1" textcolor="#000000" usefillcolor="1" linewidth="0" font="Sans Serif,9,-1,0,50,0,0,0,0,0"/>
          <usecasewidget width="75" showstereotype="1" x="-38412.1" usesdiagramusefillcolor="0" y="-3941.18" usesdiagramfillcolor="0" isinstance="0" localid="uY4ixpwGoX9ek" fillcolor="#ffff00" height="50" linecolor="#ff0000" xmi.id="uMT98s5Hc9zcF" autoresize="1" textcolor="#000000" usefillcolor="1" linewidth="0" font="Sans Serif,9,-1,0,50,0,0,0,0,0"/>
@@ -588,7 +588,7 @@
   </UML:Model>
  </XMI.content>
  <XMI.extensions xmi.extender="umbrello">
-  <docsettings viewid="ubhzB7jSbSnMM" uniqueid="uUXRO1fiCxfvc" documentation=""/>
+  <docsettings viewid="uVZi37t1PHmaA" uniqueid="uJYUFUk0R7MQA" documentation=""/>
   <listview>
    <listitem open="1" type="800" id="Views">
     <listitem open="1" type="821" id="Component_View"/>

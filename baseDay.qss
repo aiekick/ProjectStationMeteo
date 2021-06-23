@@ -1,0 +1,56 @@
+QMainWindow
+{
+	background-color:#FAFAFA;
+}
+QToolBar
+{
+	background-color: #FEFEFE;
+}
+QToolButton
+{
+        	color: #000000;
+}
+QLabel
+{
+        	color: #000000;
+}
+QWidget#widgetDate
+{
+	background-color: #EFEFEF;
+	border-radius:5px;
+}
+QWidget#widgetMerMain
+{
+	background-color: #EFEFEF;
+	border-radius:5px;
+}
+QWidget#jouractu
+{
+	background-color: #EFEFEF;
+	border-radius:5px;
+}
+QWidget#jour1
+{
+	background-color: #EFEFEF;
+	border-radius:5px;
+}
+QWidget#jour2
+{
+	background-color: #EFEFEF;
+	border-radius:5px;
+}
+QWidget#jour3
+{
+	background-color: #EFEFEF;
+	border-radius:5px;
+}
+QWidget#jour4
+{
+	background-color: #EFEFEF;
+	border-radius:5px;
+}
+QWidget#jour5
+{
+	background-color: #EFEFEF;
+	border-radius:5px;
+}

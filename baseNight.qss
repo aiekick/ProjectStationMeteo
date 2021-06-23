@@ -1,0 +1,152 @@
+QMainWindow
+{
+	background-color:#0B1320;
+}
+QDialog
+{
+	background-color:#0B1320;
+}
+QToolBar
+{
+	background-color: #1E2F43;
+}
+QToolButton
+{
+        	color: #7DB4DA;
+}
+QToolButton:hover 
+{
+        	background-color: #1F4083;
+}
+QPushButton
+{
+	background-color: #1E2F43;
+	color: #7DB4DA;
+}
+QPushButton:hover 
+{
+        	background-color: #1F4083;
+	color: #EFEFEF;
+}
+QLabel
+{
+        	color: #7DB4DA;
+}
+QRadioButton
+{
+	color: #7DB4DA;
+	padding: 0 5 0 0;
+}
+QRadioButton::indicator:checked 
+{
+	height: 10px;
+	width: 10px;
+	border-style:solid;
+	border-radius:5px;
+	border-width: 2px;
+	border-color: #7DB4DA;
+	background-color:#7DB4DA;
+}
+QRadioButton::indicator:!checked 
+{
+	height: 10px;
+	width: 10px;
+	border-style:solid;
+	border-radius:5px;
+	border-width: 2px;
+	border-color:#7DB4DA;
+	background-color: transparent;
+}
+QGroupBox 
+{
+        	font-size: 15px;
+        	border: 1px solid #7DB4DA;
+        	border-radius: 4px;
+        	margin-top: 10px;
+	background-color: #1E2F43;
+	border-radius:5px;
+	padding: 5 5 5 5;
+}
+QGroupBox::title 
+{
+        	color: #7DB4DA;
+       	top: -12px;
+        	left: 10px;
+}
+QWidget#widgetDate
+{
+	background-color: #1E2F43;
+	border-radius:5px;
+}
+QWidget#widgetMerMain
+{
+	background-color: #1E2F43;
+	border-radius:5px;
+}
+QWidget#widgetVille
+{
+	background-color: #1E2F43;
+	border-radius:5px;
+}
+QComboBox 
+{
+	color: #000000;
+	background-color: #97CEED;
+}
+QComboBox:editable 
+{
+	selection-color: #000000;
+	selection-background-color: #ffffff;
+}
+QLineEdit
+{
+	color: #000000;
+	background-color: #97CEED;
+}
+QSpinBox
+{
+	color: #000000;
+	background-color: #97CEED;
+}
+QDockWidget
+{
+	background-color:#0B1320;
+}
+QPlainTextEdit
+{
+	background-color: #A9DBF6;
+}
+QScrollBar 
+{
+	background-color: #A9DBF6;
+}
+QWidget#jouractu
+{
+	background-color: #1E2F43;
+	border-radius:5px;
+}
+QWidget#jour1
+{
+	background-color: #1E2F43;
+	border-radius:5px;
+}
+QWidget#jour2
+{
+	background-color: #1E2F43;
+	border-radius:5px;
+}
+QWidget#jour3
+{
+	background-color: #1E2F43;
+	border-radius:5px;
+}
+QWidget#jour4
+{
+	background-color: #1E2F43;
+	border-radius:5px;
+}
+QWidget#jour5
+{
+	background-color: #1E2F43;
+	border-radius:5px;
+}

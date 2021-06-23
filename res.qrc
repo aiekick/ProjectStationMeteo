@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/Help.png</file>
+        <file>icons/Information.png</file>
+        <file>icons/Refresh.png</file>
+        <file>icons/Settings.png</file>
+        <file>icons/Accept.png</file>
+        <file>icons/Cancel.png</file>
+        <file>icons/Disk.png</file>
+        <file>icons/ChartCurve.png</file>
+    </qresource>
+</RCC>

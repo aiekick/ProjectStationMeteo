@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/translations">
+        <file>station_meteo_en.qm</file>
+        <file>station_meteo_fr.qm</file>
+    </qresource>
+</RCC>
